@@ -1,0 +1,12 @@
+{
+	"1": ["-sV", "Service dectection"],
+	"2": ["-sT", "TCP Connect"],
+	"3": ["-sS", "TCP SYN"],
+	"4": ["-sA", "ACK Scan"],
+	"5": ["-sU", "UPD Scan"],
+	"6": ["-sN", "TCP Null"],
+	"7": ["-sF", "FIN Scan"],
+	"8": ["-sX", "Xmas Scan"],
+	"9": ["-sn", "Ping Scan"],
+	"10": ["-O", "Enable OS dectection"]
+}

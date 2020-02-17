@@ -1,0 +1,1 @@
+require_relative 'bitcoin_vanity'

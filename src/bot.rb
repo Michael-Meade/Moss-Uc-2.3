@@ -29,6 +29,7 @@ module Bot
   def self.load_modules(klass, path)
     new_module = Module.new
     const_set(klass.to_sym, new_module)
+    #Dir[File.expand_path "lib/**/*.rb"].each{|f| require_relative(f)}
     Dir["src/modules/#{path}/*.rb"].each { |file| load file }
     new_module.constants.each do |mod|
       BOT.include! new_module.const_get(mod)
@@ -37,6 +38,7 @@ module Bot
 
   load_modules(:DiscordEvents, 'events')
   load_modules(:DiscordCommands, 'commands')
+  load_modules(:BashBunny, "bash_bunny")
 
   # Run the bot
   BOT.run

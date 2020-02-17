@@ -1,0 +1,23 @@
+DUCKY_LANG us
+ATTACKMODE HID
+
+Q DELAY 200
+
+Q GUI r
+Q BACKSPACE
+Q STRING chrome.exe https://mail.google.com/a/utica.edu
+Q ENTER
+
+Q TAB
+Q DELAY 1000
+
+Q STRING email@utica.edu
+Q DELAY 1000
+
+Q TAB
+Q STRING <password>
+Q DELAY 1000
+
+Q TAB 
+Q DELAY 1000
+Q ENTER

@@ -1,0 +1,16 @@
+2/7/2020
+- Added firewall meme
+
+1/‎31/2020
+- Added resources class
+
+2/8/2020
+- Added NMAP module
+- Added Bitcoin gen
+
+2/9/2020
+- fixed .moviedb & .yt
+
+2/13/2020
+- fixed .beer me
+- added .friday

@@ -1,4 +1,4 @@
-r+equire_relative 'utils'
+require_relative 'utils'
 require 'httparty'
 require "open-uri"
 module Bot::DiscordCommands

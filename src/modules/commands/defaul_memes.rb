@@ -1,4 +1,4 @@
-r+equire_relative 'utils'
+require_relative 'utils'
 require 'httparty'
 require "open-uri"
 module Bot::DiscordCommands
@@ -14,7 +14,7 @@ module Bot::DiscordCommands
     	   event.send_file(File.open('images/dab.gif', 'r'))
         end
     end
-    command([:plead, 5], description: "plead the fifth", usage:".5") do |event|
+    command([:plead], description: "plead the fifth", usage:".5") do |event|
         event.send_file(File.open("images/plead.png"))
     end
     command([:great, :scott, :greatscott],  description:"Great Scott", usage:".great") do |event|
@@ -35,6 +35,9 @@ module Bot::DiscordCommands
     end
     command([:help],  description:"Oh", usage:".help") do |event|
         event.send_file(File.open('images/commands_lists.png', 'r'))
+    end
+    command([:boom], description: "boom", usage:".boom") do |event|
+        event.send_file(File.open('images/boom-boom.gif', 'r'))
     end
     command([:meanie],  description:"meanie", usage:".meanie") do |event|
         event.send_file(File.open('images/MEANIE.png', 'r'))

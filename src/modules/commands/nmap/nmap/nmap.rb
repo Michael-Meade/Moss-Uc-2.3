@@ -2,6 +2,7 @@ require 'open3'
 require_relative 'config'
 class Nmap
 	def self.get_output(ip, command, uid)
+		puts uid
 		stdout, status = Open3.capture2("nmap #{ip}  #{command} -oN #{uid}")
 	end
 	def self.get_commands(ip, input, uid)

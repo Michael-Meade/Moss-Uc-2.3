@@ -8,9 +8,8 @@ module Bot::DiscordCommands
             event.respond(list.to_s)
     	end
         command(:nmap, description:"nmap", usage:".nmap 1 ") do |event, ip, num|
-            uid = event.user.id.to_s
-            Nmap.get_commands(ip, num, File.join("users", "#{uid}.txt"))
-        event.send_file(File.open(File.join("users", "#{uid}.txt")))
+            Nmap.get_commands(ip, num, File.join("users", event.user.id.to_s, "nmap.txt"))
+        event.send_file(File.open(File.join("users", event.user.id.to_s, "nmap.txt")))
         end
 	end
 end

@@ -1,0 +1,1 @@
+curl -H "Max-Downloads: 1" -H "Max-Days: 5" --upload-file ./url.zip  https://transfer.sh/url.zip

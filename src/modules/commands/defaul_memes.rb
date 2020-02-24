@@ -8,8 +8,8 @@ module Bot::DiscordCommands
     extend Discordrb::Commands::CommandContainer
     Utils.create_dir("memes", file_name="memes.json")
     command([:dab, :dabs],  description:"Dab like a champ", usage:".dab") do |event|
-        if File.exist?(File.join("users", event.user.id.to_s, "dab.png"))
-            event.send_file(File.open(File.join("users", event.user.id.to_s, "dab.png"), 'r'))
+        if File.exist?(File.join("users", event.user.id.to_s, "dab", "dab.gif"))
+            event.send_file(File.open(File.join("users", event.user.id.to_s, "dab", "dab.gif"), 'r'))
         else
     	   event.send_file(File.open('images/dab.gif', 'r'))
         end
@@ -38,6 +38,9 @@ module Bot::DiscordCommands
     end
     command([:boom], description: "boom", usage:".boom") do |event|
         event.send_file(File.open('images/boom-boom.gif', 'r'))
+    end
+    command([:dawg], description: "dawg", usage:".dawg") do |event|
+        event.send_file(File.open('images/dawg.gif', 'r'))
     end
     command([:meanie],  description:"meanie", usage:".meanie") do |event|
         event.send_file(File.open('images/MEANIE.png', 'r'))

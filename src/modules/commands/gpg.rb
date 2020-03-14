@@ -14,13 +14,13 @@ module Bot::DiscordCommands
     	command(:btcgen, description:"create bitcoin address", usage:".btcgen") do |event|
             File.readlines(File.join("users", event.user.id.to_s, "publickey.txt")).each do |line|
                 if line.match("User-ID:")
-
                     content = GPG::encrypt(BitcoinAddress.discord.to_s, line.split("Comment: User-ID:")[1].strip.to_s).shift
                     f = File.open(File.join("users", event.user.id.to_s, "addy.txt"), "w")
                     f.write(content)
                     f.close
                     puts "::::::::::"
-                    event.send_file(File.open(File.join("users", event.user.id.to_s, "addy.txt"), 'r'))
+                    File.join("users", event.user.id.to_s, "addy.txt")
+                    event.send_file(File.open("users/#{event.user.id.to_s}/addy.txt", 'r'))
                 end
             end
     	end

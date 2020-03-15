@@ -57,6 +57,9 @@ module Bot::DiscordCommands
     command([:crazy],  description:"crazy", usage:".crazy") do |event|
         event.send_file(File.open('images/crazy.png', 'r'))
     end
+    command([:lick],  description:"lick", usage:".lick") do |event|
+        event.send_file(File.open('images/lick.gif', 'r'))
+    end
     command([:friday],  description:"friday", usage:".friday") do |event|
         event.send_file(File.open('images/friday.png', 'r'))
     end

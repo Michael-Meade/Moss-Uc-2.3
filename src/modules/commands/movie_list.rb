@@ -21,7 +21,7 @@ module Bot::DiscordCommands
 			end
 		end
 		def self.list_movies(uid)
-			FileUtils.touch(File.join("users", uid, "movies_list.json")) unless File.exists?(File.join("users", uid, "movies_list.json"))
+			
 			output = ""
 			read = JSON.parse(File.read(File.join("users", uid, "movies_list.json")))
 			read.each do |key, value|
@@ -53,6 +53,8 @@ module Bot::DiscordCommands
 		end
 	    
 	    command(:movie, description:"managae your movie list", usage:".Movie list") do |event, item, movie_name|
+	    	FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
+	    	FileUtils.touch(File.join("users", event.user.id.to_s, "movies_list.json")) unless File.exists?(File.join("users", event.user.id.to_s, "movies_list.json"))
 	    	if item.to_s == "add"
 	    		if !movie_name.nil?
 	    			self.add_movie(event.user.id.to_s, event.message.content.to_s.gsub(".movie add ", "").to_s)
@@ -60,6 +62,8 @@ module Bot::DiscordCommands
 	    	elsif item.to_s == "ls"
 	    		output = list_movies(event.user.id.to_s).to_s
 	    		event.respond(output.to_s)
+	    	elsif item.to_s == "status"
+	    		status_changer(event.user.id.to_s, movie_name)
 	    	end
 	    end
 	end

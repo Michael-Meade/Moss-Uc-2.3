@@ -2,3 +2,4 @@
 ["☐ ", "the score"]
 ["☐ ", "blue streak"]
 ["☐ ", "Ghostbusters"]
+["☐ ", "ls"]

@@ -24,6 +24,9 @@ module Bot::DiscordCommands
         ") do |event|
         event.send_file(File.open('images/false.gif', 'r'))
     end
+    command([:dead],  description:"wack", usage:".dead") do |event|
+        event.send_file(File.open('images/wack.gif', 'r'))
+    end
     command([:ok, :okay],  description:"Okay", usage:".ok") do |event|
     	event.send_file(File.open('images/ok.gif', 'r'))
     end
@@ -35,6 +38,9 @@ module Bot::DiscordCommands
     end
     command([:help],  description:"Oh", usage:".help") do |event|
         event.send_file(File.open('images/commands_lists.png', 'r'))
+    end
+    command([:roasted, :roast],  description:"rostaed", usage:".roasted") do |event|
+        event.send_file(File.open('images/roasted.gif', 'r'))
     end
     command([:boom], description: "boom", usage:".boom") do |event|
         event.send_file(File.open('images/boom-boom.gif', 'r'))

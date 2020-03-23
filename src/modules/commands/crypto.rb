@@ -51,8 +51,34 @@ module Bot::DiscordCommands
 	    	"Invaid crytpo currency. Try again."
 	    end
 	end
-	command([:crypto], description:"Get current crypto price.", usage:".crypto <name>") do |event, name|
-		event.respond(crypto_price(name).strip)
+	def self.add_coin(uid, coin, amount)
+		if File.read(File.join("users", uid, "crypto.json")).empty?
+			# creates the json value and saves it in the file
+			File.open(File.join("users", uid, "crypto.json"), "a") { |file| file.write({"#{coin}" => amount}.to_json) }
+		else
+			read = JSON.parse(File.read(File.join("users", uid, "crypto.json")))
+			p read.class
+			if coin.has_key?(coin)
+				puts "::::"
+			end
+		end
+	end
+	command([:crypto], description:"Get current crypto price.", usage:".crypto <name>\n.crypto p btc ") do |event, name, coin, amount|
+		FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
+	    FileUtils.touch(File.join("users", event.user.id.to_s, "crypto.json")) unless File.exists?(File.join("users", event.user.id.to_s, "crypto.json"))
+
+
+
+	    if name.to_s == "p" || name.to_s == "profile"
+	    	puts "LLLLL"
+	    	if coin.nil? || name.nil?
+	    		event.respond("example: .crypto p btc .1997")
+	    	else
+	    		add_coin(event.user.id.to_s, coin, amount)
+	    	end
+		else
+			event.respond(crypto_price(name).strip)
+		end
 	end
 	command([:btcaddy], description:"Get bitcoin address info", usage:".btcaddy <address> <btc | usd>") do |event, address, type|
 		if type.nil?

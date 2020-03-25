@@ -1,16 +1,17 @@
 require 'httparty'
+require 'json'
 module Bot::DiscordCommands
   # Responds with "Pong!".
   # This used to check if bot is alive
   module Search
     extend Discordrb::Commands::CommandContainer
     def self.youtube(search, value=nil)
+      api = JSON.parse(File.read("config.json"))[""]
       if value.nil?
-        puts "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCCB4q5YuxILXTc8o_anxgjpibeAATUg70&q=#{search.to_s}"
-    		g = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCCB4q5YuxILXTc8o_anxgjpibeAATUg70&q=#{search.to_s}").body
+    		g = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&key=#{api}&q=#{search.to_s}").body
     		JSON.parse(g)['items'][0]['id']["videoId"]
     	else
-    		g = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCCB4q5YuxILXTc8o_anxgjpibeAATUg70&q=#{search}").body
+    		g = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&key=#{api}&q=#{search}").body
     		JSON.parse(g)['items'][value]['id']["videoId"]
     	end
     end

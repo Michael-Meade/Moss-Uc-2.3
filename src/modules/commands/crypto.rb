@@ -8,10 +8,12 @@ module Bot::DiscordCommands
   module Crypto
     extend Discordrb::Commands::CommandContainer
     def self.convert_satoshi(number)
-    	return number / 100000000.0
+    	puts number / 100000000.0
+    	return number.to_f / 100000000.0
     end
 	def self.convert_btc_usd(number)
-		btc = convert_satoshi(number).to_s.gsub(".", "")
+		btc = convert_satoshi(number.to_f).to_s.gsub(".", "")
+		puts btc
     	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{btc}&currency=USD")).response.body
 	end
 	def self.bitcoin_address_usd(address)
@@ -57,24 +59,31 @@ module Bot::DiscordCommands
 			File.open(File.join("users", uid, "crypto.json"), "a") { |file| file.write({"#{coin}" => amount}.to_json) }
 		else
 			read = JSON.parse(File.read(File.join("users", uid, "crypto.json")))
-			p read.class
-			if coin.has_key?(coin)
-				puts "::::"
+			if read.key?(coin)
+				read[coin] += amount.to_f
+				File.open(File.join("users", uid, "crypto.json"), "w") { |file| file.write(read.to_json ) }
+			else 
+				read = JSON.parse(File.read(File.join("users", uid, "crypto.json")))
+				read[coin] = amount
+				File.open(File.join("users", uid, "crypto.json"), "w") { |file| file.write(read.to_json ) }
 			end
 		end
 	end
-	command([:crypto], description:"Get current crypto price.", usage:".crypto <name>\n.crypto p btc ") do |event, name, coin, amount|
+	command([:crypto], description:"Get current crypto price.", usage:".crypto <name>\n.crypto p btc\n.crypto ls") do |event, name, coin, amount|
 		FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
 	    FileUtils.touch(File.join("users", event.user.id.to_s, "crypto.json")) unless File.exists?(File.join("users", event.user.id.to_s, "crypto.json"))
-
-
-
 	    if name.to_s == "p" || name.to_s == "profile"
-	    	puts "LLLLL"
 	    	if coin.nil? || name.nil?
 	    		event.respond("example: .crypto p btc .1997")
 	    	else
 	    		add_coin(event.user.id.to_s, coin, amount)
+	    	end
+	    elsif name.to_s == "ls" || name.to_s == "l"
+	    	JSON.parse(File.read(File.join("users", event.user.id.to_s, "crypto.json"))).each do |key, value|
+	    		if key.to_s == "btc"
+	    			btc = convert_btc_usd(value)
+	    			event.respond("BTC: #{value}\nUSD: #{btc}")
+	    		end
 	    	end
 		else
 			event.respond(crypto_price(name).strip)

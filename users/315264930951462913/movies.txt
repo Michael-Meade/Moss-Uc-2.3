@@ -3,3 +3,7 @@
 ["☐ ", "blue streak"]
 ["☐ ", "Ghostbusters"]
 ["☐ ", "ls"]
+["☐ ", "ls"]
+["☐ ", "ls"]
+["☐ ", "status 17"]
+["☐ ", "ls"]

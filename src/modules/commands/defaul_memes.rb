@@ -96,5 +96,8 @@ module Bot::DiscordCommands
     command([:burnutica, :utica, :burn],  description:"Burn Utica to the ground", usage:".burn") do |event|
         event.send_file(File.open('images/burn_utica.gif', 'r'))
     end
+    command([:dance],  description:"Dance", usage:".dance") do |event|
+        event.send_file(File.open('images/dance.gif', 'r'))
+    end
   end
 end

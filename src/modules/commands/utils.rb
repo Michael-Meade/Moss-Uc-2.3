@@ -49,6 +49,10 @@ class Utils
 			#FileUtils.touch(File.join(dir_name, file_name))
 		end
 	end
+	def self.add_last(uid, file_path, json)
+		FileUtils.mkdir_p(File.join("users", uid))  unless File.exists?(File.join("users", uid))
+		
+	end
 	def self.create_file(dir_name, file_name, string)
 		# define the pathe we want
 		dir_path = File.join(dir_name,  file_name)

@@ -12,15 +12,11 @@ module Bot::DiscordCommands
       t + " " + value
     end
     def self.create_list(file_name)
-      list  = ""
-      count = 0
-      Utils.read_list(file_name).each do |key, value|
-        puts key
-        puts value
-        list += "#{count.to_s}] #{key} <#{value}>\n"
-        count +=1
+      output = ""
+      JSON.parse(File.read(file_name)).each do |key, value|
+        output += "**"+ key.to_s + "]** #{value.gsub("https://", "<https://")}>\n"
       end
-      return list
+      output
     end
     def self.create_list2(file_name)
       count = 0
@@ -35,16 +31,25 @@ module Bot::DiscordCommands
     end
     command(:add, min_args:1, description:"add a link yo your playlist", usage:".add <song url>") do |event, *value|
       value = value.join(" ").to_s
-      # create dir if doesnt exist
+      uid = event.user.id.to_s
       string = get_youtube_title(value)
-      Utils.user_directory(event.user.id.to_s, "playlist.txt", string, "txt")
+       FileUtils.touch(File.join("users", uid, "playlist.json")) unless File.exists?(File.join("users", uid, "playlist.json"))
+      if File.read(File.join("users", uid, "playlist.json")).empty?
+        # creates the json value and saves it in the file
+        File.open(File.join("users", uid, "playlist.json"), "a") { |file| file.write({"0" => string }.to_json) }
+      else
+        read = JSON.parse(File.read(File.join("users", uid, "playlist.json")))
+        last = read.keys.last.to_i
+        last += 1
+        read[last] = string
+        File.open(File.join("users", uid, "playlist.json"), "w") { |file| file.write(read.to_json) }
+      end
+      #Utils.user_directory(event.user.id.to_s, "playlist.txt", string, "txt")
       #Utils.create_file("playlist", "#{event.user.id}.json", string)
     end
     command(:playlist, description:"List your playlist.", usage:".playlist") do |event|
       # create list
-      playlist = create_list2(File.join("users", "#{event.user.id}", "playlist.txt"))
-      #.shift
-
+      playlist = create_list(File.join("users", "#{event.user.id}", "playlist.json"))
       event.respond(playlist.to_s)
     end
   end

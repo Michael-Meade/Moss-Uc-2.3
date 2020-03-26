@@ -90,6 +90,9 @@ module Bot::DiscordCommands
     command([:smart],  description:"Show that a statement is smart", usage:".smart") do |event|
     	event.send_file(File.open('images/smart.gif', 'r'))
     end
+    command([:wack],  description:"wack", usage:".wack") do |event|
+        event.send_file(File.open('images/wack.gif', 'r'))
+    end
     command([:chicken, :butt, :chickenbutt],  description:"Guess what?", usage:".chicken") do |event|
     	event.send_file(File.open('images/chicken_butt.jpg', 'r'))
     end

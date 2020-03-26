@@ -38,11 +38,12 @@ module Bot::DiscordCommands
 				status = "x"
 			end
 		end
-		def self.status_changer(uid, movie_id)
+		def self.status_changer(uid, item_num)
 			read = JSON.parse(File.read("users/#{uid}/todo_list.json"))
 			read.each do |key, value|
-				if key.to_i == movie_id.to_i
-					read[movie_id][1] = status_switch(value[1])
+				if key.to_i == item_num.to_i
+
+					read[item_num][1] = status_switch(value[1])
 				end
 			end
 		File.open(File.join("users", uid, "todo_list.json"), "w") { |file| file.write(read.to_json) }
@@ -53,18 +54,18 @@ module Bot::DiscordCommands
 			status.gsub("o", ":white_check_mark: ").gsub("x",":x:")
 		end
 	    
-	    command(:todo, description:"managae your movie list", usage:".Movie list") do |event, item|
+	    command(:todo, description:"managae to do list", usage:".todo add item\n.todo ls") do |event, item, item_num|
 	    	FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
 	    	FileUtils.touch(File.join("users", event.user.id.to_s, "todo_list.json")) unless File.exists?(File.join("users", event.user.id.to_s, "todo_list.json"))
 	    	if item.to_s == "add"
 	    		if !item.nil?
-	    			self.add_movie(event.user.id.to_s, event.message.content.to_s.gsub(".movie add ", "").to_s)
+	    			self.add_item(event.user.id.to_s, event.message.content.to_s.gsub(".todo add ", "").to_s)
 	    		end
 	    	elsif item.to_s == "ls"
 	    		output = list_movies(event.user.id.to_s).to_s
 	    		event.respond(output.to_s)
 	    	elsif item.to_s == "status"
-	    		status_changer(event.user.id.to_s, item)
+	    		status_changer(event.user.id.to_s, item_num)
 	    	end
 	    end
 	end

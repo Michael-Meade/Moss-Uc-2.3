@@ -60,6 +60,7 @@ module Bot::DiscordCommands
 	    		if !movie_name.nil?
 	    			self.add_movie(event.user.id.to_s, event.message.content.to_s.gsub(".movie add ", "").to_s)
 	    		end
+	    		puts "LLLL"
 	    	elsif item.to_s == "ls"
 	    		output = list_movies(event.user.id.to_s).to_s
 	    		event.respond(output.to_s)

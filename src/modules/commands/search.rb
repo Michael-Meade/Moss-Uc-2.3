@@ -6,18 +6,23 @@ module Bot::DiscordCommands
   module Search
     extend Discordrb::Commands::CommandContainer
     def self.youtube(search, value=nil)
-      api = JSON.parse(File.read("config.json"))[""]
+      api = JSON.parse(File.read("config.json"))["youtube"]
+      puts api
+      puts search
+      puts "https://www.googleapis.com/youtube/v3/search?part=snippet&key=#{api}&q=#{search.to_s}"
       if value.nil?
     		g = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&key=#{api}&q=#{search.to_s}").body
-    		JSON.parse(g)['items'][0]['id']["videoId"]
+    		return JSON.parse(g)['items'][0]['id']["videoId"]
     	else
     		g = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&key=#{api}&q=#{search}").body
-    		JSON.parse(g)['items'][value]['id']["videoId"]
+    		return JSON.parse(g)['items'][value]['id']["videoId"]
     	end
     end
     command :yt do |event, *search, value|
     	s = event.message.content.to_s.gsub(".yt ", "").gsub(" ", "%20")
+      p youtube(s)
       begin
+        
       	     event.respond("https://www.youtube.com/watch?v=#{youtube(s)}".to_s)
     	rescue => e
     		puts e

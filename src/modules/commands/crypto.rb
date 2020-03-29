@@ -12,9 +12,8 @@ module Bot::DiscordCommands
     	return number.to_f / 100000000.0
     end
 	def self.convert_btc_usd(number)
-		btc = convert_satoshi(number.to_f).to_s.gsub(".", "")
-		puts btc
-    	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{btc}&currency=USD")).response.body
+		#btc = convert_satoshi(number.to_f).to_s.gsub(".", "").to_f
+    	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{number.gsub(".",  "")}&currency=USD")).response.body
 	end
 	def self.bitcoin_address_usd(address)
 		response = Net::HTTP.get_response(URI.parse("https://blockchain.info/rawaddr/#{address}"))
@@ -83,6 +82,7 @@ module Bot::DiscordCommands
 	    		if key.to_s == "btc"
 	    			btc = convert_btc_usd(value)
 	    			event.respond("BTC: #{value}\nUSD: #{btc}")
+	    		nil
 	    		end
 	    	end
 		else

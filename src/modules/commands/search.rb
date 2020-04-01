@@ -28,6 +28,17 @@ module Bot::DiscordCommands
     		puts e
     	end
     end
+    command([:wiki], description:"get wiki", usage:".wiki blockchain") do |event, *search|
+      s   = search.join("+")
+      if not s.empty?
+        rsp = JSON.parse(HTTParty.get("https://api.duckduckgo.com/?q=#{s}&format=json&pretty=1&no_html=1&skip_disambig=1").response.body)
+        if not rsp["AbstractText"].empty?
+          event.respond("#{rsp["AbstractText"].to_s}")
+        end
+      else
+        event.respond("**try:** \n .wiki blockchain")
+      end
+    end
     command(:moviedb, description:"Search for movie", usage:".moviedb Lock, Stock and Two Smoking Barrels") do |event|
       s = event.message.content.to_s.gsub(".moviedb ", "").gsub(" ", "%20")
       req = HTTParty.get("http://www.omdbapi.com/?t=#{s}&apikey=24102450")

@@ -39,6 +39,10 @@ module Bot::DiscordCommands
         event.respond("**try:** \n .wiki blockchain")
       end
     end
+    command([:manpages, :man], description:"Get access to manpage", usage:".man torsocks") do |event, item|
+     response = HTTParty.get("https://www.mankier.com/api/v2/explain/?cols=70&q=#{item.strip}").response.body.to_s
+     event.respond(response)
+    end
     command(:moviedb, description:"Search for movie", usage:".moviedb Lock, Stock and Two Smoking Barrels") do |event|
       s = event.message.content.to_s.gsub(".moviedb ", "").gsub(" ", "%20")
       req = HTTParty.get("http://www.omdbapi.com/?t=#{s}&apikey=24102450")

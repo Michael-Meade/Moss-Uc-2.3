@@ -20,6 +20,12 @@ module Bot::DiscordCommands
     command(:sha1, description:"SHA1 encode a string", usage:".sha1 <string>") do |event, *value|
       event.respond(Digest::SHA1.hexdigest(value.join(" ").to_s).to_s)
     end
+    command(:sha256, description:"encode string in sha256", usage:".sha256 birds are not real") do |event, *value|
+      event.respond(Digest::SHA256.hexdigest(value.join(" ")).to_s)
+    end
+    command([:sha512], description:"sha512 a string", usage:".sha512 <string>", min_args:1) do |event, *value|
+      event.respond(Digest::SHA512.hexdigest(value.join(" ").to_s))
+    end
     command([:encodebase64, :encode64, :base64], description:"Base64 encode a string", usage:".base64 <string>") do |event, *value|
       event.respond(Base64.encode64(value.join(" ").to_s).to_s)
     end
@@ -36,9 +42,11 @@ module Bot::DiscordCommands
       value = value.join(" ")
       event.respond(value.unpack("B*").shift.to_s)
     end
-
+    
     command([:unbinary], description:"Binary decode a string", usage:".unbinary <string>") do |event, *value|
-      event.respond([value.join(" ")].pack("B*").to_s)
+      value = value.join
+      #shift
+      event.respond([value].pack("B*").to_s)
     end
     command([:bacon], description:"Encode a string with bacon cipher", usage:".bacon <string>") do |event, *value|
       event.respond(value.join(" ").to_s.unpack("B*").first.tr("0", "A").tr("1", "B").to_s)
@@ -55,11 +63,8 @@ module Bot::DiscordCommands
     command(:urlencode, description:"URL encode a string", usage:".urlencode <string>") do |event, *value|
       event.respond(URI::parse(value.join(" ").to_s.value).to_s)
     end
-    command(:xor,description:"XOR encode a string with key", usage:"xor <string> <key>") do |event, *msg, key|
-      key   = key.join(" ").to_s
-      msg   = msg.join(" ").to_s
-      encrypt = msg ^ key
-      puts encrypt ^ key
+    command(:xor,description:"XOR encode a string with key", usage:"xor <string> <key>", min_args:2) do |event, *msg, key|
+      encrypt = msg.join(" ") ^ key
       event.respond(encrypt.unpack("B*").shift.to_s)
     end
   end

@@ -3,6 +3,7 @@ require 'json'
 require 'httparty'
 require 'uri'
 require 'net/http'
+require 'json'
 require 'colorize'
 module Bot::DiscordCommands
   module Crypto
@@ -12,32 +13,33 @@ module Bot::DiscordCommands
     	return number.to_f / 100000000.0
     end
 	def self.convert_btc_usd(number)
-		#btc = convert_satoshi(number.to_f).to_s.gsub(".", "").to_f
-    	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{number.gsub(".",  "")}&currency=USD")).response.body
+		btc = convert_satoshi(number.to_f).to_s.gsub(".", "").to_f
+		puts btc
+    	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{btc.to_s.gsub(".", "")}&currency=USD")).response.body
 	end
 	def self.bitcoin_address_usd(address)
 		response = Net::HTTP.get_response(URI.parse("https://blockchain.info/rawaddr/#{address}"))
     	btc      = JSON.parse(response.body)
-    	"
-    	**Received:** $#{convert_btc_usd(btc["total_received"]).to_s}
-    	**Sent:** $#{convert_btc_usd(btc["total_sent"].to_i).to_s}
-    	**Hash:** #{btc["hash160"]}
-    	**TX:** #{btc["n_tx"]}
-    	**Final Balance:** $#{convert_btc_usd(btc["final_balance"].to_i).to_s}
-    	".gsub("\t        ", "").gsub("\t", "").gsub("  ", "").lstrip
 	end
 	def self.bitcoin_address_btc(address)
 		response = Net::HTTP.get_response(URI.parse("https://blockchain.info/rawaddr/#{address}"))
     	btc      = JSON.parse(response.body)
-    	"
-    	**Received:** #{convert_satoshi(btc["total_received"])}
-    	**Sent:** #{convert_satoshi(btc["total_sent"])}
-    	**Hash:** #{btc["hash160"]}
-    	**TX:** #{btc["n_tx"]}
-    	**Final Balance:** #{convert_satoshi(btc["final_balance"])}
-    	".gsub("\t        ", "").gsub("\t", "").gsub("  ", "").lstrip
 	end
 	def self.crypto_price(crypto)
+		c = crypto.upcase
+		p c
+		response = HTTParty.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest", params: {'start':'1','limit':'1','convert':'USD,BTC'}, headers: {
+			'Accepts': 'application/json',
+			'X-CMC_PRO_API_KEY': Utils.read_list("config.json")["X-CMC_PRO_API_KEY"].to_s
+		})
+		out = response.parsed_response["data"]
+		out.each do |keys, value|
+			if keys["symbol"].to_s == c
+				return keys
+			end
+		end
+	end
+	def self.crypto_price2(crypto)
 		begin
 			uri = URI.parse("https://api.coinmarketcap.com/v1/ticker/#{crypto}/")
 	        response = Net::HTTP.get_response(uri)
@@ -86,18 +88,71 @@ module Bot::DiscordCommands
 	    		end
 	    	end
 		else
-			event.respond(crypto_price(name).strip)
+			coin = crypto_price(name)
+			event.channel.send_embed("") do |embed|
+	          embed.title = coin["name"].to_s
+	          embed.colour = 0x5345b3
+	          embed.add_field(name: "Price USD",          		value: coin["quote"]["USD"]["price"].to_s)
+	          embed.add_field(name: "Volume 24h",        		value: coin["quote"]["USD"]["volume_24h"].to_s)
+	          embed.add_field(name: "Price Change 1 hour",  	value: coin["quote"]["USD"]["percent_change_1h"].to_s)
+	          embed.add_field(name: "Price Change 24 hour",     value: coin["quote"]["USD"]["percent_change_24h"].to_s)
+	          embed.add_field(name: "Price Change 7 days",      value: coin["quote"]["USD"]["percent_change_7d"].to_s)
+	          embed.add_field(name: "Market Cap",               value: coin["quote"]["USD"]["market_cap"].to_s)
+	        end
+			#event.respond(crypto_price(name.to_s))
+				#crypto_price(name).strip)
 		end
 	end
 	command([:btcaddy], description:"Get bitcoin address info", usage:".btcaddy <address> <btc | usd>") do |event, address, type|
 		if type.nil?
-			event.respond(bitcoin_address_usd(address).to_s)
+			btc = bitcoin_address_usd(address)
+			event.channel.send_embed("l") do |embed|
+	          embed.title = "Bitcoin"
+	          embed.colour = 0x5345b3
+	          embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://pngimg.com/uploads/bitcoin/bitcoin_PNG47.png")
+	          embed.add_field(name: "Received",         value: convert_btc_usd(btc["total_received"]).to_s)
+	          embed.add_field(name: "Sent",             value: convert_btc_usd(btc["total_sent"]).to_s)
+	          embed.add_field(name: "Hash",             value: btc["hash160"].to_s)
+	          embed.add_field(name: "Tx",               value: btc["n_tx"].to_s)
+	          embed.add_field(name: "Final Balance",    value: convert_btc_usd(btc["final_balance"]).to_s)
+	      	end
 		elsif type.downcase.to_s == "btc" || type.downcase.to_s == "bitcoin"
-			event.respond(bitcoin_address_btc(address).to_s)
+			btc = bitcoin_address_usd(address)
+			event.channel.send_embed("l") do |embed|
+	          embed.title = "Bitcoin - BTC"
+	          embed.colour = 0x5345b3
+	          embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://pngimg.com/uploads/bitcoin/bitcoin_PNG47.png")
+	          embed.add_field(name: "Received",         value: convert_satoshi(btc["total_received"]).to_s)
+	          embed.add_field(name: "Sent",             value: convert_satoshi(btc["total_sent"]).to_s)
+	          embed.add_field(name: "Hash",             value: btc["hash160"].to_s)
+	          embed.add_field(name: "Tx",               value: btc["n_tx"].to_s)
+	          embed.add_field(name: "Final Balance",    value: convert_satoshi(btc["final_balance"]).to_s)
+	      	end
 		elsif type.downcase == "usd"
-			event.respond(bitcoin_address_usd(address).to_s)
+			btc = bitcoin_address_usd(address)
+			event.channel.send_embed("l") do |embed|
+	          embed.title = "Bitcoin - USD"
+	          embed.colour = 0x5345b3
+	          embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://pngimg.com/uploads/bitcoin/bitcoin_PNG47.png")
+	          embed.add_field(name: "Received",         value: convert_satoshi(btc["total_received"]).to_s)
+	          embed.add_field(name: "Sent",             value: convert_satoshi(btc["total_sent"]).to_s)
+	          embed.add_field(name: "Hash",             value: btc["hash160"].to_s)
+	          embed.add_field(name: "Tx",               value: btc["n_tx"].to_s)
+	          embed.add_field(name: "Final Balance",    value: convert_satoshi(btc["final_balance"]).to_s)
+	      	end
 		else 
-			event.respond(bitcoin_address_usd(address).to_s)
+			puts "Dddd"
+			btc = bitcoin_address_usd(address)
+			event.channel.send_embed("l") do |embed|
+	          embed.title = "Bitcoin"
+	          embed.colour = 0x5345b3
+	          embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://pngimg.com/uploads/bitcoin/bitcoin_PNG47.png")
+	          embed.add_field(name: "Received",         value: convert_satoshi(btc["total_received"]).to_s)
+	          embed.add_field(name: "Sent",             value: convert_satoshi(btc["total_sent"]))
+	          embed.add_field(name: "Hash",             value: btc["hash160"].to_s)
+	          embed.add_field(name: "Tx",               value: btc["n_tx"].to_s)
+	          embed.add_field(name: "Final Balance",    value: convert_satoshi(btc["final_balance"]).to_s)
+	      	end
 		end
 	end
 	#convert_btc_usd(2965880500000)

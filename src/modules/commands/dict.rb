@@ -7,9 +7,14 @@ module Bot::DiscordCommands
 			if value.nil?
 				value  = 0 
 			end
-			urban = HTTParty.get("http://api.urbandictionary.com/v0/define?term=" + event.message.content.to_s.gsub(".u", "").to_s.split(" ").to_s )
+			urban = HTTParty.get("http://api.urbandictionary.com/v0/define?term=" + event.message.content.to_s.gsub(".u", "").to_s.split("+").shift )
 			r     = urban.parsed_response["list"][value.to_i]["definition"]
-			event.respond(r.to_s)
+			event.channel.send_embed("") do |embed|
+	          embed.title = event.message.content.to_s.gsub(".u", "").to_s
+	          #split(" ").shift
+	          embed.colour = 0x5345b3
+	          embed.add_field(name: "Definition",         value: r)
+	        end
         end
         command([:cyber], description:"Look up an cyber word.", usage:".cyber ip") do |event, term|
         	uri        = URI.parse("https://cyberpolicy.com/api/v1/glossary_terms/" + term.to_s.split(" ").shift)
@@ -19,12 +24,30 @@ module Bot::DiscordCommands
 	        term       =  data['results'][0]['term'].to_s
 	        event.respond("**Definition:** #{definition}\n**Term:** #{term}")
         end
-        command(:yify, description:"Query Yify's site", usage:".yify Lock, Stock and Two Smoking Barrels") do |event, search|
-        	search = search.to_s.split(" ").shift
+        command(:yify, description:"Query Yify's site", usage:".yify Lock, Stock and Two Smoking Barrels") do |event, *s|
+        	search = s.join(" ")
+         	# event.message.content.to_s.gsub(".yify", "").to_s.split(" ").shift
+        	p search
         	r = HTTParty.get("https://yts.am/api/v2/list_movies.json?query_term=#{search}").response.body
 			a = JSON.parse(r)["data"]["movies"].shift
 			t = a["torrents"].shift
-			event.respond("**Title:** #{a['title']}\n**Year:** #{a['year']}\n**Rating:** #{a['rating']}\n**Run Time:** #{a['runtime']}\n**Genre:** #{a['genres']}\n**Summary:** #{a['summary']}\n**Picture:** #{a['large_cover_image']}\n**Torrent:** #{t['url']}\n**Quality:** #{t['quality']}\n**Seeds:** #{t['seeds']}\n**Peers:** #{t['peers']}\n**Size:** #{t['size']}")
+			p a['large_cover_image']
+			event.channel.send_embed("l") do |embed|
+	          embed.title = a['title']
+	          embed.colour = 0x5345b3
+	          embed.description = a['summary']
+	          embed.image = Discordrb::Webhooks::EmbedImage.new(url: a['medium_cover_image'])
+	          embed.add_field(name: "Year",         value: a['year'])
+	          embed.add_field(name: "Run Time",     value: a['runtime'])
+	          embed.add_field(name: "Rated",        value: a["rating"].to_s)
+	          embed.add_field(name: "Genre",        value: a["genres"].to_s)
+	          embed.add_field(name: "Torrent",      value: t["url"])
+	          embed.add_field(name: "Quality",      value: t["quality"])
+	          embed.add_field(name: "Seeds",        value: t["seeds"].to_s)
+	          embed.add_field(name: "Peers",        value: t["peers"].to_s)
+	          embed.add_field(name: "size",         value: t["size"].to_s)
+	      	end
+			#event.respond("**Title:** #{a['title']}\n**Year:** #{a['year']}\n**Rating:** #{a['rating']}\n**Run Time:** #{a['runtime']}\n**Genre:** #{a['genres']}\n**Summary:** #{a['summary']}\n**Picture:** #{a['large_cover_image']}\n**Torrent:** #{t['url']}\n**Quality:** #{t['quality']}\n**Seeds:** #{t['seeds']}\n**Peers:** #{t['peers']}\n**Size:** #{t['size']}")
         end
 	end
 end

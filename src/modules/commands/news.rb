@@ -1,4 +1,7 @@
 require 'json'
+require 'open-uri'
+require 'rss'
+require 'nokogiri'
 require_relative 'utils'
 module Bot::DiscordCommands
   module News

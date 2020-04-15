@@ -1,5 +1,7 @@
 require 'httparty'
 require 'json'
+require 'date'
+require 'nokogiri'
 module Bot::DiscordCommands
   # Responds with "Pong!".
   # This used to check if bot is alive
@@ -28,11 +30,42 @@ module Bot::DiscordCommands
     		puts e
     	end
     end
+    command([:tv], description:"get tv show info", usage: ".tv white collar") do |event, *tv|
+      tv = tv.join("+")
+      rsp = JSON.parse(HTTParty.get("https://api.duckduckgo.com/?q=#{tv}&ia=tv&format=json&pretty=1").response.body)
+      p rsp
+      p rsp["AbstractText"]
+      #["Text"]
+      #event.respond(rsp.to_s)
+    end
+    command(:s, description:"Search for somethng", usage:".s blockchains") do |event, *search|
+      #{search.join("+")}"
+      page = Nokogiri::HTML.parse(open("https://duckduckgo.com/html/?q=#{search.join("+")}"))
+      event.channel.send_embed("l") do |embed|
+          embed.title = search.join(" ").to_s
+          embed.colour = 0x5345b3
+          embed.add_field(name: "Year",         value: page.xpath('//*[@id="zero_click_abstract"]').text.to_s.strip.to_s)
+      end
+      #zero_click_abstract
+    end
+    command([:date], description:"History is fun", usage: ".date") do |event|
+      d = Time.new
+      b = HTTParty.get("http://numbersapi.com/#{d.month}/#{d.day}/date").response.body
+      event.channel.send_embed("") do |embed|
+          embed.title = "Today In History"
+          embed.colour = 0x5345b3
+          embed.description = b
+          embed.timestamp  = Time.now
+
+      end
+    end
     command([:wiki], description:"get wiki", usage:".wiki blockchain") do |event, *search|
       s   = search.join("+")
       if not s.empty?
         rsp = JSON.parse(HTTParty.get("https://api.duckduckgo.com/?q=#{s}&format=json&pretty=1&no_html=1&skip_disambig=1").response.body)
+        p rsp["AbstractText"]
         if not rsp["AbstractText"].empty?
+          puts ":::"
           event.respond("#{rsp["AbstractText"].to_s}")
         end
       else
@@ -47,8 +80,26 @@ module Bot::DiscordCommands
       s = event.message.content.to_s.gsub(".moviedb ", "").gsub(" ", "%20")
       req = HTTParty.get("http://www.omdbapi.com/?t=#{s}&apikey=24102450")
       json = JSON.parse(req.body)
-      message = "**Movie:** #{json['Title']}\n **Year:** #{json['Year']}\n **RunTime:** #{json['Runtime']}\n **IMDB Rating:** #{json['imdbRating']}\n **Plot:** #{json['Plot']}\n **Genre:** #{json['Genre']}"
-      event.respond(message.to_s)
+      p json
+      event.channel.send_embed("l") do |embed|
+          embed.title = json["Title"]
+          embed.colour = 0x5345b3
+          embed.url = "https://discordapp.com"
+          embed.description = json['Plot']
+          embed.timestamp = Time.at(1586462698)
+          embed.image = Discordrb::Webhooks::EmbedImage.new(url: json["Poster"])
+          embed.add_field(name: "Year",         value: json['Year'])
+          embed.add_field(name: "Run Time",     value: json['Runtime'])
+          embed.add_field(name: "IMDB Rating",  value: json["imdbRating"].to_s)
+          embed.add_field(name: "Rated",        value: json["Rated"])
+          embed.add_field(name: "Released",     value: json["Released"])
+          embed.add_field(name: "Production",   value: json["Production"])
+          embed.add_field(name: "Box Office",   value: json["BoxOffice"])
+          embed.add_field(name: "Genre",        value: json["Genre"])
+
+      end
+      #message = "**Movie:** #{json['Title']}\n **Year:** #{json['Year']}\n **RunTime:** #{json['Runtime']}\n **IMDB Rating:** #{json['imdbRating']}\n **Plot:** #{json['Plot']}\n **Genre:** #{json['Genre']}"
+      #event.respond(message.to_s)
     end
     command(:weed, description:"classfied", usage:".weed word") do |event, strain, num|
       if num.nil?

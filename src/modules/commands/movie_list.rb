@@ -38,6 +38,7 @@ module Bot::DiscordCommands
 				status = "x"
 			end
 		end
+
 		def self.status_changer(uid, movie_id)
 			read = JSON.parse(File.read("users/#{uid}/movies_list.json"))
 			read.each do |key, value|

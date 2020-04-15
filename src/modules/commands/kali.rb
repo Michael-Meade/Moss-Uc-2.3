@@ -29,7 +29,7 @@ module Bot::DiscordCommands
 	def self.get_link_64
 		'#page-content > section.l-section.height_auto.for_sidebar.at_right > div > div > div.vc_col-sm-9.vc_column_container.l-content > div > div > section > div > div > div > div > div > div:nth-child(5) > div > div > div > div > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > a'
 	end
-    command(:kali,  description:"Get kali iso downloade link", usage:".kali") do |event|
+    command(:kali,  description:"Get kali iso download link", usage:".kali") do |event|
 			event.respond(kali.to_s)
     end
   end

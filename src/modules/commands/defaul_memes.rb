@@ -17,11 +17,13 @@ module Bot::DiscordCommands
     command([:plead], description: "plead the fifth", usage:".5") do |event|
         event.send_file(File.open("images/plead.png"))
     end
+    command([:hay, :hi],  description:"hay", usage:".hay") do |event|
+        event.send_file(File.open('images/hay.jpg', 'r'))
+    end 
     command([:great, :scott, :greatscott],  description:"Great Scott", usage:".great") do |event|
         event.send_file(File.open('images/BitcoinBackToTheFuture.png', 'r'))
     end 
-    command([:false],  description:"thats false", usage:".false
-        ") do |event|
+    command([:false],  description:"thats false", usage:".false") do |event|
         event.send_file(File.open('images/false.gif', 'r'))
     end
     command([:dead],  description:"wack", usage:".dead") do |event|

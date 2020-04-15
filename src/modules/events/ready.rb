@@ -18,8 +18,8 @@ module Bot::DiscordEvents
     end
     message(starting_with: not!(".")) do |event|
     	puts 
-    	q = check_file("lyrics.txt", event.message.content.to_s)
-      event.respond(q)
+    	#q = check_file("lyrics.txt", event.message.content.to_s)
+      #event.respond(q)
     end
   end
 end

@@ -4,7 +4,6 @@ require_relative 'utils'
 module Bot::DiscordCommands
   module SubDomain
     extend Discordrb::Commands::CommandContainer
-    puts "YAYYY"
     command([:subdomain], description: "use subdomain3", usage:".stocl PEP") do |event, *site|
     site = site.join
 

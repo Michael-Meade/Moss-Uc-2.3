@@ -21,7 +21,7 @@ module Bot::DiscordCommands
 				File.open(File.join("users", uid, "movies_list.json"), "w") { |file| file.write(read.to_json) }
 			end
 		end
-		def self.list_movies(uid)
+		def self.list_moviesz(uid)
 			
 			output = ""
 			read = JSON.parse(File.read(File.join("users", uid, "movies_list.json")))
@@ -47,13 +47,13 @@ module Bot::DiscordCommands
 			end
 		File.open(File.join("users", uid, "movies_list.json"), "w") { |file| file.write(read.to_json) }
 		end
-		def self.status_pretty(status)
+		def self.status_prettys(status)
 			# x => no 
 			# o => yes
 			status.gsub("o", ":white_check_mark: ").gsub("x",":x:")
 		end
 	    
-	    command(:movie, description:"managae your movie list", usage:".Movie list") do |event, item, movie_name|
+	    command(:moviez, description:"managae your movie list", usage:".Movie list") do |event, item, movie_name|
 	    	FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
 	    	FileUtils.touch(File.join("users", event.user.id.to_s, "movies_list.json")) unless File.exists?(File.join("users", event.user.id.to_s, "movies_list.json"))
 	    	if item.to_s == "add"

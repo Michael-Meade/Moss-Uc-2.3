@@ -117,6 +117,10 @@ module Bot::DiscordCommands
 
       end
     end
+    command(:insult, description: "Insult someone", usage: ".insult") do |event|
+      j = JSON.parse(HTTParty.get("https://evilinsult.com/generate_insult.php?lang=en&type=json").response.body)["insult"]
+      event.respond(j.to_s)
+    end
     command([:strains, :strain]) do |event, *s|
       j = HTTParty.get("http://strainapi.evanbusse.com/48veAlM/strains/search/name/#{s.join("%20")}", { headers: { "Accept-Encoding"   => "json"}} ).body
       j = JSON.parse(j).shift

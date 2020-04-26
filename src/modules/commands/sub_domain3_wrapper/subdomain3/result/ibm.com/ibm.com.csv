@@ -1,0 +1,80 @@
+DOMAIN,CDN,CNAME,IP
+dam.ibm.com,Yes,"['dam.ibm.net.', 'rr-ibm.getbynder.com.', 'd2t5zqpiwud1f2.cloudfront.net.']","['99.84.251.33', '99.84.251.66', '99.84.251.9', '99.84.251.99']"
+ecc.ibm.com,No,"['ecc.ibm.net.', 'redirect.www.ibm.com.']",['129.42.38.1']
+test.cms.ibm.com,No,['test-aq.cms.ibm.net.'],['52.72.28.252']
+dev.time.ibm.com,No,['custom-domain.eu-de.cf.cloud.ibm.com.'],"['158.177.81.250', '169.50.46.74']"
+mdm.ibm.com,No,Null,['129.34.8.145']
+msp.ibm.com,No,Null,"['203.176.107.148', '203.176.107.149']"
+support.ibm.com,No,['redirect.www.ibm.com.'],['129.42.38.1']
+stage.careers.ibm.com,Yes,"['ibm-cmstage.smashfly.com.', 'd35husiea2r8sj.cloudfront.net.']","['13.249.87.114', '13.249.87.21', '13.249.87.32', '13.249.87.40']"
+api.ibm.com,Yes,['api.ibm.com.cs186.net.'],['161.202.85.214']
+digital.ibm.com,No,['mail.webreply.com.'],['66.35.62.212']
+cas.ibm.com,No,['redirect.www.ibm.com.'],['129.42.38.1']
+pc.ibm.com,No,Null,['129.42.38.1']
+ftp.mail.ibm.com,No,Null,PRIVATE(172.16.0.1)
+analytics.time.ibm.com,No,Null,"['104.22.44.174', '104.22.45.174']"
+st.ibm.com,No,Null,['170.225.31.228']
+developer.ibm.com,Yes,"['developer.ibm.net.', 'developer.ibm.com.edgekey.net.', 'e2874.x.akamaiedge.net.']",['104.105.84.66']
+mobile.ibm.com,No,Null,['32.97.17.169']
+webmail.mdm.ibm.com,No,Null,['129.34.8.145']
+zeus.research.ibm.com,No,Null,['129.34.32.39']
+www.cas.ibm.com,No,['redirect.www.ibm.com.'],['129.42.38.1']
+email.ibm.com,No,Null,['129.42.38.10']
+shop.ibm.com,No,Null,['129.42.38.1']
+git.time.ibm.com,No,Null,"['104.22.44.174', '104.22.45.174']"
+ftp.mdm.ibm.com,No,Null,['129.34.8.145']
+community.ibm.com,Yes,"['community.ibm.net.', '1729-ccdn-dual.ibmcom.edgekey.net.', '1729-ccdn-dual.ibmcom.edgekey.net.globalredir.akadns.net.', 'e1729.dscx.akamaiedge.net.']",['104.64.214.74']
+links.engage.ibm.com,No,['recp.mkt32.net.'],['74.121.50.4']
+www.engage.ibm.com,No,['ibm.com.'],['129.42.38.10']
+www.ibm.com,Yes,"['www.ibm.com.cs186.net.', 'outer-ccdn-dual.ibmcom.edgekey.net.', 'outer-ccdn-dual.ibmcom.edgekey.net.globalredir.akadns.net.', 'e2874.dscx.akamaiedge.net.']",['104.105.84.66']
+sip.ibm.com,No,Null,"['129.42.175.106', '207.25.251.133', '207.25.251.166', '207.25.251.167', '207.25.251.168']"
+food.ibm.com,No,Null,"['104.16.224.231', '104.16.225.231']"
+webmail.mail.ibm.com,No,Null,PRIVATE(172.16.0.1)
+aap.ibm.com,No,Null,['129.42.175.106']
+sos.ibm.com,No,Null,['169.55.231.196']
+gw.ibm.com,No,Null,['129.33.199.236']
+qp.research.ibm.com,No,['qpweb.watson.ibm.com.'],['129.34.20.33']
+m.ibm.com,No,['redirect.www.ibm.com.'],['129.42.38.1']
+stage.cms.ibm.com,No,['stage-aq.cms.ibm.net.'],['52.72.28.252']
+wireless.ibm.com,No,['redirect.www.ibm.com.'],['129.42.38.1']
+www.research.ibm.com,No,['researchweb.draco.res.ibm.com.'],['52.116.220.135']
+www.mail.ibm.com,No,Null,PRIVATE(172.16.0.1)
+global.food.ibm.com,No,Null,"['104.16.224.231', '104.16.225.231']"
+inventory.ibm.com,No,Null,['129.42.38.10']
+ftp.www.ibm.com,No,"['ftp.boulder.ibm.com.', 'service.boulder.ibm.com.']",['170.225.15.26']
+login.ibm.com,No,"['ibmlogin.ice.ibmcloud.com.', 'us01a.dc.ice.ibmcloud.com.', 'us01a.dc.ice.ibmcloud.com.edgekey.net.', 'e15492.a.akamaiedge.net.']","['23.215.130.249', '23.215.131.43']"
+video.ibm.com,No,Null,"['169.44.146.79', '169.44.146.80', '169.45.159.66', '169.45.159.67']"
+friends.ibm.com,No,Null,['129.42.38.1']
+ace.ibm.com,No,Null,"['169.46.120.190', '169.48.246.222', '169.61.8.198']"
+connect.ibm.com,No,['connect.www-gslb.ibm.com.'],['129.33.205.109']
+click.ibm.com,No,['r.mailjet.com.'],['35.241.186.140']
+mail.ibm.com,No,Null,PRIVATE(172.16.0.1)
+eu.food.ibm.com,No,Null,"['104.16.224.231', '104.16.225.231']"
+mail.mail.ibm.com,No,Null,PRIVATE(172.16.0.1)
+sandbox.food.ibm.com,No,Null,"['104.16.224.231', '104.16.225.231']"
+marketplace.ibm.com,No,Null,['75.126.81.66']
+dev.api.ibm.com,Yes,['dev.api.ibm.com.cs186.net.'],['129.42.26.236']
+wap.ibm.com,No,['redirect.www.ibm.com.'],['129.42.38.1']
+status.ibm.com,No,Null,['158.85.24.20']
+autodiscover.ibm.com,No,"['mobile1.us.ibm.com.', 'mobileprod1.www-gslb.ibm.com.']",['129.33.246.154']
+mail.mdm.ibm.com,No,Null,['129.34.8.145']
+www.status.ibm.com,No,Null,['158.85.24.20']
+apps.ibm.com,No,Null,['129.35.233.109']
+time.ibm.com,No,Null,"['104.22.44.174', '104.22.45.174']"
+dev.cms.ibm.com,No,['dev-aq.cms.ibm.net.'],['52.72.28.252']
+proxy.time.ibm.com,No,Null,"['104.22.44.174', '104.22.45.174']"
+research.ibm.com,No,Null,['52.116.220.135']
+engage.ibm.com,No,Null,['129.42.38.1']
+www.mdm.ibm.com,No,Null,['129.34.8.145']
+advantage.ibm.com,No,['redirect.www.ibm.com.'],['129.42.38.1']
+newsroom.ibm.com,No,['ibmnews.mediaroom.com.'],"['104.17.27.170', '104.17.28.170', '104.17.29.170', '104.17.30.170', '104.17.31.170']"
+ft.time.ibm.com,No,['custom-domain.eu-de.cf.cloud.ibm.com.'],"['158.177.81.250', '169.50.46.74']"
+whois.ibm.com,No,['redirect.www.ibm.com.'],['129.42.38.1']
+jsw.ibm.com,No,Null,['169.60.115.10']
+github.ibm.com,No,Null,['169.60.70.162']
+cloud.ibm.com,No,Null,['23.78.178.23']
+cms.ibm.com,Yes,"['cms.ibm.net.', '1729-ccdn-v4.ibmcom.edgekey.net.', '1729-ccdn-v4.ibmcom.edgekey.net.globalredir.akadns.net.', 'e1729.x.akamaiedge.net.']",['104.105.36.227']
+careers.ibm.com,Yes,"['ibm-cms.client.smashfly.com.', 'd2x8a69t975dvj.cloudfront.net.']","['99.84.251.120', '99.84.251.28', '99.84.251.55', '99.84.251.90']"
+open.engage.ibm.com,No,['open.mkt32.net.'],['74.121.50.13']
+www6.ibm.com,Yes,"['www6.ibm.com.cs186.net.', 'redirect.www.ibm.com.']",['129.42.38.1']
+client.ibm.com,No,"['client.ibm.net.', 'redirect.www.ibm.com.']",['129.42.38.1']

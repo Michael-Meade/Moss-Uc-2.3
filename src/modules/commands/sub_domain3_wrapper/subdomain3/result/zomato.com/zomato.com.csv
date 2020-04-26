@@ -1,0 +1,24 @@
+DOMAIN,CDN,CNAME,IP
+success.zomato.com,No,Null,"['192.0.78.165', '192.0.78.248']"
+culture.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['184.87.53.45']
+book.zomato.com,No,['www.zomatobook.com.'],"['54.213.60.152', '54.244.189.36', '54.69.125.30']"
+ccc.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['184.87.53.45']
+business.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['184.87.53.45']
+upload.zomato.com,Yes,"['upload.zomato.com.edgekey.net.', 'e11566.a.akamaiedge.net.']",['23.193.198.120']
+mobile.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['104.105.43.17']
+engineering.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['104.105.43.17']
+maps.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['104.105.43.17']
+mail.zomato.com,No,['ghs.google.com.'],['172.217.10.83']
+www.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['184.87.53.45']
+community.zomato.com,No,['domains.tumblr.com.'],"['74.114.154.18', '74.114.154.22']"
+m.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['184.87.53.45']
+accounts.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['184.87.53.45']
+blog.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['104.105.43.17']
+cc.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['104.105.43.17']
+developers.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['104.105.43.17']
+chat.zomato.com,Yes,"['chat.zomato.com.edgekey.net.', 'e11566.a.akamaiedge.net.']",['23.193.198.120']
+track.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['184.87.53.45']
+send.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['104.105.43.17']
+api.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['104.105.43.17']
+sentry.zomato.com,Yes,"['sentry.zomato.com.edgekey.net.', 'e11566.a.akamaiedge.net.']",['23.193.198.120']
+auth.zomato.com,Yes,['hydra-137004138.ap-southeast-1.elb.amazonaws.com.'],"['13.229.175.216', '52.77.11.177']"

@@ -27,7 +27,6 @@ module Bot::DiscordCommands
 	end
 	def self.crypto_price(crypto)
 		c = crypto.upcase
-		p c
 		response = HTTParty.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest", params: {'start':'1','limit':'1','convert':'USD,BTC'}, headers: {
 			'Accepts': 'application/json',
 			'X-CMC_PRO_API_KEY': Utils.read_list("config.json")["X-CMC_PRO_API_KEY"].to_s
@@ -99,8 +98,6 @@ module Bot::DiscordCommands
 	          embed.add_field(name: "Price Change 7 days",      value: coin["quote"]["USD"]["percent_change_7d"].to_s)
 	          embed.add_field(name: "Market Cap",               value: coin["quote"]["USD"]["market_cap"].to_s)
 	        end
-			#event.respond(crypto_price(name.to_s))
-				#crypto_price(name).strip)
 		end
 	end
 	command([:btcaddy], description:"Get bitcoin address info", usage:".btcaddy <address> <btc | usd>") do |event, address, type|
@@ -141,7 +138,6 @@ module Bot::DiscordCommands
 	          embed.add_field(name: "Final Balance",    value: convert_satoshi(btc["final_balance"]).to_s)
 	      	end
 		else 
-			puts "Dddd"
 			btc = bitcoin_address_usd(address)
 			event.channel.send_embed("l") do |embed|
 	          embed.title = "Bitcoin"
@@ -155,6 +151,5 @@ module Bot::DiscordCommands
 	      	end
 		end
 	end
-	#convert_btc_usd(2965880500000)
   end
 end

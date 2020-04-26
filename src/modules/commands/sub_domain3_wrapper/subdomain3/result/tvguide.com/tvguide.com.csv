@@ -1,0 +1,51 @@
+DOMAIN,CDN,CNAME,IP
+mapi.tvguide.com,Yes,['cmg.cbsi.map.fastly.net.'],['199.232.65.188']
+bounce.tvguide.com,No,Null,['72.32.124.226']
+static.tvguide.com,Yes,"['static.tvguide.com.edgesuite.net.', 'a1891.g.akamai.net.']","['23.50.53.186', '23.50.53.192']"
+help.tvguide.com,No,Null,PRIVATE(10.21.147.42)
+preview.tvguide.com,No,Null,['216.239.120.225']
+download.tvguide.com,Yes,"['download.tvguide.com.edgesuite.net.', 'a1051.d.akamai.net.']","['23.79.244.202', '23.79.244.203']"
+img.qa.tvguide.com,No,['dws70.phx2.cbsig.net.'],PRIVATE(10.25.4.79)
+m.tvguide.com,No,Null,['216.239.120.212']
+web.tvguide.com,No,"['hl-www.phx2.tvguide.com.', 'tvguide-www-fly-vip1.phx2.cbsig.net.']",['64.30.228.101']
+www.tvguide.com,Yes,['cmg.cbsi.map.fastly.net.'],['151.101.201.188']
+amp.tvguide.com,Yes,['cmg.cbsi.map.fastly.net.'],['151.101.249.188']
+webservice.tvguide.com,No,Null,['64.30.228.101']
+staging.tvguide.com,No,Null,PRIVATE(10.14.190.87)
+movies.tvguide.com,Yes,['cmg.cbsi.map.fastly.net.'],['151.101.249.188']
+wwww.tvguide.com,No,Null,['64.30.228.101']
+ww.tvguide.com,No,Null,['64.30.228.101']
+rss.tvguide.com,Yes,['cmg.cbsi.map.fastly.net.'],['199.232.65.188']
+imap.newsletter.tvguide.com,No,Null,['141.206.159.247']
+prism.tvguide.com,No,['util42.phx2.cbsig.net.'],PRIVATE(10.14.190.96)
+cms.tvguide.com,No,"['cms.phx2.tvguide.com.', 'tvguide-www-cms-vip1.phx2.cbsig.net.']",['64.30.228.102']
+qa.tvguide.com,Yes,['cmg.cbsi.map.fastly.net.'],['151.101.201.188']
+alerts.tvguide.com,No,['alerts.phx2.tvguide.com.'],PRIVATE(10.14.177.47)
+web.qa.tvguide.com,No,['tvguide-qa-hl-fly-ssl-vip1.phx2.cbsig.net.'],PRIVATE(10.14.177.18)
+stage.tvguide.com,No,Null,PRIVATE(10.21.149.42)
+shop.tvguide.com,No,Null,['216.239.120.212']
+cms.qa.tvguide.com,No,['dws70.phx2.cbsig.net.'],PRIVATE(10.25.4.79)
+admin.tvguide.com,No,Null,PRIVATE(10.14.190.90)
+alpha.tvguide.com,No,Null,PRIVATE(10.21.149.42)
+content.tvguide.com,Yes,"['content.tvguide.com.edgesuite.net.', 'a670.g.akamai.net.']","['23.50.53.185', '23.50.53.187']"
+metrics.tvguide.com,No,['tvguide.112.2o7.net.'],"['18.211.155.46', '3.213.30.101', '3.217.100.252', '3.234.115.12', '3.89.214.96', '52.205.199.154']"
+newsletter.tvguide.com,No,Null,"['141.206.159.248', '141.206.159.249']"
+sip.tvguide.com,No,['sipdir.online.lync.com.'],['52.112.65.203']
+survey.tvguide.com,No,Null,['74.7.7.203']
+aa.tvguide.com,Yes,['tvguide.com.sc.omtrdc.net.'],"['18.211.155.46', '3.213.30.101', '3.217.100.252', '3.234.115.12', '3.89.214.96', '52.205.199.154']"
+dev.tvguide.com,No,Null,PRIVATE(10.21.149.42)
+webmail.tvguide.com,No,['mail.microsoftonline.com.'],['65.55.171.169']
+partners.tvguide.com,No,Null,['64.30.228.101']
+helpdesk.tvguide.com,No,Null,['75.131.181.206']
+hub.qa.tvguide.com,No,['dws70.phx2.cbsig.net.'],PRIVATE(10.25.4.79)
+web.stage.tvguide.com,No,['tvguide-stg-hl-fly-ssl-vip1.phx2.cbsig.net.'],PRIVATE(10.14.177.20)
+www.newsletter.tvguide.com,No,Null,"['141.206.159.248', '141.206.159.249']"
+api.qa.tvguide.com,No,['dws70.phx2.cbsig.net.'],PRIVATE(10.25.4.79)
+wireless.tvguide.com,No,Null,['64.30.228.101']
+ftp.newsletter.tvguide.com,No,Null,['141.206.159.246']
+sports.tvguide.com,Yes,"['sports.tvguide.com.edgesuite.net.', 'a278.g.akamai.net.']","['23.50.53.186', '23.50.53.193']"
+news.tvguide.com,No,Null,['72.32.124.226']
+online.tvguide.com,No,Null,['64.30.228.101']
+www2.tvguide.com,No,Null,['64.30.228.101']
+li.tvguide.com,Yes,"['3664a1200f97a028c50bfe4e98810aa2.edgesuite.net.', 'a1284.g1.akamai.net.']","['172.232.7.136', '172.232.7.137', '172.232.7.138', '172.232.7.177', '172.232.7.178', '172.232.7.193', '172.232.7.195', '172.232.7.200', '172.232.7.208']"
+video.tvguide.com,Yes,['cmg.cbsi.map.fastly.net.'],['199.232.65.188']

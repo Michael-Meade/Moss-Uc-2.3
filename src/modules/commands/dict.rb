@@ -11,7 +11,6 @@ module Bot::DiscordCommands
 			r     = urban.parsed_response["list"][value.to_i]["definition"]
 			event.channel.send_embed("") do |embed|
 	          embed.title = event.message.content.to_s.gsub(".u", "").to_s
-	          #split(" ").shift
 	          embed.colour = 0x5345b3
 	          embed.add_field(name: "Definition",         value: r)
 	        end
@@ -26,13 +25,10 @@ module Bot::DiscordCommands
         end
         command(:yify, description:"Query Yify's site", usage:".yify Lock, Stock and Two Smoking Barrels") do |event, *s|
         	search = s.join(" ")
-         	# event.message.content.to_s.gsub(".yify", "").to_s.split(" ").shift
-        	p search
         	r = HTTParty.get("https://yts.am/api/v2/list_movies.json?query_term=#{search}").response.body
 			a = JSON.parse(r)["data"]["movies"].shift
 			t = a["torrents"].shift
-			p a['large_cover_image']
-			event.channel.send_embed("l") do |embed|
+			event.channel.send_embed("") do |embed|
 	          embed.title = a['title']
 	          embed.colour = 0x5345b3
 	          embed.description = a['summary']

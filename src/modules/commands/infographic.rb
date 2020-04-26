@@ -1,7 +1,5 @@
 require 'httparty'
 module Bot::DiscordCommands
-  # Responds with "Pong!".
-  # This used to check if bot is alive
   module Inforgraphic
     extend Discordrb::Commands::CommandContainer
     command([:lsinfo, :lsinforgraphics, :lsinforgraphic], description:"List the Inforgraphics", usage:".lsinfo") do |event|

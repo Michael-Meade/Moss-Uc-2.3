@@ -9,7 +9,6 @@ module Bot::DiscordCommands
       Utils.user_directory(event.user.id.to_s, "publickey.txt", pub, "txt")
     end
     command(:encrypt) do |event|
-      
       data = %w(this is some data that should be encrypted using pgp)
       IOStreams::Pgp::Writer.open(File.join("users", event.user.id.to_s, "publickey.txt")) do |output|
         data.each { |word| output.puts(word) }

@@ -5,7 +5,6 @@ require 'fileutils'
 module Bot::DiscordCommands
   module MovieList
   	extend Discordrb::Commands::CommandContainer
-  	puts ":::::::::::::::::::::::::::::::::::::::::::::::::::::DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
 		def self.add_movie(uid, movie_name, status=nil)
 			if status.nil?
 				status = "x"
@@ -13,12 +12,13 @@ module Bot::DiscordCommands
 			# Creates file if does not exist
 			if File.read(File.join("users", uid, "movies_list.json")).empty?
 				# creates the json value and saves it in the file
-				File.open(File.join("users", uid, "movies_list.json"), "a") { |file| file.write({"0" => [movie_name, status]}.to_json) }
+				File.open(File.join("users", uid, "movies_list.json"), "a") { |file| file.write({"0" => [movie_name, status, ":|"]}.to_json) }
 			else
 				read = JSON.parse(File.read(File.join("users", uid, "movies_list.json")))
 				last = read.keys.last.to_i
 				last += 1
-				read[last] = [movie_name, status, ":|"]
+				read[last] = [movie_name, status, ":|".to_s]
+				p read
 				File.open(File.join("users", uid, "movies_list.json"), "w") { |file| file.write(read.to_json) }
 			end
 		end
@@ -46,7 +46,13 @@ module Bot::DiscordCommands
 				status = ":)"
 			end
 		end
-
+		def self.send_embed(event:, title:, fields:, description: nil)
+	        event.channel.send_embed do |embed|
+	          embed.title       = title
+	          embed.description = description
+	          fields.each { |field| embed.add_field(name: field[:name], value: field[:value], inline: field[:inline]) }
+	        end
+	    end
 		def self.status_changer(uid, movie_id)
 			read = JSON.parse(File.read("users/#{uid}/movies_list.json"))
 			read.each do |key, value|
@@ -56,12 +62,19 @@ module Bot::DiscordCommands
 			end
 		File.open(File.join("users", uid, "movies_list.json"), "w") { |file| file.write(read.to_json) }
 		end
+		def self.embed_movie(uid)
+			h = []
+			JSON.parse(File.read("users/#{uid}/movies_list.json")).each do |key ,value|
+				h << { name:  key + "] " + value[0], value: status_pretty(value[1]).to_s + "  - " + status_pretty(value[2].to_s)}
+			end
+		h
+		end
 		def self.status_pretty(status)
 			# x => no 
 			# o => yes
 			# !! => thumbs up
 			# !!! => thumbs down
-			status.gsub("o", ":white_check_mark: ").gsub("x",":x:").gsub("!!", ":thumbsup: ").gsub("!!!", ":thumbsdown:").gsub(":|", ":question: ")
+			status.to_s.gsub("o", ":white_check_mark: ").gsub("x",":x:").gsub("!!", ":thumbsup: ").to_s.gsub("!!!", ":thumbsdown:").gsub(":|", ":question: ")
 		end
 	    
 	    command(:movie, description:"managae your movie list", usage:".Movie list") do |event, item, movie_name, rate|
@@ -73,7 +86,11 @@ module Bot::DiscordCommands
 	    		end
 	    	elsif item.to_s == "ls"
 	    		output = self.list_movies(event.user.id.to_s)
-	    		event.respond(output.to_s)
+	    		delay = "#{((Time.now - event.timestamp) * 1000).to_i}ms"
+	    		fields = embed_movie(event.user.id.to_s)
+	    		send_embed(event: event, title: 'Movie List', fields: fields)
+				#event.send_message("", embed: h)
+	    		#event.channel.send_embed(lol)
 	    	elsif item.to_s == "status"
 	    		status_changer(event.user.id.to_s, movie_name)
 	    	elsif item.to_s == "rate"

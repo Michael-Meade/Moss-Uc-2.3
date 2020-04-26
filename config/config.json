@@ -1,4 +1,6 @@
 {
   "troll": "false",
-  "talk": "false"
+  "talk": "false",
+  "lyrics-troll": "false",
+  "lyric-troll": "false"
 }

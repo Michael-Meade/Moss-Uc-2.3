@@ -14,6 +14,9 @@ module Bot::DiscordCommands
     	   event.send_file(File.open('images/dab.gif', 'r'))
         end
     end
+    command(:fifth) do |event|
+        event.send_file(File.open("images/fifth.png"))
+    end
     command([:plead], description: "plead the fifth", usage:".5") do |event|
         event.send_file(File.open("images/plead.png"))
     end
@@ -103,6 +106,12 @@ module Bot::DiscordCommands
     end
     command([:dance],  description:"Dance", usage:".dance") do |event|
         event.send_file(File.open('images/dance.gif', 'r'))
+    end
+    command([:corona],  description:"corona", usage:".corona") do |event|
+        event.send_file(File.open('images/virus.gif', 'r'))
+    end
+    command([:oof], description:"oof") do |event|
+        event.send_file(File.open("images/oof.gif", "r"))
     end
   end
 end

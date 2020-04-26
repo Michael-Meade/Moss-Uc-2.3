@@ -1,0 +1,7 @@
+DOMAIN,CDN,CNAME,IP
+dl.dafont.com,No,Null,['188.165.13.72']
+image.dafont.com,No,['img.dafont.com.'],['188.165.40.10']
+www.dafont.com,No,Null,['87.98.168.164']
+ftp.dafont.com,No,Null,['87.98.168.164']
+download.dafont.com,No,['dl.dafont.com.'],['188.165.13.72']
+img.dafont.com,No,Null,['188.165.40.10']

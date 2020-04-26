@@ -1,9 +1,8 @@
 require 'httparty'
 require 'json'
 require 'fileutils'
-
 module Bot::DiscordCommands
-  module MovieList
+  module Movie1
   	extend Discordrb::Commands::CommandContainer
 		def self.add_movie(uid, movie_name, status=nil)
 			if status.nil?
@@ -22,11 +21,9 @@ module Bot::DiscordCommands
 			end
 		end
 		def self.list_moviesz(uid)
-			
 			output = ""
 			read = JSON.parse(File.read(File.join("users", uid, "movies_list.json")))
 			read.each do |key, value|
-
 				output += "#{key} ]\s#{value[0]}\s" + self.status_pretty(value[1]) + "\n"
 			end
 		 output

@@ -1,0 +1,53 @@
+DOMAIN,CDN,CNAME,IP
+mail8.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+chef.glassdoor.com,Yes,['chef-1087271133.us-west-1.elb.amazonaws.com.'],"['52.8.244.134', '54.176.206.71']"
+events.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+img0.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+img1.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+wiki.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+traffic.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+static2.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+mail.glassdoor.com,No,Null,['12.130.188.115']
+qa.glassdoor.com,Yes,['internal-qa-0fe1ce6a-gateway-1900522361.us-west-1.elb.amazonaws.com.'],PRIVATE(172.22.91.221)
+css.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+assets.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+hello.glassdoor.com,No,Null,['52.37.107.41']
+www.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+demo.glassdoor.com,No,Null,['184.23.146.130']
+upload.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+static3.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+go.glassdoor.com,No,['mkto-m0183.com.'],['199.15.213.48']
+cl.glassdoor.com,No,Null,['18.214.94.47']
+connect.glassdoor.com,No,Null,"['192.28.150.50', '192.28.150.51']"
+static.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+help.glassdoor.com,Yes,"['help.glassdoor.com.00d80000000cy48eae.live.siteforce.com.', '4.0p11e000000cb9asas.00d80000000cy48eae.gslb.siteforce.com.']",['13.109.205.108']
+resources.glassdoor.com,No,"['glassdoor.mktoweb.com.', 'abm.mktossl.com.']","['104.17.70.206', '104.17.71.206', '104.17.72.206', '104.17.73.206', '104.17.74.206']"
+za.glassdoor.com,No,Null,['18.214.94.47']
+resume.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+mi.glassdoor.com,No,['ink1001.com.'],['52.27.8.44']
+library.glassdoor.com,No,['alb-glassdoor.lookbookhq.com.'],"['3.220.32.121', '52.45.156.56', '54.159.48.137', '54.236.105.203']"
+pmp.glassdoor.com,Yes,['internal-pmp-2054221381.us-west-2.elb.amazonaws.com.'],PRIVATE(172.20.57.168)
+static1.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+img3.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+jobs.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+media.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+img.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+jira.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+mail7.glassdoor.com,No,Null,['74.205.54.93']
+sw.glassdoor.com,Yes,['d148i84uq5bja.cloudfront.net.'],"['13.249.138.140', '13.249.138.155', '13.249.138.227', '13.249.138.39']"
+verify.glassdoor.com,No,Null,['54.193.30.74']
+ads.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+vpn.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+deploy.glassdoor.com,Yes,"['glassdoor.jamfcloud.com.', 'glassdoor-elb-2020334149.us-east-1.elb.amazonaws.com.']","['3.211.162.52', '52.71.75.150']"
+or.glassdoor.com,No,"['glassdoor.outrch.com.', '8f2a5fe2-04ba-11e6-940a-02c9a687c33b.outrch.com.', 'app1c.outrch.com.']","['35.161.46.137', '35.166.137.192']"
+api.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+feeds.glassdoor.com,Yes,"['feeds.glassdoor.com.s3.amazonaws.com.', 's3-1-w.amazonaws.com.']",['52.217.12.132']
+stage.glassdoor.com,Yes,['internal-stage-gateway-764335541.us-west-1.elb.amazonaws.com.'],PRIVATE(172.22.89.232)
+voip.glassdoor.com,No,Null,['184.23.146.137']
+js.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+ui.glassdoor.com,Yes,['internal-qa-0fe1ce6a-ui-kit-491338771.us-west-1.elb.amazonaws.com.'],PRIVATE(172.22.95.189)
+img2.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+www.stage.glassdoor.com,Yes,"['stage.glassdoor.com.', 'internal-stage-gateway-764335541.us-west-1.elb.amazonaws.com.']",PRIVATE(172.22.89.232)
+webmail.glassdoor.com,No,['owa.mailanyone.net.'],['72.35.12.118']
+sentry.glassdoor.com,No,Null,"['104.17.90.51', '104.17.91.51']"
+ftp.glassdoor.com,No,Null,['35.168.161.108']

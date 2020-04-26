@@ -7,6 +7,13 @@ module Bot::DiscordCommands
   # This used to check if bot is alive
   module Search
     extend Discordrb::Commands::CommandContainer
+    def self.send_embed(event:, title:, fields:, description: nil)
+          event.channel.send_embed do |embed|
+            embed.title       = title
+            embed.description = description
+            fields.each { |field| embed.add_field(name: field[:name], value: field[:value], inline: field[:inline]) }
+          end
+      end
     def self.youtube(search, value=nil)
       api = JSON.parse(File.read("config.json"))["youtube"]
       puts api
@@ -44,6 +51,7 @@ module Bot::DiscordCommands
       event.channel.send_embed("l") do |embed|
           embed.title = search.join(" ").to_s
           embed.colour = 0x5345b3
+          p page.xpath('//*[@id="links"]/div[1]/div/h2/a/b[2]')
           embed.add_field(name: "Year",         value: page.xpath('//*[@id="zero_click_abstract"]').text.to_s.strip.to_s)
       end
       #zero_click_abstract
@@ -60,16 +68,27 @@ module Bot::DiscordCommands
       end
     end
     command([:wiki], description:"get wiki", usage:".wiki blockchain") do |event, *search|
-      s   = search.join("+")
-      if not s.empty?
-        rsp = JSON.parse(HTTParty.get("https://api.duckduckgo.com/?q=#{s}&format=json&pretty=1&no_html=1&skip_disambig=1").response.body)
-        p rsp["AbstractText"]
-        if not rsp["AbstractText"].empty?
-          puts ":::"
-          event.respond("#{rsp["AbstractText"].to_s}")
+      rsp = HTTParty.get("https://api.duckduckgo.com/?q=#{search.join("+").strip}&format=json&pretty=1")
+      j   = JSON.parse(rsp.response.body)
+      p j 
+      h = []
+      if j["Infobox"].empty?
+        rt = j["RelatedTopics"].shift
+        require "uri"
+        url = URI.extract(rt["Result"]).shift.to_s
+        r2  = HTTParty.get("https://api.duckduckgo.com/?q=#{url.split("/")[-1].gsub("_", "+")}&format=json&pretty=1").response.body
+        j = JSON.parse(r2)
+        p ":::::::"
+        p j
+        j.to_hash["Infobox"]["content"].each do |key|
+          h << { name: key["label"], value: key["value"]}
         end
+        send_embed(event: event, title: search.join(" ").strip.to_s, description: j["AbstractText"].to_s, fields: h.first(h.size - 1))
       else
-        event.respond("**try:** \n .wiki blockchain")
+        j.to_hash["Infobox"]["content"].each do |key|
+          h << { name: key["label"], value: key["value"]}
+        end
+        send_embed(event: event, title: search.join(" ").strip.to_s, description: j["AbstractText"].to_s, fields: h.first(h.size - 2))
       end
     end
     command([:manpages, :man], description:"Get access to manpage", usage:".man torsocks") do |event, item|
@@ -80,11 +99,10 @@ module Bot::DiscordCommands
       s = event.message.content.to_s.gsub(".moviedb ", "").gsub(" ", "%20")
       req = HTTParty.get("http://www.omdbapi.com/?t=#{s}&apikey=24102450")
       json = JSON.parse(req.body)
-      p json
-      event.channel.send_embed("l") do |embed|
+      event.channel.send_embed("") do |embed|
           embed.title = json["Title"]
           embed.colour = 0x5345b3
-          embed.url = "https://discordapp.com"
+          embed.url = "https://www.imdb.com/title/#{json["imdbID"]}"
           embed.description = json['Plot']
           embed.timestamp = Time.at(1586462698)
           embed.image = Discordrb::Webhooks::EmbedImage.new(url: json["Poster"])
@@ -98,8 +116,32 @@ module Bot::DiscordCommands
           embed.add_field(name: "Genre",        value: json["Genre"])
 
       end
-      #message = "**Movie:** #{json['Title']}\n **Year:** #{json['Year']}\n **RunTime:** #{json['Runtime']}\n **IMDB Rating:** #{json['imdbRating']}\n **Plot:** #{json['Plot']}\n **Genre:** #{json['Genre']}"
-      #event.respond(message.to_s)
+    end
+    command([:strains, :strain]) do |event, *s|
+      j = HTTParty.get("http://strainapi.evanbusse.com/48veAlM/strains/search/name/#{s.join("%20")}", { headers: { "Accept-Encoding"   => "json"}} ).body
+      j = JSON.parse(j).shift
+      event.channel.send_embed("") do |embed|
+          embed.title = j['name'].to_s
+          embed.colour = 0x5345b3
+          embed.description = j['desc'].to_s
+          embed.add_field(name: 'Race',         value: j['race'].to_s)
+      end
+    end
+    command(:pun, description: "get a pun", usage: ".pun") do |event|
+      uri = URI.parse('https://getpuns.herokuapp.com/api/random')
+      response = Net::HTTP.get_response(uri)
+      data = JSON.parse(response.body)
+      event.channel.send_embed("") do |embed|
+          embed.title = "Pun Fun"
+          embed.description = data['Pun']
+      end
+    end
+    command(:joke) do |event|
+      rsp = HTTParty.get("https://icanhazdadjoke.com", { headers: { "Accept": "text/plain"} }).response.body
+      event.respond(rsp)
+    end
+    command(:geek) do |event|
+      event.respond( HTTParty.get("https://geek-jokes.sameerkumar.website/api").body.to_s)
     end
     command(:weed, description:"classfied", usage:".weed word") do |event, strain, num|
       if num.nil?

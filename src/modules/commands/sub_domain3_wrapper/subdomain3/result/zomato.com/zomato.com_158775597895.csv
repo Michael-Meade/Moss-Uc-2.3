@@ -1,0 +1,3 @@
+DOMAIN,CDN,CNAME,IP
+success.zomato.com,No,Null,"['192.0.78.165', '192.0.78.248']"
+culture.zomato.com,Yes,"['zomato.com.edgekey.net.', 'e11566.b.akamaiedge.net.']",['104.105.43.17']

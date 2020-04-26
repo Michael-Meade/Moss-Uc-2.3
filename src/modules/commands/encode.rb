@@ -42,10 +42,8 @@ module Bot::DiscordCommands
       value = value.join(" ")
       event.respond(value.unpack("B*").shift.to_s)
     end
-    
     command([:unbinary], description:"Binary decode a string", usage:".unbinary <string>") do |event, *value|
       value = value.join
-      #shift
       event.respond([value].pack("B*").to_s)
     end
     command([:bacon], description:"Encode a string with bacon cipher", usage:".bacon <string>") do |event, *value|
@@ -57,11 +55,11 @@ module Bot::DiscordCommands
     command([:length], description:"Get a length of a string", usage:".length <string>") do |event, value|
       event.respond(value.length.to_s)
     end 
-    command(:reverse, description:"Reverse a string", usage:".reverse <string>") do |event, value|
-      event.respond(value.reverse!)
+    command(:reverse, description:"Reverse a string", usage:".reverse <string>") do |event, *value|
+      event.respond(value.join(" ").reverse!)
     end
     command(:urlencode, description:"URL encode a string", usage:".urlencode <string>") do |event, *value|
-      event.respond(URI::parse(value.join(" ").to_s.value).to_s)
+      event.respond(URI::parse(value.join(" ")).to_s)
     end
     command(:xor,description:"XOR encode a string with key", usage:"xor <string> <key>", min_args:2) do |event, *msg, key|
       encrypt = msg.join(" ") ^ key

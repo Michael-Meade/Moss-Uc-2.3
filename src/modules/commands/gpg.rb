@@ -18,7 +18,6 @@ module Bot::DiscordCommands
                     f = File.open(File.join("users", event.user.id.to_s, "addy.txt"), "w")
                     f.write(content)
                     f.close
-                    puts "::::::::::"
                     File.join("users", event.user.id.to_s, "addy.txt")
                     event.send_file(File.open("users/#{event.user.id.to_s}/addy.txt", 'r'))
                 end

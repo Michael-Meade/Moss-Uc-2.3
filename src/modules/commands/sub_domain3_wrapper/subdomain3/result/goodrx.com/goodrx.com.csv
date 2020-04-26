@@ -1,0 +1,51 @@
+DOMAIN,CDN,CNAME,IP
+ecc.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+wuxv.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+imgcdn.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+yb.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+148.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+app01.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+mx7.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+sex.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+tf.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+login1.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+xray.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+988.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+smp.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+wuv.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+jxc.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+omni.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+ff.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+gn.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+mail8.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+feng.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+1314.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+clarity.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+reach.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+ait.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+t4.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+person.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+rome.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+jasper.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+ut.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+sft.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+mail15.goodrx.com,No,Null,"['35.165.241.123', '52.41.147.80', '52.42.54.135']"
+jira.goodrx.com,Yes,"['jira.goodrx.com.s3-website-us-west-2.amazonaws.com.', 's3-website-us-west-2.amazonaws.com.']",['52.218.232.43']
+www.goodrx.com,Yes,['o2.shared.global.fastly.net.'],"['151.101.130.49', '151.101.194.49', '151.101.2.49', '151.101.66.49']"
+splunk.goodrx.com,Yes,['ec2-54-219-37-73.us-west-1.compute.amazonaws.com.'],['54.219.37.73']
+dev.goodrx.com,No,Null,['34.217.245.20']
+mail.goodrx.com,No,['ghs.google.com.'],['172.217.10.83']
+assets.goodrx.com,Yes,"['s3.amazonaws.com.', 's3-1.amazonaws.com.']",['52.216.168.61']
+support.goodrx.com,No,['goodrx.zendesk.com.'],"['104.16.51.111', '104.16.52.111', '104.16.53.111', '104.16.54.111', '104.16.55.111']"
+wiki.goodrx.com,Yes,"['wiki.goodrx.com.s3-website-us-west-1.amazonaws.com.', 's3-website-us-west-1.amazonaws.com.']",['52.219.112.243']
+test.goodrx.com,No,Null,['50.18.159.131']
+m.goodrx.com,Yes,['o2.shared.global.fastly.net.'],"['151.101.130.49', '151.101.194.49', '151.101.2.49', '151.101.66.49']"
+staging.goodrx.com,No,['grxstaging.com.'],"['35.161.23.211', '52.41.105.202']"
+gold.goodrx.com,Yes,['o2.shared.global.fastly.net.'],"['151.101.130.49', '151.101.194.49', '151.101.2.49', '151.101.66.49']"
+cdn.goodrx.com,Yes,['d4fuqqd5l3dbz.cloudfront.net.'],"['54.240.190.126', '54.240.190.183', '54.240.190.21', '54.240.190.35']"
+email.goodrx.com,Yes,['o2.shared.global.fastly.net.'],"['151.101.130.49', '151.101.194.49', '151.101.2.49', '151.101.66.49']"
+rs.goodrx.com,Yes,['o2.shared.global.fastly.net.'],"['151.101.130.49', '151.101.194.49', '151.101.2.49', '151.101.66.49']"
+docs.goodrx.com,No,Null,"['216.239.32.21', '216.239.34.21', '216.239.36.21', '216.239.38.21']"
+remote.goodrx.com,No,Null,['64.125.33.4']
+admin.goodrx.com,No,Null,"['35.164.239.141', '52.24.228.164']"
+content.goodrx.com,Yes,['o2.shared.global.fastly.net.'],"['151.101.130.49', '151.101.194.49', '151.101.2.49', '151.101.66.49']"

@@ -32,6 +32,9 @@ module Bot::DiscordCommands
     command([:dead],  description:"wack", usage:".dead") do |event|
         event.send_file(File.open('images/wack.gif', 'r'))
     end
+    command([:like, :aint], description:"like i aint", usage: ".like") do |event|
+        event.send_file(File.open("images/likeIAint.png", 'r'))
+    end
     command([:ok, :okay],  description:"Okay", usage:".ok") do |event|
     	event.send_file(File.open('images/ok.gif', 'r'))
     end

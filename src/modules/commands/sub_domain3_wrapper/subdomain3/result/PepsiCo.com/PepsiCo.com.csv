@@ -1,0 +1,70 @@
+DOMAIN,CDN,CNAME,IP
+srs.PepsiCo.com,No,Null,['204.136.64.154']
+staging.PepsiCo.com,Yes,['ssl.staging.cdn.pepsico.com.c.footprint.net.'],"['8.247.112.124', '8.252.64.252', '8.253.131.117']"
+www3.PepsiCo.com,Yes,['ssl.cdn.pepsico.com.c.footprint.net.'],"['8.252.231.252', '8.252.29.124', '8.253.154.245']"
+cr.PepsiCo.com,No,Null,['209.143.252.48']
+asp.PepsiCo.com,No,Null,['204.136.64.61']
+e.PepsiCo.com,No,Null,['159.127.187.64']
+lyncdiscover.PepsiCo.com,No,Null,['204.136.96.94']
+image.em.PepsiCo.com,Yes,"['images.s10.exacttarget.com.edgesuite.net.', 'a1951.b.akamai.net.']","['23.215.130.11', '23.215.130.24']"
+click.em.PepsiCo.com,No,['click.virt.s10.exacttarget.com.'],['13.111.18.12']
+vpn.PepsiCo.com,No,Null,['204.136.64.115']
+video.PepsiCo.com,No,Null,['198.231.16.27']
+account.PepsiCo.com,No,Null,['18.214.229.99']
+sds.PepsiCo.com,No,Null,['165.197.111.209']
+oc.PepsiCo.com,No,Null,['204.136.64.25']
+portal.webmail.PepsiCo.com,No,Null,['204.136.65.24']
+investors.PepsiCo.com,Yes,['ssl.staging.cdn.pepsico.com.c.footprint.net.'],"['8.247.119.124', '8.252.232.124', '8.253.154.233']"
+pages.em.PepsiCo.com,No,['pages.virt.s10.exacttarget.com.'],['13.111.18.25']
+campus.PepsiCo.com,No,Null,['157.146.163.83']
+cu.PepsiCo.com,Yes,['htepo55.x.incapdns.net.'],['45.60.75.51']
+redirect.PepsiCo.com,No,Null,['204.136.64.38']
+investor.PepsiCo.com,Yes,['d2uiwwp59uld9v.cloudfront.net.'],"['99.86.230.116', '99.86.230.20', '99.86.230.66', '99.86.230.73']"
+em.PepsiCo.com,No,Null,['13.111.18.27']
+p.PepsiCo.com,No,Null,['13.111.132.26']
+mcu.PepsiCo.com,Yes,['htepo55.x.incapdns.net.'],['45.60.75.51']
+webmail.PepsiCo.com,No,Null,['165.197.98.214']
+www.PepsiCo.com,Yes,['ftyb4kk.x.incapdns.net.'],['45.60.75.51']
+labs.PepsiCo.com,No,Null,['148.253.132.175']
+dialin.PepsiCo.com,No,Null,['204.136.96.94']
+survey.PepsiCo.com,No,Null,"['165.160.13.20', '165.160.15.20']"
+global.PepsiCo.com,Yes,"['u4vrdnf.x.incapdns.net.', 'pepsico-global-origin.pepext.com.']",['51.143.175.71']
+view.em.PepsiCo.com,No,['view.virt.s10.exacttarget.com.'],['13.111.18.32']
+contact.PepsiCo.com,Yes,['htepo55.x.incapdns.net.'],['45.60.75.51']
+mobile.PepsiCo.com,No,Null,['165.197.111.4']
+www.tms.PepsiCo.com,No,Null,['165.197.58.84']
+forum.PepsiCo.com,No,Null,['204.136.64.130']
+www.careers.PepsiCo.com,No,['careers.PepsiCo.com.'],['35.153.85.206']
+sip.PepsiCo.com,No,Null,['204.136.96.140']
+rs.PepsiCo.com,No,Null,['204.136.65.31']
+cdn2.PepsiCo.com,Yes,['d2uiwwp59uld9v.cloudfront.net.'],"['13.225.190.115', '13.225.190.121', '13.225.190.44', '13.225.190.54']"
+tp.PepsiCo.com,No,Null,['204.136.96.103']
+design.PepsiCo.com,Yes,['swt5n9v.x.incapdns.net.'],['45.60.75.51']
+connect.PepsiCo.com,No,Null,['173.255.229.208']
+review.PepsiCo.com,No,Null,['63.232.59.179']
+time.PepsiCo.com,No,Null,"['198.231.23.101', '198.231.23.102', '198.231.24.101', '198.231.24.102']"
+cloud.em.PepsiCo.com,No,['pub.s10.exacttarget.com.'],['13.111.18.35']
+www.cu.PepsiCo.com,Yes,['htepo55.x.incapdns.net.'],['45.60.75.51']
+tips.PepsiCo.com,No,['nsdallastxvcse01.PepsiCo.com.'],['198.231.16.141']
+av.PepsiCo.com,No,Null,['204.136.96.143']
+policy.PepsiCo.com,Yes,['s5wpfl3.x.incapdns.net.'],['45.60.75.51']
+mail.PepsiCo.com,No,Null,['204.136.64.90']
+ads.PepsiCo.com,No,Null,['165.197.98.208']
+live.PepsiCo.com,Yes,['ftyb4kk.x.incapdns.net.'],['45.60.75.51']
+services.PepsiCo.com,No,Null,['52.158.213.227']
+secure.PepsiCo.com,Yes,"['mypepsico.customdomains.okta.com.', 'ok1-custom-crtrs.okta.com.', 'ok1-crtr-custom-domains-8bbcaa4c1c2dc547.elb.us-east-1.amazonaws.com.']","['34.203.255.203', '34.203.255.229']"
+ada.PepsiCo.com,No,['equals3prod-f5d97e0600faecce4e296063174936d6-0001.us-east.containers.appdomain.cloud.'],"['169.47.31.34', '169.62.42.122', '169.63.159.6']"
+corp.PepsiCo.com,No,['pepsico.assetserv.com.'],['107.21.2.50']
+www.webmail.PepsiCo.com,No,['webmail.PepsiCo.com.'],['165.197.111.5']
+tms.PepsiCo.com,No,Null,['204.136.96.102']
+blue.PepsiCo.com,No,['pepsicoblue.schawk.com.'],['64.94.183.239']
+access.PepsiCo.com,No,Null,['204.136.64.168']
+careers.PepsiCo.com,No,Null,['35.153.85.206']
+csc.webmail.PepsiCo.com,No,Null,['204.136.64.96']
+signup.PepsiCo.com,No,Null,['18.214.229.99']
+test.webmail.PepsiCo.com,No,Null,['165.197.53.7']
+media.PepsiCo.com,Yes,['ssl.cdn.pepsico.com.c.footprint.net.'],"['8.247.119.124', '8.252.31.252', '8.252.62.124']"
+cdn.PepsiCo.com,Yes,['ssl.staging.cdn.pepsico.com.c.footprint.net.'],"['8.252.230.124', '8.252.234.252', '8.252.30.124']"
+www.labs.PepsiCo.com,No,['labs.PepsiCo.com.'],['148.253.132.175']
+meet.PepsiCo.com,No,Null,['204.136.96.94']
+autodiscover.PepsiCo.com,No,Null,['165.197.111.6']

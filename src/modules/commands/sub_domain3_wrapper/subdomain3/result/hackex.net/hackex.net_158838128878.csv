@@ -1,0 +1,11 @@
+DOMAIN,CDN,CNAME,IP
+autodiscover.hackex.net,No,['autodiscover.emailsrvr.com.'],['184.106.31.93']
+www.hackex.net,No,Null,"['104.26.4.103', '104.26.5.103']"
+ftp.hackex.net,No,Null,['23.253.62.251']
+staging.hackex.net,No,Null,"['104.26.4.103', '104.26.5.103']"
+api.hackex.net,No,Null,"['104.26.4.103', '104.26.5.103']"
+autodiscover.hackex.net,No,['autodiscover.emailsrvr.com.'],['184.106.31.93']
+www.hackex.net,No,Null,"['104.26.4.103', '104.26.5.103']"
+ftp.hackex.net,No,Null,['23.253.62.251']
+staging.hackex.net,No,Null,"['104.26.4.103', '104.26.5.103']"
+api.hackex.net,No,Null,"['104.26.4.103', '104.26.5.103']"

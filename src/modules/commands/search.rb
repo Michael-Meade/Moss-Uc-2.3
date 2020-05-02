@@ -42,17 +42,27 @@ module Bot::DiscordCommands
       rsp = JSON.parse(HTTParty.get("https://api.duckduckgo.com/?q=#{tv}&ia=tv&format=json&pretty=1").response.body)
       p rsp
       p rsp["AbstractText"]
-      #["Text"]
-      #event.respond(rsp.to_s)
     end
-    command(:s, description:"Search for somethng", usage:".s blockchains") do |event, *search|
-      #{search.join("+")}"
+    command(:s, description:"Search for somethng", usage:".s blockchains") do |event,*search|
       page = Nokogiri::HTML.parse(open("https://duckduckgo.com/html/?q=#{search.join("+")}"))
-      event.channel.send_embed("l") do |embed|
-          embed.title = search.join(" ").to_s
-          embed.colour = 0x5345b3
-          p page.xpath('//*[@id="links"]/div[1]/div/h2/a/b[2]')
-          embed.add_field(name: "Year",         value: page.xpath('//*[@id="zero_click_abstract"]').text.to_s.strip.to_s)
+      puts page.xpath('//*[@id="links"]/div[1]/div/div[1]/div/a').text.strip
+      event.channel.send_embed("") do |embed|
+        embed.title = page.xpath('//*[@id="links"]/div[1]/div/h2/a').text
+
+        embed.url   =  "https://" + page.xpath('//*[@id="links"]/div[1]/div/div[1]/div/a').text.strip
+        #page.xpath('//*[@id="links"]/div[1]/div/div[1]/div/a').text.strip.to_s
+        embed.colour = 0x5345b3
+        embed.description = page.xpath('//*[@id="links"]/div[1]/div/a').text
+
+
+          #page.xpath('//*[@id="links"]/div[1]/div/div[1]/div/a').text.to_s
+          #embed.title = page.css('body > div:nth-child(3) > div.zci-wrapper > div > h1 > a')
+          
+          #//*[@id="links"]/div[1]/div
+
+          #//*[@id="zero_click_abstract"]
+          
+            #page.xpath('//*[@id="links"]/div[1]/div').text.to_s.strip.to_s)
       end
       #zero_click_abstract
     end

@@ -1,0 +1,6 @@
+DOMAIN,CDN,CNAME,IP
+mail.saratogaracetrack.com,No,['mail.mannixmarketing.com.'],['76.12.63.169']
+staging.saratogaracetrack.com,No,['m2portalsstage.wpengine.com.'],['35.231.244.30']
+dev.saratogaracetrack.com,No,['m2portalsdev.wpengine.com.'],['35.231.244.30']
+m.saratogaracetrack.com,No,Null,['76.12.63.230']
+www.saratogaracetrack.com,No,Null,"['104.18.32.59', '104.18.33.59']"

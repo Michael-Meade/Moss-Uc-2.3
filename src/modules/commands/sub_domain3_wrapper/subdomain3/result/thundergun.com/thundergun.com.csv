@@ -1,0 +1,9 @@
+DOMAIN,CDN,CNAME,IP
+mail.thundergun.com,No,['thundergun.com.'],['173.237.137.38']
+www.thundergun.com,No,['thundergun.com.'],['173.237.137.38']
+webmail.thundergun.com,No,Null,['173.237.137.38']
+webdisk.thundergun.com,No,Null,['173.237.137.38']
+ftp.thundergun.com,No,['thundergun.com.'],['173.237.137.38']
+autodiscover.thundergun.com,No,Null,['173.237.137.38']
+cpanel.thundergun.com,No,Null,['173.237.137.38']
+whm.thundergun.com,No,Null,['173.237.137.38']

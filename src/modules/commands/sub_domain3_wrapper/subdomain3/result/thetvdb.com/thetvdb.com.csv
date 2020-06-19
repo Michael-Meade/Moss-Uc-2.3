@@ -1,0 +1,17 @@
+DOMAIN,CDN,CNAME,IP
+registry.thetvdb.com,No,['gitlab.thetvdb.com.'],"['104.16.227.14', '104.16.228.14', '104.16.229.14', '104.16.230.14', '104.16.231.14']"
+api2.thetvdb.com,No,Null,['13.225.223.248']
+wave.thetvdb.com,No,Null,['174.127.206.130']
+direct.thetvdb.com,No,Null,['69.46.43.66']
+cache.thetvdb.com,No,Null,['199.30.133.170']
+forums.thetvdb.com,No,Null,['34.215.192.14']
+archive.thetvdb.com,No,['caladan.yourstorm.com.'],['67.192.238.196']
+gitlab.thetvdb.com,No,Null,"['104.16.227.14', '104.16.228.14', '104.16.229.14', '104.16.230.14', '104.16.231.14']"
+www.thetvdb.com,No,Null,['13.225.223.248']
+mail.thetvdb.com,No,['mail.emailsrvr.com.'],['173.203.187.14']
+api.staging.thetvdb.com,No,['api.staging.zone.thetvdb.com.'],"['100.20.221.165', '35.165.61.182', '54.244.1.238']"
+smtp1.thetvdb.com,No,Null,"['174.127.206.130', '69.46.43.66']"
+api.thetvdb.com,No,Null,['13.225.223.248']
+api.beta.thetvdb.com,No,Null,['13.225.223.248']
+beta.thetvdb.com,No,Null,['13.225.223.248']
+staging.thetvdb.com,No,['web.staging.zone.thetvdb.com.'],"['52.10.183.107', '52.42.194.248', '54.213.79.94']"

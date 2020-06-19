@@ -77,7 +77,7 @@ module Bot::DiscordCommands
 			status.to_s.gsub("o", ":white_check_mark: ").gsub("x",":x:").gsub("!!", ":thumbsup: ").to_s.gsub("!!!", ":thumbsdown:").gsub(":|", ":question: ")
 		end
 	    
-	    command(:movie, description:"managae your movie list", usage:".Movie list") do |event, item, movie_name, rate|
+	    command(:movie, description:"managae your movie list", usage:".movie ls || .movie status 1 || .movie rate g || b") do |event, item, movie_name, rate|
 	    	FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
 	    	FileUtils.touch(File.join("users", event.user.id.to_s, "movies_list.json")) unless File.exists?(File.join("users", event.user.id.to_s, "movies_list.json"))
 	    	if item.to_s == "add"
@@ -89,8 +89,6 @@ module Bot::DiscordCommands
 	    		delay = "#{((Time.now - event.timestamp) * 1000).to_i}ms"
 	    		fields = embed_movie(event.user.id.to_s)
 	    		send_embed(event: event, title: 'Movie List', fields: fields)
-				#event.send_message("", embed: h)
-	    		#event.channel.send_embed(lol)
 	    	elsif item.to_s == "status"
 	    		status_changer(event.user.id.to_s, movie_name)
 	    	elsif item.to_s == "rate"

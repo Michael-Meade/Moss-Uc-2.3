@@ -1,6 +1,9 @@
 require 'httparty'
 require 'json'
 require 'date'
+ require 'uri'
+require 'net/http'
+require 'openssl'
 require 'nokogiri'
 module Bot::DiscordCommands
   # Responds with "Pong!".
@@ -37,22 +40,42 @@ module Bot::DiscordCommands
     		puts e
     	end
     end
+    command(:dog) do |event|
+      r = HTTParty.get("https://some-random-api.ml/facts/dog", { "headers": {"Accept": "text/plain"}}).body
+      j = JSON.parse(r)["fact"]
+
+    end
+    command(:dogs) do |event|
+    	rsp = HTTParty.get("https://dog.ceo/api/breeds/image/random").body
+    	j   = JSON.parse(rsp)["message"]
+    	event.respond(j.to_s)
+    end
     command([:tv], description:"get tv show info", usage: ".tv white collar") do |event, *tv|
       tv = tv.join("+")
       rsp = JSON.parse(HTTParty.get("https://api.duckduckgo.com/?q=#{tv}&ia=tv&format=json&pretty=1").response.body)
       p rsp
       p rsp["AbstractText"]
     end
+    command(:fucks) do |event|
+      rsp = HTTParty.get("https://foaas.com/give/Tom/", { "headers": { "Accept": "text/plain" } } ).body
+      event.respond(rsp)
+    end
+    command(:fuck) do |event|
+      rsp = HTTParty.get("https://mashape-community-foaas.p.rapidapi.com/give/Tom", { "headers": { "x-rapidapi-host": "mashape-community-foaas.p.rapidapi.com",
+      "x-rapidapi-key": "43df40edcbmshedcb486089d69d8p16f911jsnf55da72fd24c", "Accept": "text/plain" }} ).body
+      puts rsp
+    end
     command(:s, description:"Search for somethng", usage:".s blockchains") do |event,*search|
       page = Nokogiri::HTML.parse(open("https://duckduckgo.com/html/?q=#{search.join("+")}"))
       puts page.xpath('//*[@id="links"]/div[1]/div/div[1]/div/a').text.strip
       event.channel.send_embed("") do |embed|
-        embed.title = page.xpath('//*[@id="links"]/div[1]/div/h2/a').text
+        embed.title = page.xpath('//*[@id="links"]/div[1]/div/h2/a').text.to_s
 
-        embed.url   =  "https://" + page.xpath('//*[@id="links"]/div[1]/div/div[1]/div/a').text.strip
+        embed.url   =  "https://" + page.xpath('//*[@id="links"]/div[1]/div/div[1]/div/a').text.strip.to_s
         #page.xpath('//*[@id="links"]/div[1]/div/div[1]/div/a').text.strip.to_s
         embed.colour = 0x5345b3
-        embed.description = page.xpath('//*[@id="links"]/div[1]/div/a').text
+        p page.xpath('//*[@id="links"]/div[1]/div/a').text
+        embed.description = page.xpath('//*[@id="links"]/div[1]/div/a').text.to_s
 
 
           #page.xpath('//*[@id="links"]/div[1]/div/div[1]/div/a').text.to_s
@@ -157,6 +180,7 @@ module Bot::DiscordCommands
     command(:geek) do |event|
       event.respond( HTTParty.get("https://geek-jokes.sameerkumar.website/api").body.to_s)
     end
+
     command(:weed, description:"classfied", usage:".weed word") do |event, strain, num|
       if num.nil?
         num = 0
@@ -173,7 +197,16 @@ module Bot::DiscordCommands
       if id["cod"] == "404"
         "Zip code doesnt exist"
       else
-          event.respond("***Main:*** #{id['weather'][0]['main']} \n ***Description:*** #{id['weather'][0]['description']} \n ***Temp:*** #{id['main']['temp']} \n ***Humidity:*** #{id['main']['humidity']} \n ***Temp Min:*** #{id['main']['temp_min']} \n ***Temp Max:*** #{id['main']['temp_max']}".to_s)
+        event.channel.send_embed("") do |embed|
+          embed.title  = id['weather'][0]['main']
+          embed.colour = 0x5345b3
+          embed.description = id['weather'][0]['description']
+          embed.add_field(name: "Temp",         value: id['main']['temp'].to_s)
+          embed.add_field(name: "Humidity",     value: id['main']['humidity'].to_s)
+          embed.add_field(name: "Temp Min",     value: id['main']['temp_min'].to_s)
+          embed.add_field(name: "Temp Max",      value: id['main']['temp_max'].to_s)
+          #event.respond("***Main:*** #{id['weather'][0]['main']} \n ***Description:*** #{id['weather'][0]['description']} \n ***Temp:*** #{id['main']['temp']} \n ***Humidity:*** #{id['main']['humidity']} \n ***Temp Min:*** #{id['main']['temp_min']} \n ***Temp Max:*** #{id['main']['temp_max']}".to_s)
+        end
       end
     end
   end

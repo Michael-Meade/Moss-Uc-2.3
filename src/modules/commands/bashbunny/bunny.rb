@@ -2,7 +2,7 @@ require_relative 'lib'
 class BashBunny
 	def self.two_template(uid, file_name, matchs=[], msg=[])
 		i = 0 
-		file_read = File.read(File.join("templates", file_name))
+		file_read = File.read(File.join(__dir__, "templates", file_name))
 		if matchs.length.to_i >= 1
 			msg.each do |m|
 				file_read = file_read.gsub(matchs[i].to_s, m[i].to_s)
@@ -15,18 +15,17 @@ class BashBunny
 		final = ""
 		File.readlines(file_name).each do |a|
 			if a.include?(matchs)
-				a = a.gsub(matchs, msg.to_s)
+				a = a.gsub(matchs, msg)
 			end
 			final += a
 		end
 		Utils.save_output(uid, final)
 	end
 	def self.uc_login(uid, email)
-		a = File.dirname(__FILE__)
-		template(email, File.join(a, "templates", "uc-login.txt"), "email@utica.edu", uid)
+		template(uid, File.join("templates", "uc-login.txt"), "email@utica.edu", email)
 	end
 	def self.undercover_bunny(uid, msg)
-		template(uid, File.join("/templates", "undercover_bunny.txt"), "message", msg)
+		template(uid, File.join("templates", "undercover_bunny.txt"), "message", msg)
 	end
 	def self.wifi_pass(uid)
 		read = File.read(File.join("templates", "wifi_pass.txt"))

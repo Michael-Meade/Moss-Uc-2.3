@@ -20,7 +20,7 @@ module Bot::DiscordEvents
     message(starting_with: not!(".")) do |event|
       list = File.read("config.json")
       j    = JSON.parse(list)["lyrics-troll"]
-      if j == "true"
+      if j == true
         q = check_file("lyrics.txt", event.message.content.to_s)
         event.respond(q)
       end

@@ -1,0 +1,71 @@
+DOMAIN,CDN,CNAME,IP
+registry.lexus.com,No,Null,['64.93.83.101']
+dev.lexus.com,No,Null,['63.87.74.46']
+staging.espanol.lexus.com,No,Null,['65.197.201.146']
+origin.staging.media.lexus.com,No,Null,['65.197.201.146']
+marketplace.lexus.com,No,Null,['198.246.207.34']
+host3.lexus.com,No,Null,['207.138.36.3']
+m.lexus.com,No,Null,['69.25.174.10']
+staging.search.lexus.com,Yes,"['staging.search.tms.aws.lexus.com.', 'kua8z8b.x.incapdns.net.']",['107.154.79.150']
+staging.ssl.lexus.com,Yes,['uw7svf6.x.incapdns.net.'],['107.154.75.95']
+ssl.lexus.com,Yes,['vynfpqw.x.incapdns.net.'],['107.154.75.95']
+origin.staging.m.lexus.com,No,Null,['65.197.201.146']
+auth.dev.lexus.com,No,Null,['63.87.74.114']
+spanish.lexus.com,No,Null,['69.25.174.10']
+origin.staging.lexus.com,No,Null,['63.87.74.94']
+www.spa.lexus.com,No,Null,['69.25.174.10']
+www.espanol.lexus.com,No,Null,['69.25.174.10']
+www.mobile.lexus.com,No,['lexus.com.'],"['107.154.75.95', '107.154.76.95']"
+keys.lexus.com,No,Null,['69.25.174.109']
+search.lexus.com,Yes,"['search.tms.aws.lexus.com.', 'a6mkjds.x.incapdns.net.']",['107.154.75.95']
+mobile.lexus.com,No,['lexus.com.'],"['107.154.75.95', '107.154.76.95']"
+staging.media.lexus.com,Yes,"['www.toyota.com.edgesuite.net.', 'a1927.q.akamai.net.']","['172.232.7.193', '172.232.7.209']"
+staging.touch.lexus.com,No,Null,['63.87.74.94']
+qa.isp.lexus.com,No,Null,"['13.225.190.118', '13.225.190.55', '13.225.190.66', '13.225.190.70']"
+nexus.lexus.com,No,['nexus.ensighten.com.'],['3.218.7.59']
+origin.m.lexus.com,No,Null,['69.25.174.10']
+staging.config.lexus.com,Yes,"['www.toyota.com.edgesuite.net.', 'a1927.q.akamai.net.']","['172.232.7.193', '172.232.7.209']"
+dealer.lexus.com,No,Null,['63.90.86.52']
+next.lexus.com,No,Null,['69.25.174.26']
+origin.staging.touch.lexus.com,No,Null,['65.197.201.146']
+staging.es.lexus.com,No,Null,['65.197.201.146']
+hq.lexus.com,No,Null,['162.246.78.89']
+mail.lexus.com,No,"['mail.toyota.com.', 'mail10.toyota.com.']",['148.163.159.204']
+staging.spanish.lexus.com,No,Null,['65.197.201.146']
+auth.staging.lexus.com,No,Null,['65.197.201.157']
+staging.m.lexus.com,No,Null,['65.197.201.146']
+unix.lexus.com,No,['unix.toyota.com.'],['8.26.81.19']
+staging.spa.lexus.com,No,Null,['65.197.201.146']
+www.msn.lexus.com,No,['www.lexus.msn.com.'],['65.54.206.115']
+spa.lexus.com,No,Null,['69.25.174.10']
+www.lexus.com,Yes,['d2tqcwdic6c212.cloudfront.net.'],"['99.84.251.119', '99.84.251.59', '99.84.251.62', '99.84.251.94']"
+www.es.lexus.com,No,Null,['69.25.174.10']
+origin.touch.lexus.com,No,Null,['69.25.174.10']
+es.lexus.com,No,Null,['69.25.174.10']
+dev.config.lexus.com,No,Null,['63.87.74.47']
+secure.staging.lexus.com,Yes,['x3owpxd.x.incapdns.net.'],['45.60.11.237']
+secure.lexus.com,Yes,['4ee67a9.x.incapdns.net.'],['107.154.75.95']
+auth.lexus.com,No,Null,['69.25.174.30']
+touch.lexus.com,No,Null,['69.25.174.238']
+old.dev.lexus.com,No,Null,['63.87.74.46']
+origin.staging.config.lexus.com,No,Null,['65.197.201.147']
+origin.www.lexus.com,No,Null,['69.25.174.238']
+secure.dev.lexus.com,No,Null,['63.87.74.46']
+blogs.lexus.com,No,Null,['69.25.174.10']
+parts.lexus.com,No,['us-lexus-oem.simplepart.com.'],['198.24.56.241']
+www.m.lexus.com,No,['lexus.com.'],"['107.154.75.95', '107.154.76.95']"
+media.lexus.com,Yes,"['media.lexus.com.edgesuite.net.', 'a610.q.akamai.net.']","['172.232.7.144', '172.232.7.192']"
+www.spanish.lexus.com,No,Null,['69.25.174.10']
+hub.lexus.com,Yes,['d3t0pwmgpmx6vd.cloudfront.net.'],"['13.249.87.125', '13.249.87.37', '13.249.87.61', '13.249.87.69']"
+msn.lexus.com,No,['www.lexus.msn.com.'],['65.54.206.115']
+dev.isp.lexus.com,No,Null,"['13.225.190.100', '13.225.190.82', '13.225.190.83', '13.225.190.93']"
+staging.lexus.com,Yes,['d2yhy8nq5n8u2q.cloudfront.net.'],"['99.84.251.109', '99.84.251.2', '99.84.251.68', '99.84.251.78']"
+espanol.lexus.com,No,Null,['69.25.174.10']
+blog.lexus.com,No,Null,['69.25.174.10']
+www.is.lexus.com,Yes,"['www.is.lexus.com.edgesuite.net.', 'a902.g.akamai.net.']","['104.70.120.17', '104.70.120.59']"
+staging.registry.lexus.com,No,Null,['64.93.83.101']
+isp.lexus.com,No,Null,"['13.225.190.115', '13.225.190.21', '13.225.190.65', '13.225.190.90']"
+is.lexus.com,Yes,"['is.lexus.com.edgesuite.net.', 'a295.g.akamai.net.']","['104.70.120.16', '104.70.120.58']"
+lyncdiscover.lexus.com,No,['rp1.059d.dedicated.lync.com.'],['157.55.154.119']
+metrics.lexus.com,Yes,['lexus.com.d1.sc.omtrdc.net.'],"['18.211.155.46', '3.213.30.101', '3.217.100.252', '3.234.115.12', '3.89.214.96', '52.205.199.154']"
+config.lexus.com,Yes,"['www.toyota.com.edgesuite.net.', 'a1927.q.akamai.net.']","['172.232.7.193', '172.232.7.209']"

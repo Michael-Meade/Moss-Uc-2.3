@@ -17,12 +17,24 @@ module Bot::DiscordCommands
     command(:fifth) do |event|
         event.send_file(File.open("images/fifth.png"))
     end
+    command([:heartache]) do |event|
+    	event.send_file(File.open("images/heartache.png"))
+    end
+    command([:noice]) do |event|
+        event.send_file(File.open("images/noice.gif"))
+    end
+    command([:save, :money]) do |event|
+        event.send_file(File.open("images/money.png"))
+    end
     command([:plead], description: "plead the fifth", usage:".5") do |event|
         event.send_file(File.open("images/plead.png"))
     end
     command([:hay, :hi],  description:"hay", usage:".hay") do |event|
         event.send_file(File.open('images/hay.jpg', 'r'))
     end 
+    command([:talk, :bout], description: "what you talking bout", usage: ".talk") do |event|
+        event.send_file(File.open("images/talk.gif", "r"))
+    end
     command([:great, :scott, :greatscott],  description:"Great Scott", usage:".great") do |event|
         event.send_file(File.open('images/BitcoinBackToTheFuture.png', 'r'))
     end 
@@ -43,9 +55,6 @@ module Bot::DiscordCommands
     end
     command([:dead],  description:"Dead", usage:".dead") do |event|
     	event.send_file(File.open('images/dead.gif', 'r'))
-    end
-    command([:help],  description:"Oh", usage:".help") do |event|
-        event.send_file(File.open('images/commands_lists.png', 'r'))
     end
     command([:roasted, :roast],  description:"rostaed", usage:".roasted") do |event|
         event.send_file(File.open('images/roasted.gif', 'r'))

@@ -1,0 +1,58 @@
+DOMAIN,CDN,CNAME,IP
+soap.fxnetworks.com,No,Null,['198.61.143.206']
+newsletter.fxnetworks.com,No,Null,['67.72.99.85']
+mail.fxnetworks.com,No,Null,['91.230.179.11']
+test.fxnetworks.com,Yes,"['fxnetworks.com.edgesuite.net.', 'a1560.g.akamai.net.']","['104.70.120.56', '104.70.120.66']"
+stage.tv.fxnetworks.com,No,['secondscreen-staging.us-east-1.elasticbeanstalk.com.'],"['3.209.175.70', '52.71.200.85']"
+assets.fxnetworks.com,Yes,"['san.fxnetworks.com.edgekey.net.', 'e5635.g.akamaiedge.net.']",['69.192.109.15']
+sip.fxnetworks.com,No,Null,"['70.32.190.65', '70.32.190.66']"
+account.fxnetworks.com,Yes,"['account.fxnetworks.com.edgekey.net.', 'e8759.f.akamaiedge.net.']",['23.32.171.234']
+login.fxnetworks.com,No,['login-fxnetworks-com.uc17.janrain.ws.'],"['34.197.164.191', '34.225.78.12', '50.16.52.204', '54.209.166.211']"
+secure.fxnetworks.com,No,Null,['198.61.143.206']
+email.shop.fxnetworks.com,No,Null,['216.27.63.21']
+community.fxnetworks.com,No,"['www2.fxnetworks.com.', 'fxnetwork.com.edgekey.net.', 'e8759.e12.akamaiedge.net.']",['23.5.225.28']
+origin.staging.fxnetworks.com,No,Null,['108.166.19.70']
+internal.gsa.fxnetworks.com,No,Null,PRIVATE(192.168.28.112)
+dialin.fxnetworks.com,No,Null,['70.32.185.34']
+feeds.fxnetworks.com,No,"['feeds.feedburner.com.', 'www4.l.google.com.']",['172.217.6.238']
+shop.fxnetworks.com,No,['shops.myshopify.com.'],['23.227.38.64']
+b.fxnetworks.com,Yes,['fxnetworks.com.ssl.d2.sc.omtrdc.net.'],"['18.211.155.46', '3.213.30.101', '3.217.100.252', '3.234.115.12', '3.89.214.96', '52.205.199.154']"
+origin.fxnetworks.com,No,Null,['198.61.143.206']
+staging.developer.fxnetworks.com,No,['edge.apigee.getpantheon.com.'],['23.253.180.13']
+qa.tv.fxnetworks.com,No,['secondscreen-qa.us-east-1.elasticbeanstalk.com.'],"['3.221.191.13', '34.237.24.1']"
+sync.fxnetworks.com,No,['foxdcg-v5dvg7zihe.xid.segment.com.'],"['54.214.62.87', '54.69.206.183']"
+a.fxnetworks.com,Yes,['fxnetworks.com.d2.sc.omtrdc.net.'],"['18.211.155.46', '3.213.30.101', '3.217.100.252', '3.234.115.12', '3.89.214.96', '52.205.199.154']"
+staging.fxnetworks.com,No,['origin.staging.fxnetworks.com.'],['108.166.19.70']
+videos.fxnetworks.com,No,"['cp91555.edgefcs.net.', 'a178.v915552.c91555.b3.vi5.akamaistream.net.', 'a178.vi5g5.akafms.net.']",['23.3.97.204']
+mail3.fxnetworks.com,No,Null,['206.170.79.37']
+mail2.fxnetworks.com,No,Null,['206.170.79.30']
+gsa.fxnetworks.com,Yes,"['gsa.fxnetworks.com.edgesuite.net.', 'a636.g1.akamai.net.']","['96.17.146.195', '96.17.146.200']"
+projects.fxnetworks.com,No,Null,['204.154.142.175']
+video.fxnetworks.com,Yes,"['video.fxnetworks.com.edgesuite.net.', 'a1532.g.akamai.net.']","['104.70.120.74', '104.70.120.75']"
+vod.fxnetworks.com,Yes,"['video.fxnetworks.com.edgesuite.net.', 'a1532.g.akamai.net.']","['23.210.6.209', '23.210.6.235']"
+lyncdiscover.fxnetworks.com,No,Null,['70.32.185.34']
+origin.vip.fxnetworks.com,Yes,['d1r3yjbevmtfq8.cloudfront.net.'],"['13.224.208.33', '13.224.208.44', '13.224.208.65', '13.224.208.93']"
+m.fxnetworks.com,No,['fxnetworks.mo2do.net.'],"['184.73.186.86', '184.73.214.46']"
+www2.fxnetworks.com,No,"['fxnetwork.com.edgekey.net.', 'e8759.e12.akamaiedge.net.']",['23.5.225.28']
+stage.fxnetworks.com,No,Null,['198.61.143.207']
+api.staging.fxnetworks.com,No,Null,['108.166.19.11']
+img.shop.fxnetworks.com,Yes,"['img.ed4.net.', 'instantconfig.ed4.net.', 'instantconfig.ed4.net.mdc.edgesuite.net.', 'a1819.g1.akamai.net.']","['96.17.146.162', '96.17.146.177']"
+www.fxnetworks.com,Yes,"['san.fxnetworks.com.edgekey.net.', 'e5635.g.akamaiedge.net.']",['69.192.109.15']
+dev.fxnetworks.com,No,Null,['198.61.143.207']
+wap.fxnetworks.com,No,['fxnetworks.mo2do.net.'],"['184.73.186.86', '184.73.214.46']"
+autodiscover.fxnetworks.com,No,"['autodiscover.outlook.com.', 'autod.ha-autod.office.com.', 'autod.ms-acdc-autod.office.com.']","['52.96.15.184', '52.96.87.232', '52.96.87.248', '52.96.9.8']"
+signup.fxnetworks.com,No,"['fx.janraincapture.com.', 'app.janraincapture.com.', 'star.us2.janraincapture.com.edgekey.net.', 'e16860.a.akamaiedge.net.']",['104.102.92.96']
+origin.www2.fxnetworks.com,No,Null,['50.56.48.68']
+ask.fxnetworks.com,No,['foxnow.zendesk.com.'],"['34.206.241.1', '34.225.199.37', '54.172.126.223']"
+esp.fxnetworks.com,No,Null,['91.230.179.11']
+origin.gsa.fxnetworks.com,No,Null,['108.166.19.106']
+legacy.fxnetworks.com,Yes,"['fxnetworks.com.edgesuite.net.', 'a1560.g.akamai.net.']","['104.70.120.56', '104.70.120.66']"
+dev.developer.fxnetworks.com,No,['edge.apigee.getpantheon.com.'],['23.253.180.13']
+origin.legacy.fxnetworks.com,No,Null,['198.61.143.206']
+vip.fxnetworks.com,Yes,"['fxnetworks.com.edgekey.net.', 'e8759.e4.akamaiedge.net.']",['104.64.215.181']
+meet.fxnetworks.com,No,Null,['70.32.185.34']
+wp.fxnetworks.com,No,Null,['198.61.143.206']
+blogs.fxnetworks.com,Yes,"['fxnetworks.com.edgesuite.net.', 'a1560.g.akamai.net.']","['104.70.120.56', '104.70.120.66']"
+developer.fxnetworks.com,No,['edge.apigee.getpantheon.com.'],['23.253.180.13']
+tv.fxnetworks.com,Yes,"['fxnetworks.com.edgekey.net.', 'e8759.e4.akamaiedge.net.']",['104.64.215.181']
+media.fxnetworks.com,Yes,"['media.fxnetworks.com.edgesuite.net.', 'a756.g.akamai.net.']","['104.70.120.35', '104.70.120.72']"

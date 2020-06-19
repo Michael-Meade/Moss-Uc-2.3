@@ -7,7 +7,7 @@ module Bot::DiscordCommands
     command(:afbi, description:"<classfied>", usage:"<classfied>") do |event, status|
       channel_id = event.channel.id
       if !["669853278778949652"].include?(channel_id)
-        r = HTTParty.get("http://theafbi.com/afbi/1").response.body
+        r = HTTParty.get("http://theafbi.com/afbi/1", :debug_output => $stdout).response.body
         results = JSON.parse(r)["afbi"]
         event.respond(results[0])
       end

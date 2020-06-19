@@ -1,7 +1,7 @@
 require 'httparty'
 require 'json'
 require 'fileutils'
-
+require 'core_extensions'
 module Bot::DiscordCommands
   module ToDo
   	extend Discordrb::Commands::CommandContainer
@@ -22,7 +22,6 @@ module Bot::DiscordCommands
 			end
 		end
 		def self.list_movies(uid)
-			
 			output = ""
 			read = JSON.parse(File.read(File.join("users", uid, "todo_list.json")))
 			read.each do |key, value|
@@ -66,6 +65,9 @@ module Bot::DiscordCommands
 	    		event.respond(output.to_s)
 	    	elsif item.to_s == "status"
 	    		status_changer(event.user.id.to_s, item_num)
+	    	elsif item.to_s == "rm"
+	    		file = JSON.parse(File.join("users/#{event.user.id.to_s})/todo_list.json"))
+	    		p file.remove(item_num)
 	    	end
 	    end
 	end

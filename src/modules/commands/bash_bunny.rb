@@ -1,3 +1,6 @@
+
+
+=begin
 # ¯\_(ツ)_/¯
 require_relative 'bash_bunny/lib/bash'
 module Bot::DiscordCommands
@@ -20,3 +23,5 @@ module Bot::DiscordCommands
     end
   end
 end
+
+=end

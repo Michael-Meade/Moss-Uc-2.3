@@ -1,0 +1,7 @@
+DOMAIN,CDN,CNAME,IP
+list.motionpictures.org,No,Null,['216.4.93.133']
+autodiscover.motionpictures.org,No,"['autodiscover.outlook.com.', 'autod.ha-autod.office.com.', 'autod.ms-acdc-autod.office.com.']","['40.97.188.232', '40.97.188.8', '40.97.190.8', '52.96.88.120']"
+www.motionpictures.org,Yes,['ohdow3t.x.incapdns.net.'],['45.60.77.201']
+test.motionpictures.org,No,Null,['52.55.131.96']
+owa.motionpictures.org,No,Null,['216.4.93.153']
+vpn.motionpictures.org,No,Null,['216.4.93.132']

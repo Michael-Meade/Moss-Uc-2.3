@@ -29,10 +29,28 @@ module Bot::DiscordCommands
     		"ctftools\n",
     		"ctf\n",
     		"csrf\n",
-    		"sample\n"]
+    		"sample\n",
+            "ml\n",
+            "cheatsheet\n",
+            "bug\n",
+            "subsystem\n",
+            "deeplearning\n",
+            "linuxguide\n"]
     	main_link = "https://github.com/UticaCollegeCyberSecurityClub/Resources/blob/master/README.md"
     	if id.nil?
     		event.respond(main_link)
+        elsif  id.to_s == "linuxguide"
+            event.respond("#{main_link}#linux-guide")
+        elsif id.to_s == "deeplearning"
+            event.respond("#{main_link}#deep-learning")
+        elsif id.to_s == "subsystem"
+            event.respond("#{main_link}#windows-subsystem")
+        elsif id.to_s == "bug"
+            event.respond("#{main_link}#bug-bounty")
+        elsif id.to_s == "machinelearning" || id.to_s == "ml"
+            event.respond("#{main_link}#machine-learning")
+        elsif id.to_s ==  "cheatsheet" || id.to_s == "cheatsheets"
+            event.respond("#{main_link}#cheatsheets")
     	elsif id.to_s == "crypto"
     		event.respond("#{main_link}#cryptocurrency--blockchains")
     	elsif id.to_s == "tor"

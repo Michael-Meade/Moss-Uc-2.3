@@ -1,3 +1,6 @@
+require 'similar_text'
+
+
 module Bot::DiscordEvents
   # This event is processed each time the bot succesfully connects to discord.
   module Ready
@@ -13,17 +16,31 @@ module Bot::DiscordEvents
         if line.match(string)
           s = false
         end
-         # Do whatever you want to here  
       end
     nil
     end
-    message(starting_with: not!(".")) do |event|
-      list = File.read("config.json")
-      j    = JSON.parse(list)["lyrics-troll"]
-      if j == true
-        q = check_file("lyrics.txt", event.message.content.to_s)
-        event.respond(q)
+    def self.check(file, string)
+      s = true
+      File.open("lyrics.txt").each_with_index do |line, i|
+        if s == false
+          return line
+          s = true
+          break
+        end
+        
+        if line.strip.similar(string.strip).to_i >= 80
+          p line.strip.similar(string.strip)
+          s = false
+        end
       end
+      #"Hello, World!".similar("Hello World!") #=> 96.0
+    nil
+    end
+    message(starting_with: not!(".")) do |event|
+     lo = check("", event.message.content.to_s)
+     if !lo.nil?
+      event.respond(lo)
+     end 
     end
   end
 end
@@ -32,4 +49,12 @@ while(line = fh.gets) != nil
               puts "#{line}"
               break if line.include?(")")
             end
+=end
+=begin
+list = File.read("config.json")
+      j    = JSON.parse(list)["lyrics-troll"]
+      if j == true
+        q = check_file("lyrics.txt", event.message.content.to_s)
+        event.respond(q)
+      end
 =end

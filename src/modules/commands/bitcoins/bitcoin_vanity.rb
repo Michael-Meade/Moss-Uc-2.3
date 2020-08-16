@@ -23,6 +23,15 @@ class BitcoinAddress
     end
   output
   end
+  def self.w
+    out = ""
+    array = ["Address: ", "Private Key Hex:", "Public Key Hash:", "Public Key Hex:"]
+    i = 0
+    generate_address.each do |btc|
+      out += array[i.to_i].to_s + btc 
+    end
+  out
+  end
   def self.generate_address
     # Bitcoin uses the secp256k1 curve
     curve = OpenSSL::PKey::EC.new('secp256k1')

@@ -32,3 +32,7 @@ edgesuite.net
 edgekey.net
 -v1.edgekey.net
 edgesuite.net
+d1.sc.omtrdc.net
+ssl.d1.sc.omtrdc.net
+d1.sc.omtrdc.net
+ssl.d1.sc.omtrdc.net

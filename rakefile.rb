@@ -1,6 +1,7 @@
 ###
 ### Rake tasks for git commit and deploy
 ###
+require 'json'
 ##use it if you want commit only -no pushing
 desc "Task description"
 task :commit, :message  do |t, args|
@@ -31,4 +32,11 @@ end
 desc "push to remotes"
 task :push do
   system "git push -u origin master"
+end
+
+desc "Install Gems"
+task :gems do
+ JSON.parse(File.read("gems.json"))["gems"].each do |value|
+  system("gem install #{value}")
+ end 
 end

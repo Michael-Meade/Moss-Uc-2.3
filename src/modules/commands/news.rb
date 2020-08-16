@@ -47,6 +47,21 @@ end
 module Bot::DiscordCommands
   module News
     extend Discordrb::Commands::CommandContainer
+    def self.json
+        {
+          "content": "Zdnet",
+          "embed": {
+            "title": "",
+            "description": "this supports [named links](https://discordapp.com) on top of the previously shown subset of markdown. ```\nyes, even code blocks```",
+            "url": "https://discordapp.com",
+            "color": 13632027,
+            "timestamp": "2020-08-16T00:28:11.899Z",
+            "author": {
+              "name": "author name"
+            }
+          }
+        }
+    end
     command([:securelist, :sl], description:"Secure List", usage:".sl>") do |event|
     	dispay = ""
     	rss = open("https://securelist.com/feed/")
@@ -73,6 +88,17 @@ module Bot::DiscordCommands
     		dispay  += item.link + "\n"
     	end
     	event.respond(dispay)
+    end
+    command(:cyber) do |event|
+        mechanize = Mechanize.new
+        page   = mechanize.get('https://www.zdnet.com/meet-the-team/us/catalin.cimpanu/')
+        event.channel.send_embed("Zdnet") do |embed|
+          embed.title = page.at('//*[@id="articles-loadMore"]/article[1]/div/div[2]/h3/a').text
+          embed.colour = 0x750132
+          embed.url = "https://www.zdnet.com" +  page.at('//*[@id="articles-loadMore"]/article[1]/div/div[2]/h3/a').values.first
+          embed.description = page.at('//*[@id="articles-loadMore"]/article[1]/div/div[2]/p[1]').text
+          embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: page.at('//*[@id="articles-loadMore"]/article[1]/div/div[2]/p[2]/a').text.to_s)
+        end
     end
     command(:news) do |event, id|
         r = Scraper.rss(id.to_s)

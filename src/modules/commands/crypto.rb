@@ -5,17 +5,20 @@ require 'uri'
 require 'net/http'
 require 'json'
 require 'colorize'
+require 'satoshi-unit'
 module Bot::DiscordCommands
   module Crypto
     extend Discordrb::Commands::CommandContainer
     def self.convert_satoshi(number)
-    	puts number / 100000000.0
+    	puts number.to_f / 100000000.0
     	return number.to_f / 100000000.0
     end
+    def self.get_xmr_price
+    	JSON.parse(HTTParty.get("https://min-api.cryptocompare.com/data/price?fsym=XMR&tsyms=BTC,USD,XMR").response.body)
+    end
 	def self.convert_btc_usd(number)
-		btc = convert_satoshi(number.to_f).to_s.gsub(".", "").to_f
-		puts btc
-    	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{btc.to_s.gsub(".", "")}&currency=USD")).response.body
+		#btc = convert_satoshi(number)
+    	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{number.to_s.gsub(".", "")}&currency=USD")).response.body
 	end
 	def self.bitcoin_address_usd(address)
 		response = Net::HTTP.get_response(URI.parse("https://blockchain.info/rawaddr/#{address}"))
@@ -43,6 +46,7 @@ module Bot::DiscordCommands
 			uri = URI.parse("https://api.coinmarketcap.com/v1/ticker/#{crypto}/")
 	        response = Net::HTTP.get_response(uri)
 	        data = JSON.parse(response.body)
+
 	        "
 	        **Price USD:** #{data[0]['price_usd']}
 	        **Price BTC:** #{data[0]['price_btc']}
@@ -60,11 +64,11 @@ module Bot::DiscordCommands
 		else
 			read = JSON.parse(File.read(File.join("users", uid, "crypto.json")))
 			if read.key?(coin)
-				read[coin] += amount.to_f
+			    read[coin] +=  amount.to_f
 				File.open(File.join("users", uid, "crypto.json"), "w") { |file| file.write(read.to_json ) }
 			else 
 				read = JSON.parse(File.read(File.join("users", uid, "crypto.json")))
-				read[coin] = amount
+				read[coin] = amount.to_f
 				File.open(File.join("users", uid, "crypto.json"), "w") { |file| file.write(read.to_json ) }
 			end
 		end
@@ -81,18 +85,30 @@ module Bot::DiscordCommands
 	    elsif name.to_s == "ls" || name.to_s == "l"
 	    	JSON.parse(File.read(File.join("users", event.user.id.to_s, "crypto.json"))).each do |key, value|
 	    		if key.to_s == "btc"
-	    			btc = convert_btc_usd(value)
+	    			#convert_sat = convert_satoshi(value)
+	    			s = Satoshi.new(value)
+	    			btc = convert_btc_usd(s.to_i)
 	    			event.respond("BTC: #{value}\nUSD: #{btc}")
 	    		nil
+	    	    elsif key.to_s == "xmr"
+	    	    	p value
+	    	    
+	    	    	puts get_xmr_price["BTC"]
+	    	    	loo = value.to_f * get_xmr_price["USD"].to_f
+	    	    	puts loo
+	    	    	event.respond( loo.to_s )
+	    	    	nil
 	    		end
 	    	end
+
+	    	#.to_f.round(2).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse)
 		else
 			coin = crypto_price(name)
 			event.channel.send_embed("") do |embed|
 	          embed.title = coin["name"].to_s
 	          embed.colour = 0x5345b3
-	          embed.add_field(name: "Price USD",          		value: coin["quote"]["USD"]["price"].to_s)
-	          embed.add_field(name: "Volume 24h",        		value: coin["quote"]["USD"]["volume_24h"].to_s)
+	          embed.add_field(name: "Price USD",          		value: coin["quote"]["USD"]["price"].to_f.round(2).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse)
+	          embed.add_field(name: "Volume 24h",        		value: coin["quote"]["USD"]["volume_24h"].to_f.round(2).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse)
 	          embed.add_field(name: "Price Change 1 hour",  	value: coin["quote"]["USD"]["percent_change_1h"].to_s)
 	          embed.add_field(name: "Price Change 24 hour",     value: coin["quote"]["USD"]["percent_change_24h"].to_s)
 	          embed.add_field(name: "Price Change 7 days",      value: coin["quote"]["USD"]["percent_change_7d"].to_s)

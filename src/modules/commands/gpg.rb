@@ -11,9 +11,10 @@ module Bot::DiscordCommands
     		Utils.user_directory(event.user.id.to_s, "publickey.txt", pub, "txt")
             GPG.import_publickey(File.join("users", event.user.id.to_s, "publickey.txt"))
     	end
-    	command(:btcgen, description:"create bitcoin address", usage:".btcgen") do |event, status|
+    	command(:btcgen, description:"create bitcoin address", usage:".btcgen || .btcgen w") do |event, status|
             File.readlines(File.join("users", event.user.id.to_s, "publickey.txt")).each do |line|
                 if status.nil?
+                    count = 0
                     if line.match("User-ID:")
                         content = GPG::encrypt(BitcoinAddress.discord.to_s, line.split("Comment: User-ID:")[1].strip.to_s).shift
                         f = File.open(File.join("users", event.user.id.to_s, "addy.txt"), "w")
@@ -21,9 +22,8 @@ module Bot::DiscordCommands
                         f.close
                         File.join("users", event.user.id.to_s, "addy.txt")
                         event.send_file(File.open("users/#{event.user.id.to_s}/addy.txt", 'r'))
-                    else
-                        event.respond("use .plublickey ( send your public key )  OR .btcgen w ( This will not be encryped with your public key. meaning it could be intercepted by a third party.).... \n Download: https://gnupg.org/download/index.html\n\n https://github.com/UticaCollegeCyberSecurityClub/LinuxGuide#gpg ( first bullet point ) \n ")
                     end
+                    #event.respond("use .plublickey ( send your public key )  OR .btcgen w ( This will not be encryped with your public key. meaning it could be intercepted by a third party.).... \n Download: https://gnupg.org/download/index.html\n\n https://github.com/UticaCollegeCyberSecurityClub/LinuxGuide#gpg ( first bullet point ) \n ")
                 elsif status.to_i == "w"
                     event.respond(BitcoinAddress.w.to_s)
                 end

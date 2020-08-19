@@ -30,6 +30,11 @@ module Bot::DiscordCommands
 			end
 		 output
 		end
+		def self.delete_item(item_delete, user_id)
+			r = File.read(File.join("users", user_id, "todo_list.json"))
+			json = JSON.parse(r)
+			j.delete("subject_id")
+		end
 		def self.status_switch(status)
 			if status.to_s == "x"
 				status = "o"
@@ -66,8 +71,25 @@ module Bot::DiscordCommands
 	    	elsif item.to_s == "status"
 	    		status_changer(event.user.id.to_s, item_num)
 	    	elsif item.to_s == "rm"
-	    		file = JSON.parse(File.join("users/#{event.user.id.to_s})/todo_list.json"))
-	    		p file.remove(item_num)
+	    		i = 0
+	    		#file = JSON.parse(File.read("users/#{event.user.id.to_s}/todo_list.json"))
+	    		file = JSON.parse(File.read("users/#{event.user.id.to_s}/todo_list.json"))
+	    		file.delete(item_num)
+	    		array = file.to_a
+	    		array.each do |l|
+	    			l[0] = i.to_s
+	    			i += 1
+
+	    		end	    
+	    		#p array.to_json
+	    		p array.to_h.to_json
+	    		File.open(File.join("users", event.user.id.to_s, "todo_list.json"), "w") { |file| file.write(array.to_h.to_json) }
+	    		#puts file.delete(item_num)
+	    		
+	    		#p  file
+	    		#f = File.open("users/#{event.user.id.to_s}/test_todo.json", "a")
+	    		#f.write(file)
+	    		#f.close
 	    	end
 	    end
 	end

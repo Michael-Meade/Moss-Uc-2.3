@@ -31,8 +31,26 @@ class Finder
             "http://feeds.feedburner.com/feedburner/Talos"
         when "4"
             "https://threatpost.com/feed/"
-        when "6"
+        when "5"
             "http://feeds.feedburner.com/PaloAltoNetworks"
+        when "6"
+            "https://securelist.com/feed/"
+        when "7"
+            "https://research.checkpoint.com/feed/"
+        when "8"
+            "https://feeds.feedburner.com/TheHackersNews"
+        when "9"
+            "https://www.dhs.gov/topics/170/rss.xml"
+        when "10"
+            "https://krebsonsecurity.com/feed/"
+        when "11"
+            "https://hackercombat.com/feed/"
+        when "12"
+            "https://www.proofpoint.com/us/rss.xml"
+        when "13"
+            "https://www.welivesecurity.com/feed/"
+        when "14"
+            "https://rss.packetstormsecurity.com/"
         else
             "error"
         end
@@ -47,21 +65,6 @@ end
 module Bot::DiscordCommands
   module News
     extend Discordrb::Commands::CommandContainer
-    def self.json
-        {
-          "content": "Zdnet",
-          "embed": {
-            "title": "",
-            "description": "this supports [named links](https://discordapp.com) on top of the previously shown subset of markdown. ```\nyes, even code blocks```",
-            "url": "https://discordapp.com",
-            "color": 13632027,
-            "timestamp": "2020-08-16T00:28:11.899Z",
-            "author": {
-              "name": "author name"
-            }
-          }
-        }
-    end
     command([:securelist, :sl], description:"Secure List", usage:".sl>") do |event|
     	dispay = ""
     	rss = open("https://securelist.com/feed/")
@@ -100,18 +103,23 @@ module Bot::DiscordCommands
           embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: page.at('//*[@id="articles-loadMore"]/article[1]/div/div[2]/p[2]/a').text.to_s)
         end
     end
-    command(:news) do |event, id|
-        r = Scraper.rss(id.to_s)
-        if r != "error"
-            out = ""
-            r.each do |l|
-                out += "**" + l[0].to_s + "**"
-                out += "\n"
-                out += "<" + l[1].to_s + ">"
-                out += "\n"
+    command(:news, description: "Get cyber news", usage: ".news 1 || .news ls") do |event, id|
+        if id.to_s == "ls"
+            event.respond("1] BleepingComputers\n2] HackRead\n3] Talos\n4] ThreatPost\n5] PaloAltoNetworks\n6] SecureList\n7] CheeckPoint\n8] TheHackerNews\n9 HomelandSecurity
+                \n10] krebsonsecurity\n11] HackerCombat\n12] ProofPoint\n13] welivesecurity\n 14] packetstormsecurity\n")
+        else
+            r = Scraper.rss(id.to_s)
+            if r != "error"
+                out = ""
+                r.each do |l|
+                    out += "**" + l[0].to_s + "**"
+                    out += "\n"
+                    out += "<" + l[1].to_s + ">"
+                    out += "\n"
+                end
             end
+        out if !out.blank?
         end
-    out if !out.blank?
     end
   end
 end

@@ -74,7 +74,7 @@ module Bot::DiscordCommands
 			# o => yes
 			# !! => thumbs up
 			# !!! => thumbs down
-			status.to_s.gsub("o", ":white_check_mark: ").gsub("x",":x:").gsub("!!", ":thumbsup: ").to_s.gsub("!!!", ":thumbsdown:").gsub(":|", ":question: ")
+			status.to_s.gsub("o", ":white_check_mark: ").gsub("x",":x:").gsub("G", ":thumbsup: ").to_s.gsub("B", ":thumbsdown: ").gsub(":|", ":question: ")
 		end
 	    
 	    command(:movie, description:"managae your movie list", usage:".movie ls || .movie status 1 || .movie rate g || b") do |event, item, movie_name, rate|
@@ -97,9 +97,9 @@ module Bot::DiscordCommands
 	    			read.each do |key, value|
 	    				if key.to_i == movie_name.to_i
 	    					if rate.to_s == "g"
-	    						read[movie_name][2] = "!!"
+	    						read[movie_name][2] = "G"
 	    					elsif rate.to_s == "b"
-	    						read[movie_name][2] = "!!!"
+	    						read[movie_name][2] = "B"
 	    					end
 	    				end
 	    			end

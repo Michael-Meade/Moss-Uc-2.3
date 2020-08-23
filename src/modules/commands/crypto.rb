@@ -9,6 +9,7 @@ require 'satoshi-unit'
 module Bot::DiscordCommands
   module Crypto
     extend Discordrb::Commands::CommandContainer
+    J = {"embed": { "color": 14342113, "fields": [{"name": "BTC","value": "."},{"name": "XMR","value": "try exceeding some of them!"}]}}
     def self.convert_satoshi(number)
     	puts number.to_f / 100000000.0
     	return number.to_f / 100000000.0
@@ -84,20 +85,28 @@ module Bot::DiscordCommands
 	    	end
 	    elsif name.to_s == "ls" || name.to_s == "l"
 	    	JSON.parse(File.read(File.join("users", event.user.id.to_s, "crypto.json"))).each do |key, value|
+	    		json_out = J
 	    		if key.to_s == "btc"
 	    			#convert_sat = convert_satoshi(value)
 	    			s = Satoshi.new(value)
 	    			btc = convert_btc_usd(s.to_i)
-	    			event.respond("BTC: #{value}\nUSD: #{btc}")
+	    			event.channel.send_embed do |embed|
+	    				embed.title = "BTC Profile" 
+	    				embed.colour = 0xdad7e1
+	    				embed.add_field(name: "BTC", value: value.to_s, inline: true)
+	    				embed.add_field(name: "USD", value: btc.to_s)
+	    			end
+	    			#event.respond("BTC: #{value}\nUSD: #{btc}")
 	    		nil
 	    	    elsif key.to_s == "xmr"
-	    	    	p value
-	    	    
-	    	    	puts get_xmr_price["BTC"]
-	    	    	loo = value.to_f * get_xmr_price["USD"].to_f
-	    	    	puts loo
-	    	    	event.respond( loo.to_s )
-	    	    	nil
+	    	    	usd = value.to_f * get_xmr_price["USD"].to_f
+	    	    	xmr = value.to_f * get_xmr_price["XMR"].to_f
+	    	    	event.channel.send_embed do |embed|
+	    				embed.title = "XMR Profile" 
+	    				embed.colour = 0xdad7e1
+	    				embed.add_field(name: "XMR", value: value.to_s, inline: true)
+	    				embed.add_field(name: "USD", value: usd.to_s)
+	    			end
 	    		end
 	    	end
 
@@ -115,6 +124,7 @@ module Bot::DiscordCommands
 	          embed.add_field(name: "Market Cap",               value: coin["quote"]["USD"]["market_cap"].to_s)
 	        end
 		end
+	nil
 	end
 	command([:btcaddy], description:"Get bitcoin address info", usage:".btcaddy <address> <btc | usd>") do |event, address, type|
 		if type.nil?

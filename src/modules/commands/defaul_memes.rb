@@ -14,6 +14,9 @@ module Bot::DiscordCommands
     	   event.send_file(File.open('images/dab.gif', 'r'))
         end
     end
+    command(:beans) do |event|
+        event.send_file(File.open("images/beans.jpg"))
+    end
     command(:donny) do |event|
         event.send_file(File.open("images/trump.png"))
     end
@@ -22,6 +25,9 @@ module Bot::DiscordCommands
     end
     command([:heartache]) do |event|
     	event.send_file(File.open("images/heartache.png"))
+    end
+    command(:good) do |event|
+        event.send_file(File.open("images/good.gif"))
     end
     command([:noice]) do |event|
         event.send_file(File.open("images/noice.gif"))

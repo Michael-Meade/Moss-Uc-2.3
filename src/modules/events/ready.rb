@@ -37,10 +37,14 @@ module Bot::DiscordEvents
     nil
     end
     message(starting_with: not!(".")) do |event|
-     lo = check("", event.message.content.to_s)
-     if !lo.nil?
-      event.respond(lo)
-     end 
+      p event.server.id.to_s
+
+      if (event.server.id.to_s != "626859163242201090")
+         lo = check("", event.message.content.to_s)
+         if !lo.nil?
+          #event.respond(lo)
+         end 
+      end
     end
   end
 end

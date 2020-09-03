@@ -26,6 +26,9 @@ module Bot::DiscordCommands
     command([:heartache]) do |event|
     	event.send_file(File.open("images/heartache.png"))
     end
+    command([:open, :bible]) do |event|
+        event.send_file(File.open("images/open_bible.png"))
+    end
     command(:good) do |event|
         event.send_file(File.open("images/good.gif"))
     end

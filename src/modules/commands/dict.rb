@@ -15,6 +15,10 @@ module Bot::DiscordCommands
 	          embed.add_field(name: "Definition",         value: r)
 	        end
         end
+
+        command([:ball, :qestion]) do |event|
+        	event.respond([ "yes", "no", "maybe. ask again"].sample)
+        end
         command([:cyber], description:"Look up an cyber word.", usage:".cyber ip") do |event, term|
         	uri        = URI.parse("https://cyberpolicy.com/api/v1/glossary_terms/" + term.to_s.split(" ").shift)
 		    response   = Net::HTTP.get_response(uri)

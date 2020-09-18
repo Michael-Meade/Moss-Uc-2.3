@@ -73,7 +73,7 @@ module Bot::DiscordCommands
 	    		Bot::BOT.add_await(:"delete_#{message.id}", Discordrb::Events::ReactionAddEvent, emoji: CROSS_MARK) do |reaction_event|
 	    			next true unless reaction_event.message.id == message.id
 	    			message.delete
-	    		nil
+	    	nil
 	    		end
 	    	elsif (item.to_s == "e" || item.to_s == "export")
 	    		event.send_file(File.open(File.join("users", event.user.id.to_s, "todo_list.json")))

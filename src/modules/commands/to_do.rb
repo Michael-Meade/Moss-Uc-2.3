@@ -90,8 +90,7 @@ module Bot::DiscordCommands
 	    			i += 1
 	    		end	    
 	    		File.open(File.join("users", event.user.id.to_s, "todo_list.json"), "w") { |file| file.write(array.to_h.to_json) }
-	    	end
-	    nil
+	    #nil
 	    end
 	end
 end

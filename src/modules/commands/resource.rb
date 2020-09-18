@@ -35,7 +35,9 @@ module Bot::DiscordCommands
             "bug\n",
             "subsystem\n",
             "deeplearning\n",
-            "linuxguide\n"]
+            "linuxguide\n",
+            "osint\n",
+            ""]
     	main_link = "https://github.com/UticaCollegeCyberSecurityClub/Resources/blob/master/README.md"
     	if id.nil?
     		event.respond(main_link)
@@ -96,7 +98,11 @@ module Bot::DiscordCommands
     	elsif id.to_s == "csrf"
     		event.respond("#{main_url}#csrf")
     	elsif id.to_s == "sample" || id.to_s == "samples"
-    		event.respond("#{main_url}#malware-samples")
+            event.respond("#{main_url}#malware-samples")
+        elsif id.to_s == "encryption"
+            event.respond("#{main_url}#encryption--cryptography")
+    	elsif id.to_s == "osint"
+            event.respond("#{main_url}#osint")
     	else id.to_s == "ls"
     		r = "Use all the following commands with **.resource.**\n Ex: .resource ctf\n"
     		event.respond(r + commands.join)

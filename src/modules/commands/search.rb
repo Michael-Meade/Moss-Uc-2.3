@@ -6,8 +6,6 @@ require 'net/http'
 require 'openssl'
 require 'nokogiri'
 module Bot::DiscordCommands
-  # Responds with "Pong!".
-  # This used to check if bot is alive
   module Search
     extend Discordrb::Commands::CommandContainer
     def self.send_embed(event:, title:, fields:, description: nil)
@@ -19,8 +17,6 @@ module Bot::DiscordCommands
       end
     def self.youtube(search, value=nil)
       api = JSON.parse(File.read("config.json"))["youtube"]
-      puts api
-      puts search
       puts "https://www.googleapis.com/youtube/v3/search?part=snippet&key=#{api}&q=#{search.to_s}"
       if value.nil?
     		g = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&key=#{api}&q=#{search.to_s}").body
@@ -32,10 +28,8 @@ module Bot::DiscordCommands
     end
     command :yt do |event, *search, value|
     	s = event.message.content.to_s.gsub(".yt ", "").gsub(" ", "%20")
-      p youtube(s)
       begin
-        
-      	     event.respond("https://www.youtube.com/watch?v=#{youtube(s)}".to_s)
+        event.respond("https://www.youtube.com/watch?v=#{youtube(s)}".to_s)
     	rescue => e
     		puts e
     	end
@@ -43,7 +37,6 @@ module Bot::DiscordCommands
     command(:dog) do |event|
       r = HTTParty.get("https://some-random-api.ml/facts/dog", { "headers": {"Accept": "text/plain"}}).body
       j = JSON.parse(r)["fact"]
-
     end
     command(:dogs) do |event|
     	rsp = HTTParty.get("https://dog.ceo/api/breeds/image/random").body
@@ -67,7 +60,6 @@ module Bot::DiscordCommands
     end
     command(:s, description:"Search for somethng", usage:".s blockchains") do |event,*search|
       page = Nokogiri::HTML.parse(open("https://duckduckgo.com/html/?q=#{search.join("+")}"))
-      puts page.xpath('//*[@id="links"]/div[1]/div/div[1]/div/a').text.strip
       event.channel.send_embed("") do |embed|
         embed.title = page.xpath('//*[@id="links"]/div[1]/div/h2/a').text.to_s
 
@@ -97,22 +89,17 @@ module Bot::DiscordCommands
           embed.colour = 0x5345b3
           embed.description = b
           embed.timestamp  = Time.now
-
       end
     end
     command([:wiki], description:"get wiki", usage:".wiki blockchain") do |event, *search|
       rsp = HTTParty.get("https://api.duckduckgo.com/?q=#{search.join("+").strip}&format=json&pretty=1")
-      j   = JSON.parse(rsp.response.body)
-      p j 
+      j   = JSON.parse(rsp.response.body) 
       h = []
       if j["Infobox"].empty?
         rt = j["RelatedTopics"].shift
-        require "uri"
         url = URI.extract(rt["Result"]).shift.to_s
         r2  = HTTParty.get("https://api.duckduckgo.com/?q=#{url.split("/")[-1].gsub("_", "+")}&format=json&pretty=1").response.body
         j = JSON.parse(r2)
-        p ":::::::"
-        p j
         j.to_hash["Infobox"]["content"].each do |key|
           h << { name: key["label"], value: key["value"]}
         end
@@ -191,7 +178,7 @@ module Bot::DiscordCommands
       event.respond("https://render.cannasos.com/api/strain/#{strain_id['_id'].to_s}/#{strain.shift}.jpeg?format=jpeg")
       event.respond("https://render.cannasos.com/api/strain/#{strain_id.to_s}/#{strain.shift}.jpeg?format=jpeg")
     end
-    command([:w, :weather], description:"Get Current news.", usage:".news <idea>") do |event, zip|
+    command([:w, :weather], description:"Get Current news.", usage:".news zipcode") do |event, zip|
       response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?zip=" + zip + ",us&appid=3e029d9d2895ddf14349dbaf24cc0851&units=imperial")
       id =  response.parsed_response
       if id["cod"] == "404"
@@ -204,8 +191,7 @@ module Bot::DiscordCommands
           embed.add_field(name: "Temp",         value: id['main']['temp'].to_s)
           embed.add_field(name: "Humidity",     value: id['main']['humidity'].to_s)
           embed.add_field(name: "Temp Min",     value: id['main']['temp_min'].to_s)
-          embed.add_field(name: "Temp Max",      value: id['main']['temp_max'].to_s)
-          #event.respond("***Main:*** #{id['weather'][0]['main']} \n ***Description:*** #{id['weather'][0]['description']} \n ***Temp:*** #{id['main']['temp']} \n ***Humidity:*** #{id['main']['humidity']} \n ***Temp Min:*** #{id['main']['temp_min']} \n ***Temp Max:*** #{id['main']['temp_max']}".to_s)
+          embed.add_field(name: "Temp Max",     value: id['main']['temp_max'].to_s)
         end
       end
     end

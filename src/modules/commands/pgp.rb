@@ -1,18 +1,14 @@
 require_relative 'utils'
 require 'openpgp'
+require "iostreams"
 require 'httparty'
+require "open3"
 module Bot::DiscordCommands
   module PGP
     extend Discordrb::Commands::CommandContainer
     command([:publickey],  description:"Upload your public key", usage:".publickey") do |event, public_key|
       pub = HTTParty.get(event.message.attachments[0].url).response.body
       Utils.user_directory(event.user.id.to_s, "publickey.txt", pub, "txt")
-    end
-    command(:encrypt) do |event|
-      data = %w(this is some data that should be encrypted using pgp)
-      IOStreams::Pgp::Writer.open(File.join("users", event.user.id.to_s, "publickey.txt")) do |output|
-        data.each { |word| output.puts(word) }
-      end
     end
     command([:findpgp], description:"Get a users key", usage:".findpgp <tag user>") do |event|
       tag = event.user.mention.to_s.gsub("<@", "").gsub(">", "")

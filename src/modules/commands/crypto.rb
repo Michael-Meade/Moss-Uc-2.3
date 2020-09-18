@@ -17,6 +17,9 @@ module Bot::DiscordCommands
     def self.get_xmr_price
     	JSON.parse(HTTParty.get("https://min-api.cryptocompare.com/data/price?fsym=XMR&tsyms=BTC,USD,XMR").response.body)
     end
+    def self.get_xlm_price
+    	JSON.parse(HTTParty.get("https://min-api.cryptocompare.com/data/price?fsym=XLM&tsyms=BTC,USD").response.body)
+    end
 	def self.convert_btc_usd(number)
 		#btc = convert_satoshi(number)
     	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{number.to_s.gsub(".", "")}&currency=USD")).response.body
@@ -89,7 +92,6 @@ module Bot::DiscordCommands
 	    		json_out = J
 	    		
 	    		if key.to_s == "btc"
-	    			#convert_sat = convert_satoshi(value)
 	    			s = Satoshi.new(value)
 	    			btc = convert_btc_usd(s.to_i)
 	    			event.channel.send_embed do |embed|
@@ -112,6 +114,17 @@ module Bot::DiscordCommands
 	    				usd_total += usd.to_f
 	    			nil
 	    			end
+	    		elsif key.to_s == "xlm"
+	    			usd = value.to_f * get_xlm_price["USD"].to_f
+	    	    	xmr = value.to_f * get_xlm_price["XLM"].to_f
+	    	    	event.channel.send_embed do |embed|
+	    				embed.title = "XLM Profile" 
+	    				embed.colour = 0xdad7e1
+	    				embed.add_field(name: "XLM", value: value.to_s, inline: true)
+	    				embed.add_field(name: "USD", value: usd.to_s)
+	    				usd_total += usd.to_f
+	    			nil
+	    		    end
 	    		end
 	    	end
 	    	if usd_total != 0

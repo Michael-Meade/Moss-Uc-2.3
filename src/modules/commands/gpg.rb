@@ -3,9 +3,22 @@ require 'httparty'
 require_relative 'bitcoins/btc'
 require_relative 'lib/main'
 require_relative 'lib/gpg'
+require "open3"
 module Bot::DiscordCommands
   module GPG2
     extend Discordrb::Commands::CommandContainer
+        command(:encrypt) do |event, msg|
+            output, status = Open3.capture2e(
+                "gpg",
+                "--with-fingerprint", File.join("users", event.user.id.to_s, "publickey.txt"),
+            )
+            id = output.split("=")[1].split("\n")[0]
+            puts "gpg -ear '#{id}'   test.rb"
+            output, status = Open3.capture2e(
+                'echo '"#{msg}"' | gpg  --always-trust -ear  ' + "'#{id}'"
+            )
+            event.respond(output)
+        end
     	command([:publickey],  description:"Upload your public key", usage:".publickey") do |event, public_key|
     		pub = HTTParty.get(event.message.attachments[0].url).response.body
     		Utils.user_directory(event.user.id.to_s, "publickey.txt", pub, "txt")

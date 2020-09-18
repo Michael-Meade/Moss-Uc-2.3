@@ -59,6 +59,7 @@ module Bot::DiscordCommands
 		end
 	    
 	    command(:todo, description:"managae to do list", usage:".todo add item\n.todo ls") do |event, item, item_num|
+	    	CROSS_MARK = "\u274c"
 	    	FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
 	    	FileUtils.touch(File.join("users", event.user.id.to_s, "todo_list.json")) unless File.exists?(File.join("users", event.user.id.to_s, "todo_list.json"))
 	    	if item.to_s == "add"
@@ -67,30 +68,30 @@ module Bot::DiscordCommands
 	    		end
 	    	elsif item.to_s == "ls"
 	    		output = list_movies(event.user.id.to_s).to_s
-	    		event.respond(output.to_s)
+	    		message = event.respond(output.to_s)
+	    		message.react CROSS_MARK
+	    		Bot::BOT.add_await(:"delete_#{message.id}", Discordrb::Events::ReactionAddEvent, emoji: CROSS_MARK) do |reaction_event|
+	    			next true unless reaction_event.message.id == message.id
+	    			message.delete
+	    		nil
+	    		end
+	    	elsif (item.to_s == "e" || item.to_s == "export")
+	    		event.send_file(File.open(File.join("users", event.user.id.to_s, "todo_list.json")))
 	    	elsif item.to_s == "status"
 	    		status_changer(event.user.id.to_s, item_num)
 	    	elsif item.to_s == "rm"
 	    		i = 0
-	    		#file = JSON.parse(File.read("users/#{event.user.id.to_s}/todo_list.json"))
+	    		msg =  event.message.content
 	    		file = JSON.parse(File.read("users/#{event.user.id.to_s}/todo_list.json"))
 	    		file.delete(item_num)
 	    		array = file.to_a
 	    		array.each do |l|
 	    			l[0] = i.to_s
 	    			i += 1
-
 	    		end	    
-	    		#p array.to_json
-	    		p array.to_h.to_json
 	    		File.open(File.join("users", event.user.id.to_s, "todo_list.json"), "w") { |file| file.write(array.to_h.to_json) }
-	    		#puts file.delete(item_num)
-	    		
-	    		#p  file
-	    		#f = File.open("users/#{event.user.id.to_s}/test_todo.json", "a")
-	    		#f.write(file)
-	    		#f.close
 	    	end
+	    nil
 	    end
 	end
 end

@@ -10,7 +10,6 @@ module Bot::DiscordCommands
 	    	read_status = Utils.read_list(File.join("config", "config.json"))
 	    	begin
 	    		event.respond(read_status[status].to_json)
-	    		
 	    	rescue => e
 	    		event.respond("Check Again. Status doesnt exist.")
 	    	end

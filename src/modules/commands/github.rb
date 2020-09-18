@@ -6,10 +6,10 @@ module Bot::DiscordCommands
     	string =  "Malware Samples - https://github.com/UticaCollegeCyberSecurityClub/samples\n"
     	string += "Resources - https://github.com/UticaCollegeCyberSecurityClub/Resources\n"
     	string += "Lists - https://github.com/UticaCollegeCyberSecurityClub/Lists\n"
-      string += "Linux Guide - https://github.com/UticaCollegeCyberSecurityClub/LinuxGuide\n"
-      string += "Crypto Resources - https://github.com/UticaCollegeCyberSecurityClub/Cryptography-Resources\n"
-      string += "Video Resources - https://github.com/UticaCollegeCyberSecurityClub/VideoResources\n"
-      string += "Malware Resources - https://github.com/UticaCollegeCyberSecurityClub/MalwareResources"
+    	string += "Linux Guide - https://github.com/UticaCollegeCyberSecurityClub/LinuxGuide\n"
+    	string += "Crypto Resources - https://github.com/UticaCollegeCyberSecurityClub/Cryptography-Resources\n"
+    	string += "Video Resources - https://github.com/UticaCollegeCyberSecurityClub/VideoResources\n"
+    	string += "Malware Resources - https://github.com/UticaCollegeCyberSecurityClub/MalwareResources"
 		event.respond(string)
     end
   end

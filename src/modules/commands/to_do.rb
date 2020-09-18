@@ -5,6 +5,7 @@ require 'core_extensions'
 module Bot::DiscordCommands
   module ToDo
   	extend Discordrb::Commands::CommandContainer
+  	CROSS_MARK = "\u274c"
 		def self.add_item(uid, item, status=nil)
 			if status.nil?
 				status = "x"
@@ -59,7 +60,6 @@ module Bot::DiscordCommands
 		end
 	    
 	    command(:todo, description:"managae to do list", usage:".todo add item\n.todo ls") do |event, item, item_num|
-	    	CROSS_MARK = "\u274c"
 	    	FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
 	    	FileUtils.touch(File.join("users", event.user.id.to_s, "todo_list.json")) unless File.exists?(File.join("users", event.user.id.to_s, "todo_list.json"))
 	    	if item.to_s == "add"

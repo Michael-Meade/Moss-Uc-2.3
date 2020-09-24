@@ -50,6 +50,9 @@ module Bot::DiscordCommands
     command([:talk, :bout], description: "what you talking bout", usage: ".talk") do |event|
         event.send_file(File.open("images/talk.gif", "r"))
     end
+    command(:racism, description:"teach it a lesson", usage:".racism") do |event|
+        event.send_file(File.open("images/racism.jpg"))
+    end
     command([:great, :scott, :greatscott],  description:"Great Scott", usage:".great") do |event|
         event.send_file(File.open('images/BitcoinBackToTheFuture.png', 'r'))
     end 

@@ -49,6 +49,9 @@ module Bot::DiscordCommands
     command([:bacon], description:"Encode a string with bacon cipher", usage:".bacon <string>") do |event, *value|
       event.respond(value.join(" ").to_s.unpack("B*").first.tr("0", "A").tr("1", "B").to_s)
     end
+    command(:hmac, description: "HMAC encode", usage: ".hmac message key") do |event, *msg, key|
+      out = OpenSSL::HMAC.hexdigest("SHA256", key, msg.join(" "))
+    end
     command([:unbacon, :debacon], description:"decode a string with bacon cipher", usage:".binary <string>") do |event, value|
       event.respond([value.tr("A", "0").tr("B", "1")].pack("B*").to_s)
     end

@@ -47,7 +47,6 @@ module Bot::DiscordCommands
 	          embed.add_field(name: "Peers",        value: t["peers"].to_s)
 	          embed.add_field(name: "size",         value: t["size"].to_s)
 	      	end
-			#event.respond("**Title:** #{a['title']}\n**Year:** #{a['year']}\n**Rating:** #{a['rating']}\n**Run Time:** #{a['runtime']}\n**Genre:** #{a['genres']}\n**Summary:** #{a['summary']}\n**Picture:** #{a['large_cover_image']}\n**Torrent:** #{t['url']}\n**Quality:** #{t['quality']}\n**Seeds:** #{t['seeds']}\n**Peers:** #{t['peers']}\n**Size:** #{t['size']}")
         end
 	end
 end

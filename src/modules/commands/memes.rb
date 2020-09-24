@@ -33,6 +33,7 @@ module Bot::DiscordCommands
     command([:tpb], description:"Trailer Park Boys", usage:".tpb") do |event|
         event.respond(File.readlines("memes/fun/tpb.txt").sample.to_s)
     end
+    
     command([:sunny], description:"Sunny In Philly", usage:".sunny") do |event|
         event.respond(File.readlines("memes/fun/sunny.txt").sample.to_s)
     end

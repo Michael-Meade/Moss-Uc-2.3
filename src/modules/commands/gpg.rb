@@ -13,11 +13,16 @@ module Bot::DiscordCommands
                 "--with-fingerprint", File.join("users", event.user.id.to_s, "publickey.txt"),
             )
             id = output.split("=")[1].split("\n")[0]
-            puts "gpg -ear '#{id}'   test.rb"
             output, status = Open3.capture2e(
                 'echo '"#{msg}"' | gpg  --always-trust -ear  ' + "'#{id}'"
             )
             event.respond(output)
+        end
+        command(:updategpg) do |event|
+            dir_path = File.join("users", event.user.id.to_s, "publickey.txt")
+            output, status = Open3.capture2e(
+                "gpg --import #{dir}"
+            )
         end
     	command([:publickey],  description:"Upload your public key", usage:".publickey") do |event, public_key|
     		pub = HTTParty.get(event.message.attachments[0].url).response.body

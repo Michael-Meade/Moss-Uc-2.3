@@ -86,7 +86,7 @@ module Bot::DiscordCommands
 	    	else
 	    		add_coin(event.user.id.to_s, coin, amount)
 	    	end
-	    elsif name.to_s == "ls" || name.to_s == "l"
+	    elsif (name.to_s == "ls" || name.to_s == "l")
 	    	usd_total = 0
 	    	JSON.parse(File.read(File.join("users", event.user.id.to_s, "crypto.json"))).each do |key, value|
 	    		json_out = J
@@ -101,7 +101,6 @@ module Bot::DiscordCommands
 	    				embed.add_field(name: "USD", value: btc.to_s)
 	    				usd_total += btc.to_f
 	    			end
-	    			#event.respond("BTC: #{value}\nUSD: #{btc}")
 	    		nil
 	    	    elsif key.to_s == "xmr"
 	    	    	usd = value.to_f * get_xmr_price["USD"].to_f
@@ -130,8 +129,6 @@ module Bot::DiscordCommands
 	    	if usd_total != 0
 	    		event.respond("***Total USD: $*** #{usd_total}")
 	    	end
-
-	    	#.to_f.round(2).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse)
 		else
 			coin = crypto_price(name)
 			event.channel.send_embed("") do |embed|

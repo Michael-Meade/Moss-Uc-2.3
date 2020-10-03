@@ -8,6 +8,7 @@ module Bot::DiscordCommands
 		def self.add_movie(uid, movie_name, status=nil)
 			if status.nil?
 				status = "x"
+				# @return [true] always returns true
 			end
 			# Creates file if does not exist
 			if File.read(File.join("users", uid, "movies_list.json")).empty?

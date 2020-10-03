@@ -15,9 +15,10 @@ module Bot::DiscordCommands
             fields.each { |field| embed.add_field(name: field[:name], value: field[:value], inline: field[:inline]) }
           end
       end
+    # @param search [String] The term that is searched
+
     def self.youtube(search, value=nil)
       api = JSON.parse(File.read("config.json"))["youtube"]
-      puts "https://www.googleapis.com/youtube/v3/search?part=snippet&key=#{api}&q=#{search.to_s}"
       if value.nil?
     		g = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&key=#{api}&q=#{search.to_s}").body
     		return JSON.parse(g)['items'][0]['id']["videoId"]

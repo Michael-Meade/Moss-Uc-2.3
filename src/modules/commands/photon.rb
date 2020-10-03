@@ -9,6 +9,7 @@ module Bot::DiscordCommands
             @user_id = user_id
 
         end
+        # @note the path where the tool is located 
         def tool_path
             "#{__dir__}/tools/Photon"
         end
@@ -18,14 +19,15 @@ module Bot::DiscordCommands
         def user_id
             @user_id
         end
+        # @note Creates a directory in users/UID/photon/example.com
+        # @note Uses File.join to create the user path to where the output will  be saved 
         def user_path
             FileUtils.mkdir_p File.join("users", user_id, "photon", domain)
             usr = File.join("users", user_id, "photon", domain)
 
         end
+        # @note The method that will run the command
         def command
-            puts "YYYY"
-            puts "python3 #{tool_path}/photon.py -u #{domain} -o #{user_path} -e json"
             output, status = Open3.capture2e(
                 "python3 #{tool_path}/photon.py -u #{domain} -o #{user_path} -e json"
             )

@@ -33,7 +33,6 @@ module Bot::DiscordCommands
               f = File.open(File.join("users", event.user.id.to_s, "subdomain3.txt"), "w")
               f.write(content)
               f.close
-              #File.join("users", event.user.id.to_s, "subdomain3.txt")
               event.send_file(File.open("users/#{event.user.id.to_s}/subdomain3.txt", 'r'))
             end
           end

@@ -4,6 +4,9 @@ require 'fileutils'
 module Bot::DiscordCommands
   module Movie1
   	extend Discordrb::Commands::CommandContainer
+  		# @param uid [String] the user's UID
+  		# @param movie_name [String] the movie name
+  		# @param [optional, types, ...] status = nil
 		def self.add_movie(uid, movie_name, status=nil)
 			if status.nil?
 				status = "x"
@@ -20,6 +23,7 @@ module Bot::DiscordCommands
 				File.open(File.join("users", uid, "movies_list.json"), "w") { |file| file.write(read.to_json) }
 			end
 		end
+		# @param uid [String] the user's UID
 		def self.list_moviesz(uid)
 			output = ""
 			read = JSON.parse(File.read(File.join("users", uid, "movies_list.json")))

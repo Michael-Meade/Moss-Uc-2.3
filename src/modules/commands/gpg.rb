@@ -21,7 +21,7 @@ module Bot::DiscordCommands
         command(:updategpg) do |event|
             dir_path = File.join("users", event.user.id.to_s, "publickey.txt")
             output, status = Open3.capture2e(
-                "gpg --import #{dir}"
+                "gpg --import #{dir_path}"
             )
         end
     	command([:publickey],  description:"Upload your public key", usage:".publickey") do |event, public_key|

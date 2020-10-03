@@ -6,6 +6,9 @@ module Bot::DiscordCommands
   module ToDo
   	extend Discordrb::Commands::CommandContainer
   	CROSS_MARK = "\u274c"
+  		# @param uid [String] the users UID
+  		# @param item [String] the item to addd to the todo list
+  		# @param [optional, types, ...] status = nil
 		def self.add_item(uid, item, status=nil)
 			if status.nil?
 				status = "x"
@@ -22,20 +25,23 @@ module Bot::DiscordCommands
 				File.open(File.join("users", uid, "todo_list.json"), "w") { |file| file.write(read.to_json) }
 			end
 		end
+		# @param uid [String] the users UID
 		def self.list_movies(uid)
 			output = ""
 			read = JSON.parse(File.read(File.join("users", uid, "todo_list.json")))
 			read.each do |key, value|
-
 				output += "#{key} ]\s#{value[0]}\s" + self.status_pretty(value[1]) + "\n"
 			end
 		 output
 		end
+		# @param item_delete [String] the item to delete
+		# @note Deletes item from todo list
 		def self.delete_item(item_delete, user_id)
 			r = File.read(File.join("users", user_id, "todo_list.json"))
 			json = JSON.parse(r)
 			j.delete("subject_id")
 		end
+		# @note changes the status.
 		def self.status_switch(status)
 			if status.to_s == "x"
 				status = "o"
@@ -43,6 +49,8 @@ module Bot::DiscordCommands
 				status = "x"
 			end
 		end
+		# @param uid [String] the users UID
+		# @param item_num [Intger] item number
 		def self.status_changer(uid, item_num)
 			read = JSON.parse(File.read("users/#{uid}/todo_list.json"))
 			read.each do |key, value|
@@ -53,6 +61,7 @@ module Bot::DiscordCommands
 			end
 		File.open(File.join("users", uid, "todo_list.json"), "w") { |file| file.write(read.to_json) }
 		end
+		# @note Changes the status to a check mark. 
 		def self.status_pretty(status)
 			# x => no 
 			# o => yes

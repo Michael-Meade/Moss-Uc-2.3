@@ -1,3 +1,4 @@
+# :markup: TomDoc
 require_relative 'utils'
 require 'json'
 require 'httparty'
@@ -9,10 +10,18 @@ require 'satoshi-unit'
 module Bot::DiscordCommands
   module Crypto
     extend Discordrb::Commands::CommandContainer
-    J = {"embed": { "color": 14342113, "fields": [{"name": "BTC","value": "."},{"name": "XMR","value": "try exceeding some of them!"}]}}
+    JJ = {"embeds":[{"title":"Crypto Profile",
+		"fields":[{"name":"BTC","value":"\n60.62009960747016"},
+			{"name":"USD","value":"30.93\n---------------------------------------------\n\n\n"},
+			{"name":"XLM","value":"303.6059025"},
+			{"name":"USD","value":"21.1765116993750\n\n---------------------------------------------"},
+			{"name":"USD","value":"60.62009960747016"},
+			{"name":"XMR","value":"0.6621529176130001\n\n---------------------------------------------"}]}]}.to_json
+    # @return [numbeer] / 100000000.0
     def self.convert_satoshi(number)
-    	puts number.to_f / 100000000.0
+    	
     	return number.to_f / 100000000.0
+    	# @return [optional, types, ...] description
     end
     def self.get_xmr_price
     	JSON.parse(HTTParty.get("https://min-api.cryptocompare.com/data/price?fsym=XMR&tsyms=BTC,USD,XMR").response.body)
@@ -21,7 +30,6 @@ module Bot::DiscordCommands
     	JSON.parse(HTTParty.get("https://min-api.cryptocompare.com/data/price?fsym=XLM&tsyms=BTC,USD").response.body)
     end
 	def self.convert_btc_usd(number)
-		#btc = convert_satoshi(number)
     	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{number.to_s.gsub(".", "")}&currency=USD")).response.body
 	end
 	def self.bitcoin_address_usd(address)
@@ -29,9 +37,11 @@ module Bot::DiscordCommands
     	btc      = JSON.parse(response.body)
 	end
 	def self.bitcoin_address_btc(address)
+	# @param address [String] the BTC Address that will be searched
 		response = Net::HTTP.get_response(URI.parse("https://blockchain.info/rawaddr/#{address}"))
     	btc      = JSON.parse(response.body)
 	end
+
 	def self.crypto_price(crypto)
 		c = crypto.upcase
 		response = HTTParty.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest", params: {'start':'1','limit':'1','convert':'USD,BTC'}, headers: {
@@ -42,6 +52,7 @@ module Bot::DiscordCommands
 		out.each do |keys, value|
 			if keys["symbol"].to_s == c
 				return keys
+				# @return [String]
 			end
 		end
 	end
@@ -90,7 +101,6 @@ module Bot::DiscordCommands
 	    	usd_total = 0
 	    	JSON.parse(File.read(File.join("users", event.user.id.to_s, "crypto.json"))).each do |key, value|
 	    		json_out = J
-	    		
 	    		if key.to_s == "btc"
 	    			s = Satoshi.new(value)
 	    			btc = convert_btc_usd(s.to_i)
@@ -144,8 +154,14 @@ module Bot::DiscordCommands
 		end
 	nil
 	end
+	command(:as) do |event|
+	    p JJ.class
+		event.channel.send_message("", embed:  JJ)
+	end
 	command([:btcaddy], description:"Get bitcoin address info", usage:".btcaddy <address> <btc | usd>") do |event, address, type|
 		if type.nil?
+
+			# (defaults to `:USD`)
 			btc = bitcoin_address_usd(address)
 			event.channel.send_embed("l") do |embed|
 	          embed.title = "Bitcoin"

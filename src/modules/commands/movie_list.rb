@@ -130,7 +130,7 @@ module Bot::DiscordCommands
 	          fields.each { |field| embed.add_field(name: field[:name], value: field[:value], inline: field[:inline]) }
 	        end
 	    end
-	    command(:movie, description:"managae your movie list.\nStatus: seen the movie or not\n Rate: rate it\n", usage:".movie ls\n.movie status 1 || \n.movie rate 8 <good OR bad OR okay> || \n.movie date 6 || \n .movie date 1") do |event, item, movie_name, rate|
+	    command(:movie, description:"managae your movie list.\n**Status**: seen the movie or not\n **Rate**: rate it\n", usage:".movie ls\n.movie status 1 \n.movie rate 8 <good OR bad OR okay>\n. **Date:** .movie date 1 09/11/2020\n\nif not supplied a date will it will use today's date. but can be supplied a date: ex: .date ") do |event, item, movie_name, rate|
 	    	# ITEM => add, ls, status, rate, date
 	    	CROSS_MARK = "\u274c"
 	    	#FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))

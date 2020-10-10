@@ -1,0 +1,102 @@
+DOMAIN,CDN,CNAME,IP
+dl2.acronis.com,No,Null,"['69.20.59.72', '69.20.59.73']"
+ivr.acronis.com,No,Null,"['69.20.59.102', '69.20.59.103']"
+www.eu.acronis.com,No,['www.acronis.eu.'],"['69.20.59.80', '69.20.59.81']"
+cas.acronis.com,No,Null,['78.47.162.135']
+auth.acronis.com,No,Null,['69.20.59.67']
+ns1.acronis.com,No,Null,['205.251.195.41']
+affiliate.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+uk.acronis.com,No,['www.acronis.co.uk.'],"['69.20.59.80', '69.20.59.81']"
+lyncdiscover.acronis.com,No,Null,['82.129.4.2']
+status.cloud.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+oem.acronis.com,No,Null,"['69.20.59.72', '69.20.59.73']"
+edu.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+fs.acronis.com,No,Null,['82.129.4.32']
+docs.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+fr.acronis.com,No,['www.acronis.fr.'],"['69.20.59.80', '69.20.59.81']"
+foundation.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+www.edu.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+i2.acronis.com,No,Null,"['69.20.59.102', '69.20.59.103']"
+cz.acronis.com,No,"['www.acronis.cz.', 'acronis.cz.']",['109.123.216.85']
+gateway.acronis.com,No,Null,['37.35.106.197']
+research.acronis.com,No,Null,['52.221.108.34']
+aa.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+history.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+ns2.acronis.com,No,Null,['205.251.198.164']
+pl.acronis.com,No,"['www.acronis.pl.', 'www.acronis.com.']",['34.120.97.237']
+ir.acronis.com,No,['www.acronis.com.'],['34.120.97.237']
+backup.acronis.com,No,"['baas.acronis.com.', 'cloud.acronis.com.']","['45.11.129.61', '45.11.129.62']"
+mx.acronis.com,Yes,['www.acronis.com.mx.'],"['69.20.59.80', '69.20.59.81']"
+admin2.acronis.com,No,Null,"['69.20.59.102', '69.20.59.103']"
+report.acronis.com,No,Null,['35.212.19.146']
+email.research.acronis.com,No,['mailgun.org.'],"['44.241.106.208', '52.39.227.19']"
+nl.acronis.com,No,"['www.acronis.nl.', 'www.acronis.com.']",['34.120.97.237']
+br.acronis.com,No,['www.acronis.com.'],['34.120.97.237']
+ts1.acronis.com,No,Null,['91.198.51.194']
+new.acronis.com,No,Null,['69.20.59.85']
+www.affiliate.acronis.com,No,['affiliate.acronis.com.'],"['69.20.59.80', '69.20.59.81']"
+promo.acronis.com,No,"['acronis.mktoweb.com.', 'sjh.mktossl.com.']","['104.17.70.206', '104.17.71.206', '104.17.72.206', '104.17.73.206', '104.17.74.206']"
+i1.acronis.com,No,Null,"['69.20.59.102', '69.20.59.103']"
+autodiscover.acronis.com,No,Null,['38.97.80.246']
+ts.acronis.com,No,Null,['91.195.22.55']
+meet.acronis.com,No,Null,['82.129.4.2']
+solutions.acronis.com,No,Null,['35.212.19.146']
+pages.acronis.com,No,['pageserver.instapage.com.'],['34.96.80.146']
+pa.acronis.com,No,Null,['40.76.198.105']
+stat.acronis.com,No,Null,['91.195.22.36']
+cloud.acronis.com,No,Null,"['45.11.129.61', '45.11.129.62']"
+ns3.acronis.com,No,Null,['205.251.196.110']
+rds.acronis.com,No,Null,['91.195.22.44']
+reports.stat.acronis.com,No,Null,['91.195.22.41']
+developer.acronis.com,No,Null,['35.212.19.146']
+email.dr.acronis.com,No,['mailgun.org.'],"['44.241.106.208', '52.39.227.19']"
+www1.acronis.com,No,['www.acronis.com.'],['34.120.97.237']
+feed.acronis.com,No,Null,"['69.20.59.102', '69.20.59.103']"
+smtp.acronis.com,No,['us-edge-2.acronis.com.'],['69.20.59.107']
+mail.acronis.com,No,Null,['38.97.80.246']
+es.acronis.com,No,['www.acronis.es.'],"['69.20.59.80', '69.20.59.81']"
+msg.acronis.com,No,['stun.acronis.com.'],['69.20.59.115']
+lms.acronis.com,No,Null,"['69.20.59.102', '69.20.59.103']"
+webdev.acronis.com,No,Null,['91.195.22.46']
+eu.acronis.com,No,['www.acronis.eu.'],"['69.20.59.80', '69.20.59.81']"
+legacy.acronis.com,No,Null,"['91.195.22.34', '91.195.22.35']"
+cdn.acronis.com,No,['www.acronis.com.'],['34.120.97.237']
+register.acronis.com,No,"['acronis.mktoweb.com.', 'sjh.mktossl.com.']","['104.17.70.206', '104.17.71.206', '104.17.72.206', '104.17.73.206', '104.17.74.206']"
+io.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+buy.acronis.com,Yes,"['buy.acronis.com.wip.digitalrivercontent.net.', 'mns7qkh.x.incapdns.net.']",['45.60.31.126']
+info.acronis.com,No,['mkto-h0084.com.'],"['104.17.70.206', '104.17.71.206', '104.17.72.206', '104.17.73.206', '104.17.74.206']"
+mm.acronis.com,No,Null,['154.43.165.251']
+helpdesk.acronis.com,No,Null,['91.195.22.62']
+www.foundation.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+trac.stat.acronis.com,No,Null,['91.195.22.41']
+aws.acronis.com,No,Null,"['69.20.59.102', '69.20.59.103']"
+developers.acronis.com,No,Null,['35.212.19.146']
+registration.acronis.com,No,Null,"['69.20.59.102', '69.20.59.103']"
+help.dr.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+access.acronis.com,No,Null,['82.129.4.29']
+store.acronis.com,No,['acronis-s.cleverbridge.com.'],"['104.16.242.229', '104.16.243.229']"
+email.cloud.acronis.com,No,Null,['34.95.122.166']
+help.acronis.com,No,Null,['208.115.136.218']
+logo.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+blog.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+dl.acronis.com,Yes,"['acronis-dl.akamaized.net.', 'a1936.d.akamai.net.']","['23.45.180.226', '23.45.181.203']"
+brand.acronis.com,No,['logo.acronis.com.'],"['69.20.59.80', '69.20.59.81']"
+ca.acronis.com,No,['www.acronis.com.'],['34.120.97.237']
+ti.acronis.com,No,['mkto-sj050132.com.'],['199.15.215.8']
+dialin.acronis.com,No,Null,['82.129.4.2']
+kb.acronis.com,No,Null,"['69.20.59.72', '69.20.59.73']"
+ns4.acronis.com,No,Null,['205.251.193.189']
+dr.acronis.com,No,Null,['199.193.156.16']
+ces.acronis.com,No,Null,['69.20.59.76']
+i4.acronis.com,No,Null,"['69.20.59.102', '69.20.59.103']"
+sbc.acronis.com,No,Null,['82.129.4.61']
+15.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+www.acronis.com,No,Null,['34.120.97.237']
+account.acronis.com,No,Null,"['69.20.59.72', '69.20.59.73']"
+partners.acronis.com,No,Null,"['69.20.59.72', '69.20.59.73']"
+www.ir.acronis.com,No,['www.acronis.com.'],['34.120.97.237']
+go.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"
+boston.acronis.com,No,Null,['69.38.149.12']
+orders.acronis.com,No,Null,['83.138.136.101']
+pad.acronis.com,No,Null,['91.195.22.56']
+careers.acronis.com,No,Null,"['69.20.59.80', '69.20.59.81']"

@@ -100,7 +100,7 @@ module Bot::DiscordCommands
 	    elsif (name.to_s == "ls" || name.to_s == "l")
 	    	usd_total = 0
 	    	JSON.parse(File.read(File.join("users", event.user.id.to_s, "crypto.json"))).each do |key, value|
-	    		json_out = J
+	    		#json_out = J
 	    		if key.to_s == "btc"
 	    			s = Satoshi.new(value)
 	    			btc = convert_btc_usd(s.to_i)

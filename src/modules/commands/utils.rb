@@ -14,6 +14,8 @@ class Utils
 		id = read2.keys.last.to_i
 		id +=1
 	end
+	def self.gpg_encrypt()
+	end
 	def self.add_commas(string)
 		whole, decimal = string.to_s.split(".")
         whole_with_commas = whole.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
@@ -102,5 +104,26 @@ class Utils
 			list += "#{key}] #{values}\n"
 		end
 		return list
+	end
+end
+class GPGUtils
+	def initialize uid
+		@uid = uid
+    end
+    def uid
+    	@uid
+    end
+	def get_fingerprint
+		output, status = Open3.capture2e(
+                "gpg",
+                "--with-fingerprint", File.join("users", uid, "publickey.txt"),
+            )
+    output.split("=")[1].split("\n")[0]
+	end
+	def encrypt_file(file_path)
+		fprint = get_fingerprint
+		output, status = Open3.capture2e(
+                "gpg -ear #{fprint} #{file_path} --always-trust"
+            )
 	end
 end

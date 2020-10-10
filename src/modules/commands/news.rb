@@ -103,23 +103,6 @@ module Bot::DiscordCommands
           embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: page.at('//*[@id="articles-loadMore"]/article[1]/div/div[2]/p[2]/a').text.to_s)
         end
     end
-    command(:news, description: "Get cyber news", usage: ".news 1 || .news ls") do |event, id|
-        if id.to_s == "ls"
-            event.respond("1] BleepingComputers\n2] HackRead\n3] Talos\n4] ThreatPost\n5] PaloAltoNetworks\n6] SecureList\n7] CheeckPoint\n8] TheHackerNews\n9 HomelandSecurity
-                \n10] krebsonsecurity\n11] HackerCombat\n12] ProofPoint\n13] welivesecurity\n 14] packetstormsecurity\n")
-        else
-            r = Scraper.rss(id.to_s)
-            if r != "error"
-                out = ""
-                r.each do |l|
-                    out += "**" + l[0].to_s + "**"
-                    out += "\n"
-                    out += "<" + l[1].to_s + ">"
-                    out += "\n"
-                end
-            end
-        out if !out.blank?
-        end
-    end
+    
   end
 end

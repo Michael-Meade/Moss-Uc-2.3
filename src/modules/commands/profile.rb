@@ -48,7 +48,8 @@ module Bot::DiscordCommands
 			end
 		File.open(File.join("users", uid, "movies_list.json"), "w") { |file| file.write(read.to_json) }
 		end
-		def self.status_prettys(status)
+		# @param status [String] 
+		def self.status_pretty(status)
 			# x => no 
 			# o => yes
 			status.gsub("o", ":white_check_mark: ").gsub("x",":x:")

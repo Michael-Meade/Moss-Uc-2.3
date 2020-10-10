@@ -18,6 +18,7 @@ module Bot::DiscordCommands
             )
             event.respond(output)
         end
+        # @note updates the users publickey. assumes there is one on the user file
         command(:updategpg) do |event|
             dir_path = File.join("users", event.user.id.to_s, "publickey.txt")
             output, status = Open3.capture2e(

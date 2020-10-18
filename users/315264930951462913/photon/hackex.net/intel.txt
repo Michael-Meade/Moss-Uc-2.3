@@ -1,2 +1,0 @@
-https://hackex.net/api/:EMAIL:Server at hackex.net
-https://hackex.net:IPV4:72.237.4.251

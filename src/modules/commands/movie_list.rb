@@ -52,6 +52,12 @@ module Bot::DiscordCommands
 					File.open(user_movie_path, "w") { |file| file.write(json.to_json) }
 				end
 			end
+			def delete(id)
+				file = JSON.parse(File.read(user_movie_path))
+				file.delete(id)
+				# re count
+				recount(file)
+			end
 			def status_switch(status)
 				if status.to_s == "not_seen"
 					status = "seen"
@@ -70,6 +76,14 @@ module Bot::DiscordCommands
 				else 
 					"rating_neutral"
 				end
+			end
+			def recount(array)
+				i = 0
+				array.to_a.each do |l|
+					l[0] = i.to_s
+					i += 1
+				end
+				File.open(user_movie_path, "w") { |file| file.write(array.to_h.to_json) }
 			end
 			def date(movie_id, date = nil)
 				# Add the watch date to the users movie_list.json.
@@ -104,6 +118,7 @@ module Bot::DiscordCommands
 				# - bad
 				# - okay
 				# If it does not match any of those it wil set as neutral
+				p rating_switch(rate)
 				read = JSON.parse(File.read(user_movie_path))
 				read.each do |key, value|
 					if key.to_i == movie_id.to_i
@@ -130,12 +145,28 @@ module Bot::DiscordCommands
 	          fields.each { |field| embed.add_field(name: field[:name], value: field[:value], inline: field[:inline]) }
 	        end
 	    end
-	    command(:movie, description:"managae your movie list.\n**Status**: seen the movie or not\n **Rate**: rate it\n", usage:".movie ls\n.movie status 1 \n.movie rate 8 <good OR bad OR okay>\n. Date:  .movie date 1 OR .movie date 1 09/11/2020.\nNOTE: if not supploed a date (.movie date 1) it will use today's date. ") do |event, item, movie_name, rate|
+	    movie_command_help =  "
+	    - .movie date 21 10/16/2020
+	    	- if not supplied a date it will uses the current date
+	    - .movie add the brothers grimbsy
+	    - .movie status 21
+	    - .movie rate 21 good
+	    	- good
+	    	- bad 
+	    	- okay
+	    - .movie rm 21
+	    - .movie ls
+	    - .movie dl
+	    "
+	    command(:movie, description: movie_command_help) do |event, item, movie_name, rate|
 	    	# ITEM => add, ls, status, rate, date
 	    	CROSS_MARK = "\u274c"
 	    	#FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
 	    	#FileUtils.touch(File.join("users", event.user.id.to_s, "movies_list.json")) unless File.exists?(File.join("users", event.user.id.to_s, "movies_list.json"))
-	    	#movie_name = event.message.content.to_s.gsub(".movie add ", "").to_s
+	    	if item.to_s == "add"
+	    		movie_name = event.message.content.to_s.gsub(".movie add ", "").to_s
+	    	end
+	    	
 	    	movie = Movie.new(event.user.id.to_s, movie_name)
 
 	    	if item.to_s == "add"
@@ -152,9 +183,15 @@ module Bot::DiscordCommands
 	    			message.delete
 	    		end
 	    		nil
+	    	elsif item.to_s == "rm"
+	    		movie.delete(movie_name)
+	    	elsif item.to_s == "dl"
+	    		event.send_file(File.open(File.join("users", event.user.id.to_s, "movies_list.json")))
 	    	elsif item.to_s == "status"
 	    		movie.status_changer(movie_name)
 	    	elsif item.to_s == "rate"
+	    		puts movie_name
+	    		puts rate
 	    		movie.rating_changer(movie_name, rate)
 	    	elsif item.to_s == "date"
 	    		# rating = date

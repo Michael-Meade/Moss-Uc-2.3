@@ -1,0 +1,9 @@
+DOMAIN,CDN,CNAME,IP
+preview.circle.logi.com,No,Null,"['13.249.93.104', '13.249.93.12', '13.249.93.46', '13.249.93.74']"
+support.circle.logi.com,No,Null,"['99.84.251.111', '99.84.251.13', '99.84.251.72', '99.84.251.89']"
+api.circle.logi.com,No,Null,"['44.229.80.154', '44.239.13.85', '50.112.222.125']"
+staging.circle.logi.com,No,Null,"['99.84.167.115', '99.84.167.45', '99.84.167.68', '99.84.167.96']"
+email.circle.logi.com,No,Null,['192.243.228.1']
+res.email.circle.logi.com,Yes,"['logitech-mkt-prod1-res.adobe-campaign.com.', 'd3p2gqdccpozoq.cloudfront.net.']","['99.84.167.116', '99.84.167.120', '99.84.167.58', '99.84.167.6']"
+t.email.circle.logi.com,Yes,"['logitech-mkt-prod1-t.adobe-campaign.com.', 'logitech-mkt-prod1-cus.campaign.adobe.com.', 'logitech-customer-1ev14hbil2wh7-748652950.eu-west-1.elb.amazonaws.com.']","['52.212.112.219', '52.50.135.70']"
+m.email.circle.logi.com,Yes,"['logitech-mkt-prod1-m.adobe-campaign.com.', 'logitech-mkt-prod1-cus.campaign.adobe.com.', 'logitech-customer-1ev14hbil2wh7-748652950.eu-west-1.elb.amazonaws.com.']","['52.212.112.219', '52.50.135.70']"

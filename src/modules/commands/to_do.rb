@@ -41,6 +41,14 @@ module Bot::DiscordCommands
 			json = JSON.parse(r)
 			j.delete("subject_id")
 		end
+		def self.recount(array, uid)
+			i = 0
+			array.to_a.each do |l|
+	    		l[0] = i.to_s
+	    		i += 1
+	    	end
+	    	File.open(File.join("users", uid, "todo_list.json"), "w") { |file| file.write(array.to_h.to_json) }
+		end
 		# @note changes the status.
 		def self.status_switch(status)
 			if status.to_s == "x"
@@ -89,7 +97,22 @@ module Bot::DiscordCommands
 	    		event.send_file(File.open(File.join("users", event.user.id.to_s, "todo_list.json")))
 	    	elsif item.to_s == "status"
 	    		status_changer(event.user.id.to_s, item_num)
+	    	elsif item.to_s == "dl"
+	    		 event.send_file(File.open(File.join("users", event.user.id.to_s, "todo_list.json")))
 	    	elsif item.to_s == "rm"
+	    		i = 0
+	    		if item_num.include?(",")
+	    			file = JSON.parse(File.read("users/#{event.user.id.to_s}/todo_list.json"))
+	    			item_num.split(",").each do |line|
+	    				file.delete(line)
+	    			end
+	    			file.to_a.each do |l|
+	    				l[0] = i.to_s
+	    				i+=1
+	    			end
+	    			recount(file, event.user.id.to_s)
+	    			#File.open(File.join("users", event.user.id.to_s, "todo_list.json"), "w") { |file| file.write(file.to_h.to_json) }
+	    		end
 	    		i = 0
 	    		msg =  event.message.content
 	    		file = JSON.parse(File.read("users/#{event.user.id.to_s}/todo_list.json"))
@@ -99,7 +122,8 @@ module Bot::DiscordCommands
 	    			l[0] = i.to_s
 	    			i += 1
 	    		end	    
-	    		File.open(File.join("users", event.user.id.to_s, "todo_list.json"), "w") { |file| file.write(array.to_h.to_json) }
+	    		recount(array, event.user.id.to_s)
+	    		#File.open(File.join("users", event.user.id.to_s, "todo_list.json"), "w") { |file| file.write(array.to_h.to_json) }
 	    	end
 	    end
 	end

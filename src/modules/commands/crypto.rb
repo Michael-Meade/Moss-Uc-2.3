@@ -10,13 +10,65 @@ require 'satoshi-unit'
 module Bot::DiscordCommands
   module Crypto
     extend Discordrb::Commands::CommandContainer
-    JJ = {"embeds":[{"title":"Crypto Profile",
-		"fields":[{"name":"BTC","value":"\n60.62009960747016"},
-			{"name":"USD","value":"30.93\n---------------------------------------------\n\n\n"},
-			{"name":"XLM","value":"303.6059025"},
-			{"name":"USD","value":"21.1765116993750\n\n---------------------------------------------"},
-			{"name":"USD","value":"60.62009960747016"},
-			{"name":"XMR","value":"0.6621529176130001\n\n---------------------------------------------"}]}]}.to_json
+	class GetPrice
+		def add_json(name, value)
+			json = {"name":"","value":""}
+			json[:name]  = name
+			json[:value] = "#{value}"
+			return json
+		end
+		def convert_btc_usd(number)
+	    	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{number.to_s.gsub(".", "")}&currency=USD")).response.body
+		end
+		def get_xmr(value)
+			json = JSON.parse(HTTParty.get("https://min-api.cryptocompare.com/data/price?fsym=XMR&tsyms=BTC,USD,XMR").response.body)
+			usd  = add_json("USD", value.to_f * json["USD"].to_f)
+			xmr  = add_json("XMR", value.to_f * json["XMR"].to_f)
+		[ usd, xmr ]
+		end
+		def get_btc(value)
+			s = Satoshi.new(value)
+			# convert value into USD
+		    usd = add_json("USD", convert_btc_usd(s.to_i))
+		    btc = add_json("BTC", value)
+		[ usd, btc ]
+		end
+		def get_xlm(value)
+	    	json = JSON.parse(HTTParty.get("https://min-api.cryptocompare.com/data/price?fsym=XLM&tsyms=BTC,USD,XLM").response.body)
+	    	usd  = add_json("USD", value.to_f * json["USD"].to_f)
+	    	xlm  = add_json("XLM", value.to_f * json["XLM"].to_f)
+	    [ usd, xlm ]
+	    end
+	end
+
+	class CryptoProfile
+		Price = GetPrice.new
+		def initialize(user_id)
+			@user_id = user_id
+		end
+		def user_id
+			@user_id
+		end
+		def crypto_path
+			File.read(File.join("users", user_id.to_s, "crypto.json"))
+		end
+		def read_profile
+			j = {}
+			out = []
+			JSON.parse(crypto_path).each do |key, value|
+				if key.to_s == "xmr"
+					out += Price.get_xmr(value)
+				elsif key.to_s == "xlm"
+					out += Price.get_xlm(value)
+				elsif key.to_s == "btc"
+					out += Price.get_btc(value)
+				end
+			j = out
+			end
+		j
+		end
+	end
+
     # @return [numbeer] / 100000000.0
     def self.convert_satoshi(number)
     	
@@ -88,6 +140,13 @@ module Bot::DiscordCommands
 			end
 		end
 	end
+	def self.send_embed(event:, title:, fields:, description: nil)
+        event.channel.send_embed do |embed|
+          embed.title       = title
+          embed.description = description
+          fields.each { |field| embed.add_field(name: field[:name], value: field[:value], inline: field[:inline]) }
+        end
+	end
 	command([:crypto], description:"Get current crypto price.", usage:".crypto <name>\n.crypto p btc\n.crypto ls") do |event, name, coin, amount|
 		FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
 	    FileUtils.touch(File.join("users", event.user.id.to_s, "crypto.json")) unless File.exists?(File.join("users", event.user.id.to_s, "crypto.json"))
@@ -99,43 +158,9 @@ module Bot::DiscordCommands
 	    	end
 	    elsif (name.to_s == "ls" || name.to_s == "l")
 	    	usd_total = 0
-	    	JSON.parse(File.read(File.join("users", event.user.id.to_s, "crypto.json"))).each do |key, value|
-	    		#json_out = J
-	    		if key.to_s == "btc"
-	    			s = Satoshi.new(value)
-	    			btc = convert_btc_usd(s.to_i)
-	    			event.channel.send_embed do |embed|
-	    				embed.title = "BTC Profile" 
-	    				embed.colour = 0xdad7e1
-	    				embed.add_field(name: "BTC", value: value.to_s, inline: true)
-	    				embed.add_field(name: "USD", value: btc.to_s)
-	    				usd_total += btc.to_f
-	    			end
-	    		nil
-	    	    elsif key.to_s == "xmr"
-	    	    	usd = value.to_f * get_xmr_price["USD"].to_f
-	    	    	xmr = value.to_f * get_xmr_price["XMR"].to_f
-	    	    	event.channel.send_embed do |embed|
-	    				embed.title = "XMR Profile" 
-	    				embed.colour = 0xdad7e1
-	    				embed.add_field(name: "XMR", value: value.to_s, inline: true)
-	    				embed.add_field(name: "USD", value: usd.to_s)
-	    				usd_total += usd.to_f
-	    			nil
-	    			end
-	    		elsif key.to_s == "xlm"
-	    			usd = value.to_f * get_xlm_price["USD"].to_f
-	    	    	xmr = value.to_f * get_xlm_price["XLM"].to_f
-	    	    	event.channel.send_embed do |embed|
-	    				embed.title = "XLM Profile" 
-	    				embed.colour = 0xdad7e1
-	    				embed.add_field(name: "XLM", value: value.to_s, inline: true)
-	    				embed.add_field(name: "USD", value: usd.to_s)
-	    				usd_total += usd.to_f
-	    			nil
-	    		    end
-	    		end
-	    	end
+	    	out = CryptoProfile.new(event.user.id.to_s).read_profile
+	    	puts out.to_json
+	    	message = send_embed(event: event, title: 'Crypto Profile', fields: out)
 	    	if usd_total != 0
 	    		event.respond("***Total USD: $*** #{usd_total}")
 	    	end

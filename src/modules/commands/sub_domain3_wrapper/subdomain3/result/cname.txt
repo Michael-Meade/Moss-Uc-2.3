@@ -286,3 +286,11 @@ acronis.cz
 pageserver.instapage.com
 mailgun.org
 www.acronis.co.uk
+logitech-mkt-prod1-m.adobe-campaign.com
+logitech-mkt-prod1-t.adobe-campaign.com
+logitech-mkt-prod1-res.adobe-campaign.com
+logitech-mkt-prod1-cus.campaign.adobe.com
+logitech-mkt-prod1-m.adobe-campaign.com
+logitech-mkt-prod1-t.adobe-campaign.com
+logitech-mkt-prod1-res.adobe-campaign.com
+logitech-mkt-prod1-cus.campaign.adobe.com

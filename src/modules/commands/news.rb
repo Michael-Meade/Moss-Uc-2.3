@@ -92,7 +92,7 @@ module Bot::DiscordCommands
     	end
     	event.respond(dispay)
     end
-    command(:cyber) do |event|
+    command(:zdnet) do |event|
         mechanize = Mechanize.new
         page   = mechanize.get('https://www.zdnet.com/meet-the-team/us/catalin.cimpanu/')
         event.channel.send_embed("Zdnet") do |embed|

@@ -3,6 +3,7 @@ require 'httparty'
 require_relative 'bitcoins/btc'
 require_relative 'lib/main'
 require_relative 'lib/gpg'
+require_relative 'utils'
 require "open3"
 module Bot::DiscordCommands
   module GPG2
@@ -24,6 +25,11 @@ module Bot::DiscordCommands
             output, status = Open3.capture2e(
                 "gpg --import #{dir_path}"
             )
+        end
+        command(:etest) do |event|
+            # ENCRYPT TEST
+            loo = Utils.gpg_encrypt(event.user.id.to_s, "OOOOOOOOOOOOOOO")
+            event.respond("#{loo[0]}")
         end
     	command([:publickey],  description:"Upload your public key", usage:".publickey") do |event, public_key|
     		pub = HTTParty.get(event.message.attachments[0].url).response.body

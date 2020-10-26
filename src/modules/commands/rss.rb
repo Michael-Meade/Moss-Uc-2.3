@@ -64,7 +64,7 @@ module Bot::DiscordCommands
             end
         File.open("sites.json", "w") { |file| file.write(array.to_h.to_json) }
         end
-        def add(item, url, name)
+        def add(url, name)
             json = read
             last = read.keys.last.to_i
             last += 1
@@ -84,9 +84,13 @@ module Bot::DiscordCommands
             end
         end
     end
-    command(:news, description: "Get cyber news", usage: ".news 1 || .news ls") do |event, id|
+    command(:news, description: "Get cyber news", usage: ".news 1 || .news ls") do |event, id, url, name|
         if id.to_s == "ls"
             event.respond(Lists.new.pretty_print.to_s)
+        elsif ( id.to_s == "add"  || id.to_s == "a")
+            if ( !url.nil? && !name.nil? )
+                Lists.new.add(url, name)
+            end 
         else
             out = Reader.new(id).info
             list = ""

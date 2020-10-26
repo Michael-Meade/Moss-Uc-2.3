@@ -17,6 +17,10 @@ module Bot::DiscordCommands
 			json[:value] = "#{value}"
 			return json
 		end
+		def get_total(number)
+			total  = add_json("Total", number)
+		total 
+		end
 		def convert_btc_usd(number)
 	    	response = Net::HTTP.get_response(URI.parse("https://www.blockchain.com/frombtc?value=#{number.to_s.gsub(".", "")}&currency=USD")).response.body
 		end
@@ -39,6 +43,7 @@ module Bot::DiscordCommands
 	    	xlm  = add_json("XLM", value.to_f * json["XLM"].to_f)
 	    [ usd, xlm ]
 	    end
+
 	end
 
 	class CryptoProfile
@@ -63,10 +68,17 @@ module Bot::DiscordCommands
 				elsif key.to_s == "btc"
 					out += Price.get_btc(value)
 				end
-			j = out
+				p out
 			end
-		j
-		end
+			total = 0
+			out.each do |key|
+				if key[:name].to_s == "USD"
+					total += key[:value].to_f
+				end
+		    end
+		    j = out
+		[ j, total.to_f ]
+	    end
 	end
 
     # @return [numbeer] / 100000000.0
@@ -160,10 +172,8 @@ module Bot::DiscordCommands
 	    	usd_total = 0
 	    	out = CryptoProfile.new(event.user.id.to_s).read_profile
 	    	puts out.to_json
-	    	message = send_embed(event: event, title: 'Crypto Profile', fields: out)
-	    	if usd_total != 0
-	    		event.respond("***Total USD: $*** #{usd_total}")
-	    	end
+	    	message = send_embed(event: event, title: 'Crypto Profile', fields: out[0])
+	    	event.respond("***Total USD: $*** #{out[1]}")
 		else
 			coin = crypto_price(name)
 			event.channel.send_embed("") do |embed|

@@ -14,7 +14,11 @@ class Utils
 		id = read2.keys.last.to_i
 		id +=1
 	end
-	def self.gpg_encrypt()
+	def self.gpg_encrypt(uid, msg)
+		output, status = Open3.capture2e("gpg",
+            "--with-fingerprint", File.join("users", uid.to_s, "publickey.txt"))
+        id = output.split("=")[1].split("\n")[0]
+        output, status = Open3.capture2e('echo '"#{msg}"' | gpg  --always-trust -ear  ' + "'#{id}'")
 	end
 	def self.add_commas(string)
 		whole, decimal = string.to_s.split(".")

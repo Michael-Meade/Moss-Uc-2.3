@@ -29,7 +29,6 @@ module Bot::DiscordEvents
         end
         
         if line.strip.similar(string.strip).to_i >= 80
-          p line.strip.similar(string.strip)
           s = false
         end
       end

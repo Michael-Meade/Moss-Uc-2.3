@@ -68,7 +68,6 @@ module Bot::DiscordCommands
 				elsif key.to_s == "btc"
 					out += Price.get_btc(value)
 				end
-				p out
 			end
 			total = 0
 			out.each do |key|
@@ -162,8 +161,8 @@ module Bot::DiscordCommands
 	command([:crypto], description:"Get current crypto price.", usage:".crypto <name>\n.crypto p btc\n.crypto ls") do |event, name, coin, amount|
 		FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
 	    FileUtils.touch(File.join("users", event.user.id.to_s, "crypto.json")) unless File.exists?(File.join("users", event.user.id.to_s, "crypto.json"))
-	    if name.to_s == "p" || name.to_s == "profile"
-	    	if coin.nil? || name.nil?
+	    if ( name.to_s == "p" || name.to_s == "profile" )
+	    	if (coin.nil? || name.nil?)
 	    		event.respond("example: .crypto p btc .1997")
 	    	else
 	    		add_coin(event.user.id.to_s, coin, amount)
@@ -171,7 +170,6 @@ module Bot::DiscordCommands
 	    elsif (name.to_s == "ls" || name.to_s == "l")
 	    	usd_total = 0
 	    	out = CryptoProfile.new(event.user.id.to_s).read_profile
-	    	puts out.to_json
 	    	message = send_embed(event: event, title: 'Crypto Profile', fields: out[0])
 	    	event.respond("***Total USD: $*** #{out[1]}")
 		else
@@ -189,13 +187,8 @@ module Bot::DiscordCommands
 		end
 	nil
 	end
-	command(:as) do |event|
-	    p JJ.class
-		event.channel.send_message("", embed:  JJ)
-	end
 	command([:btcaddy], description:"Get bitcoin address info", usage:".btcaddy <address> <btc | usd>") do |event, address, type|
 		if type.nil?
-
 			# (defaults to `:USD`)
 			btc = bitcoin_address_usd(address)
 			event.channel.send_embed("l") do |embed|

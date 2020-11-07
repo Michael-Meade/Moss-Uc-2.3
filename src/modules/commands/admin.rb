@@ -35,7 +35,17 @@ module Bot::DiscordCommands
 		command([:lyrics], usage:".lyrics on || off") do |event|
 			# if owner id OR admin is true
 			if ((event.user.id.to_s == get_owner) || (get_admins(event.user.id.to_s) == true))
-				puts "yes"
+        puts "1"
+        read = JSON.parse(File.read("config.json"))
+        if read["lyrics-troll"] == true
+          puts "2"
+          read["lyrics-troll"] = false
+          File.open("config.json", "w") { |file| file.write(read.to_json) }
+        elsif read["lyrics-troll"] == false
+          puts "3"
+          read["lyrics-troll"] = true
+          File.open("config.json", "w") { |file| file.write(read.to_json) }
+        end
 			end
 		end
 	end

@@ -103,13 +103,18 @@ h =  {
         else
             out = Reader.new(id).info
             out.each do |id|
-                 page = MetaInspector.new(id[1])
+                page = MetaInspector.new(id[1])
+                if page.meta_tags["property"]["og:image"].is_a?(Array)
+                    img = page.meta_tags["property"]["og:image"].shift
+                elsif page.meta_tags["property"]["og:image"].is_a?(String)
+                    img = page.meta_tags["property"]["og:image"]
+                end
                  event.send_embed("") do |embed|
                     embed.title       = id[0]
                     embed.url         = id[1]
                     embed.description = id[2].gsub(/<\/?[^>]*>/, "")
                     embed.footer = Discordrb::Webhooks::EmbedFooter.new(icon_url: "https://cdn.discordapp.com/embed/avatars/0.png")
-                    embed.image = Discordrb::Webhooks::EmbedImage.new(url: page.meta_tags["property"]["og:image"].shift.to_s)
+                    embed.image = Discordrb::Webhooks::EmbedImage.new(url: img)
                 end
             end
         end

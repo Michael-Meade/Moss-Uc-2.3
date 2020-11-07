@@ -35,14 +35,16 @@ module Bot::DiscordEvents
       #"Hello, World!".similar("Hello World!") #=> 96.0
     nil
     end
+    
     message(starting_with: not!(".")) do |event|
       p event.server.id.to_s
-
-      if (event.server.id.to_s != "352584164257824769")
-         lo = check("", event.message.content.to_s)
-         if !lo.nil?
-          #event.respond(lo)
-         end 
+      if JSON.parse(File.read("config.json"))["lyrics-troll"] == true
+        if (event.server.id.to_s != "352584164257824769")
+           lo = check("", event.message.content.to_s)
+           if !lo.nil?
+            event.respond(lo)
+           end 
+        end
       end
     end
   end

@@ -119,22 +119,6 @@ module Bot::DiscordCommands
 			end
 		end
 	end
-	def self.crypto_price2(crypto)
-		begin
-			uri = URI.parse("https://api.coinmarketcap.com/v1/ticker/#{crypto}/")
-	        response = Net::HTTP.get_response(uri)
-	        data = JSON.parse(response.body)
-
-	        "
-	        **Price USD:** #{data[0]['price_usd']}
-	        **Price BTC:** #{data[0]['price_btc']}
-	        **Percent Change 1 hour:  ** #{data[0]['percent_change_1h']}
-	        **Precent Change 24 hours:** #{data[0]['percent_change_24h']}
-	        ".gsub("\t        ", "").lstrip
-	    rescue => e
-	    	"Invaid crytpo currency. Try again."
-	    end
-	end
 	def self.add_coin(uid, coin, amount)
 		if File.read(File.join("users", uid, "crypto.json")).empty?
 			# creates the json value and saves it in the file

@@ -33,14 +33,11 @@ module Bot::DiscordCommands
             "#{cmd} -j #{domain} "
         end
         def run_command(command)
-            #stdout, stderr, status = Open3.capture3(command)
             %x( #{command} )
-            #puts stdout
         end
     end
     class Knock < Discord
         def basic
-            puts "::::"
             run_command(create_commands)
             export
         end

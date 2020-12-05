@@ -1,6 +1,6 @@
 require 'similar_text'
 
-
+require 'stuff-classifier'
 module Bot::DiscordEvents
   # This event is processed each time the bot succesfully connects to discord.
   module Ready
@@ -35,7 +35,16 @@ module Bot::DiscordEvents
       #"Hello, World!".similar("Hello World!") #=> 96.0
     nil
     end
-    
+    message(starting_with: not!(".")) do |event|
+      puts "LLL"
+      store = StuffClassifier::FileStorage.new("TRAINED.JSON")
+      StuffClassifier::Base.storage = store
+      cls = StuffClassifier::TfIdf.new("fear or anger or joy or love or sadness or suprise", :stemming => false, :storage => store )
+      cls.ignore_words = [ 'the', 'my', 'i', 'dont' ]
+      msg = event.message.content.to_s
+      detect = cls.classify(msg)
+      event.respond(detect.to_s)
+    end 
     message(starting_with: not!(".")) do |event|
       p event.server.id.to_s
       if JSON.parse(File.read("config.json"))["lyrics-troll"] == true

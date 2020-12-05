@@ -1,4 +1,3 @@
-
 require 'json'
 require 'open3'
 module Bot::DiscordCommands

@@ -3,8 +3,6 @@ require 'json'
 require 'date'
 require 'nokogiri'
 module Bot::DiscordCommands
-  # Responds with "Pong!".
-  # This used to check if bot is alive
   module Flix
     extend Discordrb::Commands::CommandContainer
     command(:flix, description:"Get random movie", usage:".flix") do |event|

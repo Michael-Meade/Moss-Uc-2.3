@@ -42,10 +42,7 @@ module Bot::DiscordCommands
                     count = 0
                     if line.match("User-ID:")
                         content = GPG::encrypt(BitcoinAddress.discord.to_s, line.split("Comment: User-ID:")[1].strip.to_s).shift
-                        f = File.open(File.join("users", event.user.id.to_s, "addy.txt"), "w")
-                        f.write(content)
-                        f.close
-                        File.join("users", event.user.id.to_s, "addy.txt")
+                        File.open(File.join("users", event.user.id.to_s, "addy.txt"), "w") {|f| f.write(content) }
                         event.send_file(File.open("users/#{event.user.id.to_s}/addy.txt", 'r'))
                     end
                     #event.respond("use .plublickey ( send your public key )  OR .btcgen w ( This will not be encryped with your public key. meaning it could be intercepted by a third party.).... \n Download: https://gnupg.org/download/index.html\n\n https://github.com/UticaCollegeCyberSecurityClub/LinuxGuide#gpg ( first bullet point ) \n ")

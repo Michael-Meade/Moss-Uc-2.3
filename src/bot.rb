@@ -32,6 +32,7 @@ module Bot
     #Dir[File.expand_path "lib/**/*.rb"].each{|f| require_relative(f)}
     Dir["src/modules/#{path}/*.rb"].each { |file| load file }
     new_module.constants.each do |mod|
+      p mod
       BOT.include! new_module.const_get(mod)
     end
   end

@@ -36,14 +36,13 @@ module Bot::DiscordEvents
     nil
     end
     message(starting_with: not!(".")) do |event|
-      puts "LLL"
-      store = StuffClassifier::FileStorage.new("TRAINED.JSON")
-      StuffClassifier::Base.storage = store
-      cls = StuffClassifier::TfIdf.new("fear or anger or joy or love or sadness or suprise", :stemming => false, :storage => store )
-      cls.ignore_words = [ 'the', 'my', 'i', 'dont' ]
-      msg = event.message.content.to_s
-      detect = cls.classify(msg)
-      event.respond(detect.to_s)
+      #store = StuffClassifier::FileStorage.new("TRAINED.JSON")
+      #StuffClassifier::Base.storage = store
+      #cls = StuffClassifier::TfIdf.new("fear or anger or joy or love or sadness or suprise", :stemming => false, :storage => store )
+      #cls.ignore_words = [ 'the', 'my', 'i', 'dont' ]
+      #msg = event.message.content.to_s
+      #detect = cls.classify(msg)
+      #event.respond(detect.to_s)
     end 
     message(starting_with: not!(".")) do |event|
       p event.server.id.to_s

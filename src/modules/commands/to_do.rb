@@ -86,6 +86,7 @@ module Bot::DiscordCommands
 	    		end
 	    	elsif item.to_s == "ls"
 	    		output = list_movies(event.user.id.to_s).to_s
+	    		p output
 	    		message = event.respond(output.to_s)
 	    		message.react CROSS_MARK
 	    		Bot::BOT.add_await(:"delete_#{message.id}", Discordrb::Events::ReactionAddEvent, emoji: CROSS_MARK) do |reaction_event|
@@ -102,11 +103,7 @@ module Bot::DiscordCommands
 	    			event.respond("#{out[0]}")
 	    		end
 	    	elsif item.to_s == "status"
-	    		p item_num.include?(",")
-	    		if item_num.include?(",")
-	    			puts "::::"
-	    			status_changer(event.user.id.to_s, item_num)
-	    		end
+	    		status_changer(event.user.id.to_s, item_num)
 	    	elsif item.to_s == "dl"
 	    		 event.send_file(File.open(File.join("users", event.user.id.to_s, "todo_list.json")))
 	    	elsif item.to_s == "rm"

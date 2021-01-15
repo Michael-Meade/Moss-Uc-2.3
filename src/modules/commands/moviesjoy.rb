@@ -7,7 +7,7 @@ module Bot::DiscordCommands
     extend Discordrb::Commands::CommandContainer
     command(:moviejoy) do |event, search|
         base = "https://moviesjoy.to/search/"
-        puts base.concat(search.split(" ").join("-"))
+        event.respond(base.concat(search.split(" ").join("-")))
     end
   end
 end

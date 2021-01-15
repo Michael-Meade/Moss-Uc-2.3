@@ -35,6 +35,29 @@ module Bot::DiscordCommands
     		puts e
     	end
     end
+    command(:horoscope) do |event, sun_sign|
+      uid = event.user.id.to_s
+      FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
+      FileUtils.touch(File.join("users", event.user.id.to_s, "settings.json")) unless File.exists?(File.join("users", event.user.id.to_s, "settings.json"))
+      if !sun_sign.nil?
+        if File.read(File.join("users", uid, "settings.json")).empty?
+          File.open(File.join("users", uid, "settings.json"), "a") { |file| file.write({"horoscope" => "#{sun_sign}"}.to_json) }
+        else
+          read = File.join(File.join("users", uid, "settings.json"))
+          j = JSON.parsE(read)
+          j["horoscop"] = sun_sign
+          File.open(File.join("users", uid, "settings.json"), "w") { |file| file.write(j.to_json) }
+        end
+      else
+        sign = File.read(File.join("users", uid, "settings.json" ))
+        j    = JSON.parse(sign)["horoscope"].to_s
+        g = HTTParty.get("http://horoscope-api.herokuapp.com/horoscope/today/#{j}").response.body
+        horo = JSON.parse(g)["horoscope"]
+        event.respond(horo.to_s)
+      end
+      
+      
+    end
     command(:dog) do |event|
       r = HTTParty.get("https://some-random-api.ml/facts/dog", { "headers": {"Accept": "text/plain"}}).body
       j = JSON.parse(r)["fact"]

@@ -11,7 +11,7 @@ module Bot::DiscordCommands
     end
     def self.koh_httparty(path)
       # todo: add domain config
-       rsp = HTTParty.get("http://localhost:4567/api/#{path}",
+       rsp = HTTParty.get("http://139.59.211.245/api/#{path}",
         {
           headers: user_agent,
           debug_output: STDOUT, 
@@ -44,12 +44,12 @@ module Bot::DiscordCommands
       end
     end
     command(:king, description:"Get the current king") do |event|
-      resp = HTTParty.get("http://localhost:4567/birds_are_not_real.html").response.body
+      resp = HTTParty.get("http://159.65.216.57").response.body
       event.respond(resp)
     end
     command(:lb, description:"Get the leaderboard for king of the hill") do |event|
       output = ""
-      resp = HTTParty.get("http://localhost:4567/api/lb")
+      resp = HTTParty.get("http://139.59.211.245/api/lb")
       parsed = JSON.parse(resp)
       space = "   " * 2 
       parsed.keys.each do |l|

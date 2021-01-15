@@ -2,7 +2,6 @@ require 'httparty'
 require 'json'
 require 'fileutils'
 require 'time'
-
 module Bot::DiscordCommands
   module MovieList
   	extend Discordrb::Commands::CommandContainer

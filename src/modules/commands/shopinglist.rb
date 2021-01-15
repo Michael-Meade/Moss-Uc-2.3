@@ -31,7 +31,7 @@ module Bot::DiscordCommands
 			output = ""
 			read = JSON.parse(File.read(File.join("users", uid, "shopping_list.json")))
 			read.each do |key, value|
-				output += "#{key} ]\s#{value[0]}\s" + self.status_pretty(value[1]) + "\n"
+				output += "#{key} ]\s#{value[0]}\s-" + self.status_pretty(value[1]) + "\n"
 			end
 		 output
 		end

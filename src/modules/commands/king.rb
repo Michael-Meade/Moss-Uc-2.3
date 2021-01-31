@@ -11,11 +11,11 @@ module Bot::DiscordCommands
     end
     def self.koh_httparty(path)
       # todo: add domain config
-       rsp = HTTParty.get("http://139.59.211.245/api/#{path}",
+       rsp = HTTParty.get("http://127.0.0.1/api/#{path}",
         {
           headers: user_agent,
           debug_output: STDOUT, 
-        })
+        }).response.body
     end
     def self.pretty_status(rsp)
       if rsp.to_s == "true"
@@ -28,9 +28,11 @@ module Bot::DiscordCommands
       if id.to_s == "clean"
         koh_httparty("clean_cron")
       elsif id.to_s == "status"
-        koh_httparty("cron_status")
+        event.respond(koh_httparty("cron_status").to_s)
       elsif id.to_s == "stop"
         koh_httparty("cron_stop")
+      elsif id.to_s == "start"
+        koh_httparty("cron_start")
       end
     end
     command(:signup, description: "used to turn on and off the sign up page") do |event, id|

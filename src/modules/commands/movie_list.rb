@@ -174,11 +174,17 @@ module Bot::DiscordCommands
 	    			movie.add_movie
 	    		end
 	    	elsif item.to_s == "ls"
+	    		puts "1"
 	    		fields  = movie.embed_movie
+	    		puts "2"
 	    		message = send_embed(event: event, title: 'Movie List', fields: fields)
+	    		puts "3"
 	    		message.react CROSS_MARK
+	    		puts "4"
 	    		Bot::BOT.add_await(:"delete_#{message.id}", Discordrb::Events::ReactionAddEvent, emoji: CROSS_MARK) do |reaction_event|
+	    			puts "5"
 	    			next true unless reaction_event.message.id == message.id
+	    			puts "6"
 	    			message.delete
 	    		end
 	    		nil

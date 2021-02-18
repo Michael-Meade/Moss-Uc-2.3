@@ -47,6 +47,9 @@ module Bot::DiscordCommands
     command([:plead], description: "plead the fifth", usage:".5") do |event|
         event.send_file(File.open("images/plead.png"))
     end
+    command([:ahaha, :ah], description:"ahaha", usage:"- .ahah\n- .ah") do |event|
+        event.send_file(File.open("images/ahaha.png", "r"))
+    end
     command([:hay, :hi],  description:"hay", usage:".hay") do |event|
         event.send_file(File.open('images/hay.jpg', 'r'))
     end 

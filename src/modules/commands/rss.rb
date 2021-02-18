@@ -23,9 +23,8 @@ module Bot::DiscordCommands
             rss = HTTParty.get(site[0], {headers: {"User-Agent" => "Guess What?"}}).body
             feed = RSS::Parser.parse(rss, false)
             feed.items.each do |item|
-                if i.to_i <=  2
+                if i.to_i <=  0
                     array += [[item.title, item.link, item.description.to_s.gsub("[...]", "")]]
-                    p item.description
                     i += 1
                 end
             end
@@ -85,6 +84,33 @@ module Bot::DiscordCommands
             end
         end
     end
+    def self.send_embed(event:, title:, url:, description:, img:)
+        event.channel.send_embed do |embed|
+            embed.title       = title
+            embed.url         = url
+            embed.description = description.gsub(/<\/?[^>]*>/, "")
+            embed.footer = Discordrb::Webhooks::EmbedFooter.new(icon_url: "https://cdn.discordapp.com/embed/avatars/0.png")
+            embed.image = Discordrb::Webhooks::EmbedImage.new(url: img)
+        end
+    end
+    # creates the news embed
+    def self.create_new_embed(id)
+        out = Reader.new(id).info.shift
+        out.each do |id|
+            page = MetaInspector.new(id[1])
+            if page.meta_tags["property"]["og:image"].is_a?(Array)
+                @img = page.meta_tags["property"]["og:image"].shift
+            elsif page.meta_tags["property"]["og:image"].is_a?(String)
+                @img = page.meta_tags["property"]["og:image"]
+            end
+        end
+        # id[0] = title
+        # id[1] = url
+        # id[2] = description
+        # img   = img
+        p out
+        return out[0], out[1], out[2], @img
+    end
     command(:news, description: "Get cyber news", usage: ".news 1 || .news ls") do |event, id, url, name|
         if id.to_s == "ls"
             event.respond(Lists.new.pretty_print.to_s)
@@ -93,21 +119,19 @@ module Bot::DiscordCommands
                 Lists.new.add(url, name)
             end 
         else
-            out = Reader.new(id).info
-            out.each do |id|
-                page = MetaInspector.new(id[1])
-                if page.meta_tags["property"]["og:image"].is_a?(Array)
-                    img = page.meta_tags["property"]["og:image"].shift
-                elsif page.meta_tags["property"]["og:image"].is_a?(String)
-                    img = page.meta_tags["property"]["og:image"]
-                end
-                 event.send_embed("") do |embed|
-                    embed.title       = id[0]
-                    embed.url         = id[1]
-                    embed.description = id[2].gsub(/<\/?[^>]*>/, "")
-                    embed.footer = Discordrb::Webhooks::EmbedFooter.new(icon_url: "https://cdn.discordapp.com/embed/avatars/0.png")
-                    embed.image = Discordrb::Webhooks::EmbedImage.new(url: img)
-                end
+            CROSS_MARK = "\u274c"
+
+            rss = create_new_embed(id)
+            #message = send_embed(event: event, title: id[0], url: id[1], description: id[2], img: img)
+            message = send_embed(event: event, title: rss[0], url: rss[1], description: rss[2], img: rss[3])
+            message.react CROSS_MARK
+            Bot::BOT.add_await(:"edit_#{message.id}", Discordrb::Events::ReactionAddEvent, emoji: CROSS_MARK) do |reaction_event|
+                puts "5"
+                next true unless reaction_event.message.id == message.id
+                puts "6"
+                new_rss = create_new_embed(id.to_i+=1)
+                new_emb = send_embed(event: event, title: new_rss[0], url: new_rss[1], description: new_rss[2], img: new_rss[3])
+                message.edit(new_embed: new_emb)
             end
         end
     nil

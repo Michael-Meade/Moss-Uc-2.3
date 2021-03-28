@@ -103,6 +103,16 @@ module Bot::DiscordCommands
           
             #page.xpath('//*[@id="links"]/div[1]/div').text.to_s.strip.to_s)
       end
+      CROSS_MARK = "\u274c"
+      message.react CROSS_MARK
+      Bot::BOT.add_await(:"edit_#{message.id}", Discordrb::Events::ReactionAddEvent, emoji: CROSS_MARK) do |reaction_event|
+        puts "5"
+        next true unless reaction_event.message.id == message.id
+        puts "6"
+        new_rss = create_new_embed(id.to_i+=1)
+        new_emb = send_embed(event: event, title: new_rss[0], url: new_rss[1], description: new_rss[2], img: new_rss[3])
+        message.edit(new_embed: new_emb)
+      end
       #zero_click_abstract
     end
     command([:date], description:"History is fun", usage: ".date") do |event|

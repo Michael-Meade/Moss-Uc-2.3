@@ -27,7 +27,6 @@ module Bot::DiscordCommands
 		command([:trump], description: "What does trump think?", usage: ".trump") do |event|
 			rsp = HTTParty.get("https://api.tronalddump.io/random/quote").response.body
 			j   = JSON.parse(rsp)
-			puts j["value"]
 			event.channel.send_embed("") do |embed|
 	          embed.title = "What does Donald Trump Think?"
 	          embed.description = j["value"]

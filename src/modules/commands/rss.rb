@@ -97,7 +97,7 @@ module Bot::DiscordCommands
     def self.create_new_embed(id)
         out = Reader.new(id).info.shift
         out.each do |id|
-            page = MetaInspector.new(id[1])
+            page = MetaInspector.new(id[1], parse_timeout: 60)
             if page.meta_tags["property"]["og:image"].is_a?(Array)
                 @img = page.meta_tags["property"]["og:image"].shift
             elsif page.meta_tags["property"]["og:image"].is_a?(String)

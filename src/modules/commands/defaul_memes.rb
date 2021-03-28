@@ -14,6 +14,17 @@ module Bot::DiscordCommands
     	   event.send_file(File.open('images/dab.gif', 'r'))
         end
     end
+    command([:fish]) do |event|
+        puts event.message.mentions
+        event.send_file(File.open("images/fish.png"))
+        event.respond(event.message.mentions.to_sUUUUUUUUUUUUUUUUU)
+    end
+    command(:check) do |event|
+        #event.send_file(File.open("images/checked.gif"))
+    end
+    command(:money) do |event|
+        event.send_file(File.open("images/money.gif"))
+    end
     command(:beans) do |event|
         event.send_file(File.open("images/beans.jpg"))
     end

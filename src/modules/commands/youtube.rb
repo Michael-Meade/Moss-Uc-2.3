@@ -1,9 +1,6 @@
-
 require_relative 'utils'
 require 'httparty'
 module Bot::DiscordCommands
-  # Responds with "Pong!".
-  # This used to check if bot is alive
   module Youtube
     extend Discordrb::Commands::CommandContainer
     def self.get_youtube_title(value)

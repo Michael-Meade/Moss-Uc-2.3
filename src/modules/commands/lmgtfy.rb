@@ -4,7 +4,6 @@ module Bot::DiscordCommands
     
     command(:lmgtfy) do |event, *args|
     	event.respond("https://lmgtfy.app/?q=#{args.join("+")}")
-    	
     end
   end
 end

@@ -2,8 +2,6 @@ require_relative 'utils'
 require 'httparty'
 require 'json'
 module Bot::DiscordCommands
-  # Responds with "Pong!".
-  # This used to check if bot is alive
   module Youtube
     extend Discordrb::Commands::CommandContainer
     def self.get_youtube_title(value)
@@ -24,7 +22,6 @@ module Bot::DiscordCommands
       File.readlines(file_name).each do |line|
         line =  line.gsub("https://", "<https://")
         list += "#{count.to_s}] " + "#{line.to_s}>"
-        #.gsub('"', "").gsub("]", "").gsub("[", "")
         count += 1
       end
       list
@@ -44,8 +41,6 @@ module Bot::DiscordCommands
         read[last] = string
         File.open(File.join("users", uid, "playlist.json"), "w") { |file| file.write(read.to_json) }
       end
-      #Utils.user_directory(event.user.id.to_s, "playlist.txt", string, "txt")
-      #Utils.create_file("playlist", "#{event.user.id}.json", string)
     end
     command(:playlist, description:"List your playlist.", usage:".playlist") do |event|
       # create list

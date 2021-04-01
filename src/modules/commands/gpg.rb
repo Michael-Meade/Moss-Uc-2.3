@@ -37,17 +37,24 @@ module Bot::DiscordCommands
             GPG.import_publickey(File.join("users", event.user.id.to_s, "publickey.txt"))
     	end
     	command(:btcgen, description:"create bitcoin address", usage:".btcgen || .btcgen w") do |event, status|
-            File.readlines(File.join("users", event.user.id.to_s, "publickey.txt")).each do |line|
-                if status.nil?
-                    count = 0
-                    if line.match("User-ID:")
-                        content = GPG::encrypt(BitcoinAddress.discord.to_s, line.split("Comment: User-ID:")[1].strip.to_s).shift
-                        File.open(File.join("users", event.user.id.to_s, "addy.txt"), "w") {|f| f.write(content) }
-                        event.send_file(File.open("users/#{event.user.id.to_s}/addy.txt", 'r'))
+            if !File.exist?(File.join("users", event.user.id.to_s, "publickey.txt"))
+                event.respond(BitcoinAddress.discord.to_s)
+            else
+                File.readlines(File.join("users", event.user.id.to_s, "publickey.txt")).each do |line|
+                    if status.nil?
+                        count = 0
+                        if line.match("User-ID:")
+                            content = GPG::encrypt(BitcoinAddress.discord.to_s, line.split("Comment: User-ID:")[1].strip.to_s).shift
+                            #File.open(File.join("users", event.user.id.to_s, "addy.txt"), "w") {|f| f.write(content) }
+                            event.respond(content.to_s)
+                            #event.send_file(File.open("users/#{event.user.id.to_s}/addy.txt", 'r'))
+                        end
+                        #event.respond("use .plublickey ( send your public key )  OR .btcgen w ( This will not be encryped with your public key. meaning it could be intercepted by a third party.).... \n Download: https://gnupg.org/download/index.html\n\n https://github.com/UticaCollegeCyberSecurityClub/LinuxGuide#gpg ( first bullet point ) \n ")
+                    elsif status.to_i == "w"
+                        event.respond(BitcoinAddress.discord.to_s)
+                    else
+                        event.user.pm(BitcoinAddress.discord.to_s)
                     end
-                    #event.respond("use .plublickey ( send your public key )  OR .btcgen w ( This will not be encryped with your public key. meaning it could be intercepted by a third party.).... \n Download: https://gnupg.org/download/index.html\n\n https://github.com/UticaCollegeCyberSecurityClub/LinuxGuide#gpg ( first bullet point ) \n ")
-                elsif status.to_i == "w"
-                    event.respond(BitcoinAddress.w.to_s)
                 end
             end
     	end

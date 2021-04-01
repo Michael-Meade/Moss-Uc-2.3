@@ -86,7 +86,6 @@ module Bot::DiscordCommands
 	    		end
 	    	elsif item.to_s == "ls"
 	    		output = list_shop(event.user.id.to_s).to_s
-	    		p output
 	    		message = event.respond(output.to_s)
 	    		message.react CROSS_MARK
 	    		Bot::BOT.add_await(:"delete_#{message.id}", Discordrb::Events::ReactionAddEvent, emoji: CROSS_MARK) do |reaction_event|

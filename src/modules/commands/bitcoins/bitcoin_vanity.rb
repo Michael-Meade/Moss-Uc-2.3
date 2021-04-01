@@ -17,18 +17,13 @@ class BitcoinAddress
   ADDRESS_VERSION = '00'
   FileUtils.mkdir_p "wallets"  unless File.exists?("wallets/")
   def self.discord
-    output = ""
-    self.generate_address.each do |btc|
-      output += btc + "\n"
-    end
-  output
-  end
-  def self.w
     out = ""
     array = ["Address: ", "Private Key Hex:", "Public Key Hash:", "Public Key Hex:"]
     i = 0
     generate_address.each do |btc|
-      out += array[i.to_i].to_s + btc 
+      puts btc
+      out += array[i.to_i].to_s + btc + "\n"
+      i += 1
     end
   out
   end
@@ -79,3 +74,4 @@ class BitcoinAddress
     rmd160(sha256(hex))
   end
 end
+puts BitcoinAddress.discord

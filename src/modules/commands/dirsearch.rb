@@ -23,7 +23,7 @@ module Bot::DiscordCommands
             # File.join("users", user_id, domain + ".txt")
         end
         def command
-          output, status = Open3.capture2e("python3 #{tool_path}/dirsearch.py -E -u #{domain} --plain-text-report=#{user_path} -w #{tool_path}/db/dicc.txt")
+          output, status = Open3.capture2e("python3 #{tool_path}/dirsearch.py -E php, js, txt, php, html -u #{domain} --plain-text-report=#{user_path} -w #{tool_path}/db/dicc.txt")
           puts output
         end
         def basic

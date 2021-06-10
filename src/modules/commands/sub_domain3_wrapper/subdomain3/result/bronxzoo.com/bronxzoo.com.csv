@@ -1,0 +1,13 @@
+DOMAIN,CDN,CNAME,IP
+quiz.bronxzoo.com,No,['bronxzoo.com.'],['23.253.147.230']
+event.bronxzoo.com,No,Null,['159.65.169.112']
+map.bronxzoo.com,Yes,['i3q5d4a5.stackpathcdn.com.'],['151.139.128.11']
+apps.bronxzoo.com,No,Null,['66.33.196.19']
+new.bronxzoo.com,No,Null,['23.92.19.167']
+app.bronxzoo.com,No,Null,['64.207.186.128']
+pages.bronxzoo.com,Yes,"['9b68cdb3f1537c676542-2060147df724a0e23a9ac3f24860a8f0.r32.cf5.rackcdn.com.', 'a32.rackcdn.com.', 'a32.rackcdn.com.mdc.edgesuite.net.', 'a34.dscg10.akamai.net.']","['23.63.240.185', '23.63.240.195']"
+mail.bronxzoo.com,No,Null,['23.253.147.230']
+webmail.bronxzoo.com,No,Null,['23.253.147.230']
+www.bronxzoo.com,No,Null,['23.253.147.230']
+ftp.bronxzoo.com,No,Null,['69.18.170.136']
+m.bronxzoo.com,No,['bronxzoo.com.'],['23.253.147.230']

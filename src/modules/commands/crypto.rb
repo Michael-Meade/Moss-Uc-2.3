@@ -142,6 +142,30 @@ module Bot::DiscordCommands
           fields.each { |field| embed.add_field(name: field[:name], value: field[:value], inline: field[:inline]) }
         end
 	end
+	command([:mine] ) do |event|
+
+
+		g = HTTParty.get("https://fastpool.xyz/api-trtl/stats_address?address=TRTLuxzZrzsGVp1vmionnyX8JX3ot8CiLeo3cHQTTRtN9AGi7aV1oJXEvX91RaqsfD9sEqbyCMxbVR88suy4fNFaG6NfLzdvexu&longpoll=false")
+		body = JSON.parse(g.body)
+		six_hours  =  body["stats"]["hashrate_6h"].to_f / 1000
+		hashes     =  body["stats"]["hashes"]
+		balance    =  body["stats"]["balance"].to_i / 100
+		total_paid =  body["stats"]["paid"].split(".")[0]
+		hash_rate  =  body["stats"]["hashrate"].to_f / 1000
+		puts six_hours / 1000
+		puts hashes.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+		puts balance / 100
+		puts total_paid.to_f / 100
+		event.channel.send_embed("") do |embed|
+			  embed.title = "TurtleCoin Mining"
+	          embed.colour = 0x5345b3
+	          embed.add_field(name: "Hashrate ",                value: hash_rate.to_s + " KH/sec")
+	          embed.add_field(name: "Hashrate 6 hours",         value: six_hours.to_s + " KH/sec")
+	          embed.add_field(name: "Hashes",        		    value: hashes.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse.to_s)
+	          embed.add_field(name: "Balance",  	            value: balance.to_s + " TRTL")
+	          embed.add_field(name: "Total Paid",               value: total_paid.to_s + " TRTL")
+		end
+	end
 	command([:crypto], description:"Get current crypto price.", usage:".crypto <name>\n.crypto p btc\n.crypto ls") do |event, name, coin, amount|
 		FileUtils.mkdir_p(File.join("users", event.user.id.to_s))  unless File.exists?(File.join("users", event.user.id.to_s))
 	    FileUtils.touch(File.join("users", event.user.id.to_s, "crypto.json")) unless File.exists?(File.join("users", event.user.id.to_s, "crypto.json"))

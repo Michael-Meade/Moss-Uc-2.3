@@ -1,0 +1,22 @@
+DOMAIN,CDN,CNAME,IP
+analytics.bitstamp.net,Yes,['5xagthi.x.incapdns.net.'],['107.154.133.13']
+ln.bitstamp.net,No,Null,['3.122.40.122']
+pl.bitstamp.net,Yes,['qgjb4.x.incapdns.net.'],['107.154.249.133']
+fi.bitstamp.net,Yes,['qgjb4.x.incapdns.net.'],['107.154.249.133']
+nl.bitstamp.net,Yes,['qgjb4.x.incapdns.net.'],['107.154.249.133']
+click.bitstamp.net,No,['spgo.io.'],"['35.165.66.9', '44.242.54.62', '54.149.10.68']"
+si.bitstamp.net,Yes,['qgjb4.x.incapdns.net.'],['107.154.249.133']
+cz.bitstamp.net,Yes,['qgjb4.x.incapdns.net.'],['107.154.249.133']
+ws.bitstamp.net,Yes,['websocket-lb-1686925677.eu-central-1.elb.amazonaws.com.'],"['18.158.223.15', '18.158.97.30', '18.185.187.95', '18.195.37.75', '18.196.159.7', '18.198.65.124', '3.124.175.67', '3.66.42.213']"
+it.bitstamp.net,Yes,['qgjb4.x.incapdns.net.'],['107.154.249.133']
+assets.bitstamp.net,Yes,['az6nws3.x.incapdns.net.'],['107.154.133.13']
+link.bitstamp.net,No,['sendgrid.net.'],"['167.89.118.52', '167.89.118.83', '167.89.123.124', '167.89.123.54']"
+www.bitstamp.net,Yes,['qgjb4.x.incapdns.net.'],['107.154.249.133']
+mail1.bitstamp.net,No,Null,['52.28.49.179']
+de.bitstamp.net,Yes,['qgjb4.x.incapdns.net.'],['107.154.249.133']
+ru.bitstamp.net,Yes,['qgjb4.x.incapdns.net.'],['107.154.249.133']
+autodiscover.bitstamp.net,No,"['autodiscover.outlook.com.', 'autod.ha-autod.office.com.', 'autod.ms-acdc-autod.office.com.']","['40.100.2.104', '40.100.54.232', '40.100.54.24', '52.98.85.200']"
+blog.bitstamp.net,No,['m2ubasb.impervadns.net.'],['107.154.133.13']
+sip.bitstamp.net,No,['sipdir.online.lync.com.'],['52.113.64.147']
+lyncdiscover.bitstamp.net,No,['webdir.online.lync.com.'],['52.113.64.150']
+mail.bitstamp.net,No,Null,['54.235.132.61']

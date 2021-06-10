@@ -8,7 +8,7 @@ require "open3"
 module Bot::DiscordCommands
   module GPG2
     extend Discordrb::Commands::CommandContainer
-        command(:encrypt) do |event, msg|
+        command(:encrypt, description:"encrypt message", usage: ".encrypt hi, im dave") do |event, msg|
             output, status = Open3.capture2e(
                 "gpg",
                 "--with-fingerprint", File.join("users", event.user.id.to_s, "publickey.txt"),
@@ -31,7 +31,7 @@ module Bot::DiscordCommands
             loo = Utils.gpg_encrypt(event.user.id.to_s, "OOOOOOOOOOOOOOO")
             event.respond("#{loo[0]}")
         end
-    	command([:publickey],  description:"Upload your public key", usage:".publickey") do |event, public_key|
+    	command([:publickey],  description:"Upload your public key", usage:".publickey <upload public key>") do |event, public_key|
     		pub = HTTParty.get(event.message.attachments[0].url).response.body
     		Utils.user_directory(event.user.id.to_s, "publickey.txt", pub, "txt")
             GPG.import_publickey(File.join("users", event.user.id.to_s, "publickey.txt"))

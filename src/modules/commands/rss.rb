@@ -24,6 +24,7 @@ module Bot::DiscordCommands
             feed = RSS::Parser.parse(rss, false)
             feed.items.each do |item|
                 if i.to_i <=  0
+                    puts item.link
                     array += [[item.title, item.link, item.description.to_s.gsub("[...]", "")]]
                     i += 1
                 end
@@ -96,13 +97,12 @@ module Bot::DiscordCommands
     # creates the news embed
     def self.create_new_embed(id)
         out = Reader.new(id).info.shift
-        out.each do |id|
-            page = MetaInspector.new(id[1], parse_timeout: 60)
-            if page.meta_tags["property"]["og:image"].is_a?(Array)
-                @img = page.meta_tags["property"]["og:image"].shift
-            elsif page.meta_tags["property"]["og:image"].is_a?(String)
-                @img = page.meta_tags["property"]["og:image"]
-            end
+        p out
+        page = MetaInspector.new(id[1], parse_timeout: 60)
+        if page.meta_tags["property"]["og:image"].is_a?(Array)
+            @img = page.meta_tags["property"]["og:image"].shift
+        elsif page.meta_tags["property"]["og:image"].is_a?(String)
+            @img = page.meta_tags["property"]["og:image"]
         end
         # id[0] = title
         # id[1] = url
